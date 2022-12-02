@@ -93,9 +93,7 @@ local opts = {
     lualine_z = { components.scrollbar },
   },
   inactive_sections = {
-    lualine_a = {
-      "filename",
-    },
+    lualine_a = {},
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
@@ -104,7 +102,6 @@ local opts = {
   },
   tabline = nil,
   extensions = { "nvim-tree" },
-  on_config_done = nil,
 }
 
 lualine.setup(opts)

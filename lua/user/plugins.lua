@@ -42,10 +42,40 @@ packer.init {
 }
 
 packer.startup(function(use)
+  -- Core plugins
   use 'wbthomason/packer.nvim' -- Packer manages itself
+  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
+  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+
+  -- Treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  }
+  use {
+    "nvim-treesitter/nvim-treesitter-context",
+    config = function()
+      require "user.treesitter-context"
+    end,
+  }
+  use {
+    "p00f/nvim-ts-rainbow",
+    requires = {"nvim-treesitter/nvim-treesitter"}
+  }
+  use {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require "user.autotag"
+    end,
+    requires = { "nvim-treesitter/nvim-treesitter" },
+  }
+  use {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    event = "BufReadPost",
+    requires = { "nvim-treesitter/nvim-treesitter" },
+  }
+
   -- My plugins here
-  -- use 'foo1/bar1.nvim'
-  -- use 'foo2/bar2.nvim'
   use "lunarvim/colorschemes"
   use "marko-cerovac/material.nvim"
   use {
@@ -100,6 +130,53 @@ packer.startup(function(use)
     end,
     event = "BufRead",
   }
+  use {
+    "f-person/git-blame.nvim",
+    config = function()
+      require "user.git_blame"
+    end,
+  }
+  use {
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    ft = "markdown",
+    config = function()
+      vim.g.mkdp_auto_start = 1
+    end,
+  }
+  use {
+    "andymass/vim-matchup",
+    config = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    end,
+    event = "CursorMoved",
+  }
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("user.indent_blankline").config()
+    end,
+  }
+  use {
+    "tpope/vim-fugitive",
+  }
+  use {
+    "tpope/vim-surround",
+  }
+  use {
+    "NvChad/nvim-colorizer.lua",
+    config = function()
+      require("user.nvim_colorizer").config()
+    end,
+  }
+  use {
+    "numToStr/Comment.nvim",
+    event = "BufRead",
+    config = function()
+      require "user.comment"
+    end,
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
