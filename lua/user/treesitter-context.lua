@@ -23,11 +23,44 @@ ts_context.setup {
       "switch",
       "case",
     },
-    -- Example for a specific filetype.
-    -- If a pattern is missing, *open a PR* so everyone can benefit.
-    --   rust = {
-    --       'impl_item',
-    --   },
+    tex = {
+        'chapter',
+        'section',
+        'subsection',
+        'subsubsection',
+    },
+    rust = {
+        'impl_item',
+        'struct',
+        'enum',
+    },
+    scala = {
+        'object_definition',
+    },
+    vhdl = {
+        'process_statement',
+        'architecture_body',
+        'entity_declaration',
+    },
+    markdown = {
+        'section',
+    },
+    elixir = {
+        'anonymous_function',
+        'arguments',
+        'block',
+        'do_block',
+        'list',
+        'map',
+        'tuple',
+        'quoted_content',
+    },
+    json = {
+        'pair',
+    },
+    yaml = {
+        'block_mapping_pair',
+    },
   },
   exact_patterns = {
     -- Example for a specific filetype with Lua patterns
