@@ -55,6 +55,13 @@ local components = {
     cond = conditions.hide_in_width,
   },
   location = { "location", cond = conditions.hide_in_width, color = {} },
+  progress = {
+    "progress",
+    fmt = function()
+      return "%P/%L"
+    end,
+    color = { bg = "#ADD8E6", fg = "#505050", gui = "bold" },
+  },
   scrollbar = {
     function()
       local current_line = vim.fn.line "."
@@ -132,7 +139,7 @@ local opts = {
       components.location,
     },
     lualine_y = {},
-    lualine_z = { components.scrollbar },
+    lualine_z = { components.progress },
   },
   inactive_sections = {
     lualine_a = {},
