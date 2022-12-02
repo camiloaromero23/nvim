@@ -39,7 +39,7 @@ local which_key_opts = {
   },
   hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
   ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
-  show_help = true, -- show help message on the command line when the popup is visible
+  show_help = false, -- show help message on the command line when the popup is visible
   triggers = "auto", -- automatically setup triggers
   -- triggers = {"<leader>"} -- or specify a list manually
   triggers_blacklist = {
