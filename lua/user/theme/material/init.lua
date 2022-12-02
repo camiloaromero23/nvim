@@ -15,15 +15,35 @@ material.setup {
     non_current_windows = false, -- Enable darker background for non-current windows
     popup_menu = false, -- Enable lighter background for the popup menu
   },
-  italics = {
-    comments = true,
-    keywords = true,
-    tags = true,
-    functions = true,
-    variables = false,
-    strings = false,
+  styles = {
+    comments = { italic = true },
+    keywords = { italic = true },
+    tags = { italic = true },
+    functions = { italic = true },
+    -- variables = false,
+    -- strings = false,
   },
-  custom_colors = { accent = "#ADD8E6" },
+  plugins = { -- Uncomment the plugins that you use to highlight them
+    -- Available plugins:
+    -- "dap",
+    "dashboard",
+    "gitsigns",
+    -- "hop",
+    "indent-blankline",
+    -- "lspsaga",
+    -- "mini",
+    -- "neogit",
+    "nvim-cmp",
+    "nvim-navic",
+    "nvim-tree",
+    -- "sneak",
+    "telescope",
+    -- "trouble",
+    "which-key",
+  },
+  custom_colors = function(colors)
+    colors.editor.accent = "#ADD8E6"
+  end,
   disable = {
     colored_cursor = true,
     eob_lines = true,
@@ -33,4 +53,4 @@ material.setup {
 }
 
 vim.g.material_style = "darker"
-vim.cmd "colorscheme material"
+vim.cmd.colorscheme "material"
