@@ -86,6 +86,13 @@ packer.startup(function(use)
       'kyazdani42/nvim-web-devicons', -- optional, for file icons
     },
   }
+  use {
+    'nvim-lualine/lualine.nvim',
+    config = function()
+      require "user.lualine"
+    end,
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
