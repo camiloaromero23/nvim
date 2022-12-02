@@ -39,6 +39,7 @@ M.on_attach = function(client, bufnr)
   end
   -- Disable lsp server formatting
   if client.name == "tsserver" then
+    require("user.lsp.servers.tsserver").organize_imports()
     client.server_capabilities.document_formatting = false
   end
   if client.name == "volar" then
