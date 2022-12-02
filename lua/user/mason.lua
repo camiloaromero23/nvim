@@ -119,3 +119,23 @@ lspconfig.eslint.setup {
   filetypes = web_dev_filetypes,
   cmd = { "vscode-eslint-language-server", "--stdio" }
 }
+
+lspconfig.rust_analyzer.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetypes = { "rust", "rs" },
+  cmd = { "rust-analyzer" }
+}
+
+lspconfig.gopls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  single_file_support = true,
+  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  cmd = { "gopls" }
+}
+
+lspconfig.golangci_lint_ls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
