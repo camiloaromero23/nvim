@@ -193,6 +193,12 @@ packer.startup(function(use)
     end,
   }
 
+  use {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require "user.project"
+    end,
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

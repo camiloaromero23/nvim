@@ -2,6 +2,7 @@ local M = {}
 
 custom_nvim.nvimtree = {
   setup = {
+    respect_buf_cwd = true,
     disable_netrw = true,
     hijack_netrw = true,
     open_on_setup = false,
@@ -21,7 +22,7 @@ custom_nvim.nvimtree = {
     },
     open_on_tab = false,
     hijack_cursor = false,
-    update_cwd = false,
+    update_cwd = true,
     diagnostics = {
       enable = true,
       show_on_dirs = false,
@@ -158,20 +159,13 @@ function M.setup()
 
   custom_nvim.nvimtree._setup_called = true
 
-  -- Implicitly update nvim-tree when project module is active
-  -- if lvim.builtin.project.active then
-  --   lvim.builtin.nvimtree.setup.respect_buf_cwd = true
-  --   lvim.builtin.nvimtree.setup.update_cwd = true
-  --   lvim.builtin.nvimtree.setup.update_focused_file = { enable = true, update_cwd = true }
-  -- end
+  local function telescope_find_files(_)
+    require("user.nvimtree").start_telescope "find_files"
+  end
 
-  -- local function telescope_find_files(_)
-  --   require("lvim.core.nvimtree").start_telescope "find_files"
-  -- end
-
-  -- local function telescope_live_grep(_)
-  --   require("lvim.core.nvimtree").start_telescope "live_grep"
-  -- end
+  local function telescope_live_grep(_)
+    require("user.nvimtree").start_telescope "live_grep"
+  end
 
   -- Add useful keymaps
     custom_nvim.nvimtree.setup.view.mappings.list = {
