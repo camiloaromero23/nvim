@@ -73,7 +73,7 @@ custom_nvim.nvimtree = {
       icons = {
         webdev_colors = true,
         show = {
-          git = true,
+          git = false,
           folder = true,
           file = true,
           folder_arrow = true,
@@ -104,8 +104,8 @@ custom_nvim.nvimtree = {
     },
     filters = {
       dotfiles = false,
-      custom = { "node_modules", "\\.cache" },
-      exclude = {},
+      custom = { "\\.git", "\\.cache", "\\.DS_Store" },
+      exclude = { ".gitignore" },
     },
     trash = {
       cmd = "trash",
