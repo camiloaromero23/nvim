@@ -29,7 +29,14 @@ M.setup = function()
     "typescriptreact",
   }
 
+  local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+  if not lspconfig_ok then
+    return
+  end
+
+
   require("user.lsp.setup").setup_handler("tsserver", {
+    root_dir = lspconfig.util.root_pattern ("package.json","tsconfig.json", "jsconfig.json"),
     filetypes = filetypes,
     cmd = { "typescript-language-server", "--stdio" },
     commands = {
