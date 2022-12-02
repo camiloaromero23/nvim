@@ -4,6 +4,7 @@ require "user.lsp.mason"
 
 local configured_servers = {
   "astro",
+  "cssls",
   "eslint",
   "gopls",
   "jsonls",

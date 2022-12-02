@@ -44,6 +44,7 @@ local servers = {
   "angularls",
   "astro",
   "bashls",
+  "cssls",
   "denols",
   "dockerls",
   "emmet_ls",
