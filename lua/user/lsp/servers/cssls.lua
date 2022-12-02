@@ -1,6 +1,9 @@
 local M = {}
 
 M.setup = function()
+  local capabilities = require("user.lsp.common").capabilities
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+
   require("user.lsp.setup").setup_handler("cssls", {
     filetypes = {"css","scss","less"},
     cmd = { "vscode-css-language-server", "--stdio" },

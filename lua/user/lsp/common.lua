@@ -32,8 +32,6 @@ end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.on_attach = function(client, bufnr)
-  M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-
   if client.server_capabilities.documentSymbolProvider then
     attach_navic(client, bufnr)
   end

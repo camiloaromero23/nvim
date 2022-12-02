@@ -243,7 +243,7 @@ packer.startup(function(use)
     "folke/lua-dev.nvim",
     module = "lua-dev",
   }
-  use "b0o/SchemaStore.nvim"
+  use "b0o/schemastore.nvim"
   use {
     "ahmedkhalf/project.nvim",
     config = function()
