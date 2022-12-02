@@ -246,6 +246,14 @@ packer.startup(function(use)
       require "user.autopairs"
     end,
   }
+  use {
+    "fatih/vim-go",
+    config = function()
+      require "user.vim-go"
+    end,
+    ft = { "go" },
+  }
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

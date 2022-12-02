@@ -6,7 +6,7 @@
 - [x] cmp
 - [x] snippets
 - [ ] null-ls
-- [ ] vim-go
+- [x] vim-go
 - [ ] rust-tools
 - [x] Personal commands & autocommands
 - [ ] winbar
