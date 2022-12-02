@@ -208,6 +208,10 @@ custom_nvim.which_key.mappings = {
       "<cmd>Telescope projects<cr>",
       "Recent Projects",
     },
+    o = {
+      "<cmd>so%<cr>",
+      "Source lua file",
+    },
   },
   T = {
     name = "Treesitter",
