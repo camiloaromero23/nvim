@@ -75,10 +75,10 @@ cmp.setup {
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
-    format = lspkind.cmp_format({
-      mode = 'symbol', -- show only symbol annotations
+    format = lspkind.cmp_format {
+      mode = "symbol", -- show only symbol annotations
       maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-      preset = 'codicons',
+      preset = "codicons",
       -- wirth_text = false,
 
       -- The function below will be called before any actual modifications from lspkind
@@ -87,7 +87,7 @@ cmp.setup {
       --   ...
       --   return vim_item
       -- end
-    })
+    },
     -- format = function(entry, vim_item)
     --   -- Kind icons
     --   vim_item.kind = string.format("%s", kind_icons[vim_item.kind])

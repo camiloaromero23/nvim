@@ -12,9 +12,9 @@ local lua_dev_opts = {
           -- callSnippet = "Replace"
         },
         workspace = {
-          library = vim.api.nvim_get_runtime_file("", true)
+          library = vim.api.nvim_get_runtime_file("", true),
           -- library = "~/.config/nvim"
-        }
+        },
       },
     },
   },

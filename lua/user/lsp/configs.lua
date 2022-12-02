@@ -2,7 +2,7 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = "rounded",
 })
 
-vim.diagnostic.config({
+vim.diagnostic.config {
   float = {
     focusable = false,
     style = "minimal",
@@ -23,10 +23,10 @@ vim.diagnostic.config({
   underline = true,
   update_in_insert = true,
   virtual_text = {
-    prefix = ""
+    prefix = "",
   },
-  title = false
-})
+  title = false,
+}
 
 custom_nvim.signs = {
   { name = "DiagnosticSignError", text = "" },

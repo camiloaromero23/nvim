@@ -49,6 +49,7 @@ configs.setup {
     }, -- table of hex strings
   },
   indent = {
-    enable = true, disable = { "yaml", "python" }
+    enable = true,
+    disable = { "yaml", "python" },
   },
 }

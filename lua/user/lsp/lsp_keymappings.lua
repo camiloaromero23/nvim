@@ -39,7 +39,6 @@ local lsp_mappings = {
   },
   insert_mode = {},
   visual_mode = {},
-
 }
 local lsp_modes = {
   normal_mode = "n",
