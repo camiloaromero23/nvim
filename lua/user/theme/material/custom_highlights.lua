@@ -29,4 +29,5 @@ return {
   NavicIconsTypeParameter = { fg = colors.darkgreen },
   NavicText = { fg = colors.fg },
   NavicSeparator = { fg = colors.fg },
+  IndentBlanklineContextChar = { fg = colors.fg },
 }
