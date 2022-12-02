@@ -193,12 +193,20 @@ packer.startup(function(use)
     end,
   }
 
+  use "antoinemadec/FixCursorHold.nvim" -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
+  use {
+    "folke/lua-dev.nvim",
+    module = "lua-dev",
+  }
+  use "b0o/SchemaStore.nvim"
   use {
     "ahmedkhalf/project.nvim",
     config = function()
       require "user.project"
     end,
   }
+
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
