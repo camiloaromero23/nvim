@@ -154,3 +154,9 @@ lspconfig.astro.setup {
   filetypes = { "astro" },
   cmd = { "astro-ls", "--stdio" },
 }
+
+lspconfig.tailwindcss.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  root_dir = lspconfig.util.root_pattern("tailwind.config.js", "tailwind.config.cjs", "tailwind.js", "tailwind.cjs"),
+}
