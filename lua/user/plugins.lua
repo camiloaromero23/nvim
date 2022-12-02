@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 packer.init {
   display = {
     open_fn = function()
-      return require("packer.util").float { border = "rounded"}
+      return require("packer.util").float { border = "rounded" }
     end,
   },
 }
@@ -61,7 +61,7 @@ packer.startup(function(use)
   }
   use {
     "p00f/nvim-ts-rainbow",
-    requires = {"nvim-treesitter/nvim-treesitter"}
+    requires = { "nvim-treesitter/nvim-treesitter" }
   }
   use {
     "windwp/nvim-ts-autotag",
@@ -82,7 +82,7 @@ packer.startup(function(use)
     config = function()
       require "user.telescope"
     end,
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use {
@@ -104,6 +104,16 @@ packer.startup(function(use)
   use {
     "neovim/nvim-lspconfig",
   }
+
+  -- CMP
+  use 'onsails/lspkind-nvim' -- Completion icons
+  use "hrsh7th/nvim-cmp" -- The completion plugin
+  use "hrsh7th/cmp-nvim-lsp" -- lsp completions
+  use "hrsh7th/cmp-buffer" -- buffer completions
+  use "hrsh7th/cmp-path" -- path completions
+  use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use 'L3MON4D3/LuaSnip' -- Snppets
 
   -- My plugins here
   use "lunarvim/colorschemes"
