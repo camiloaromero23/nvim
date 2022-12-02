@@ -8,6 +8,6 @@
 - [ ] null-ls
 - [ ] vim-go
 - [ ] rust-tools
-- [ ] Personal commands & autocommands
+- [x] Personal commands & autocommands
 - [ ] winbar
 - [ ] sideways.nvim
