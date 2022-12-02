@@ -77,6 +77,15 @@ packer.startup(function(use)
     },
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
+  use {
+    'akinsho/bufferline.nvim',
+    config = function()
+      require "user.bufferline"
+    end,
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
