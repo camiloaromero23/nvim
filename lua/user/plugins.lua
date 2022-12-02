@@ -102,9 +102,6 @@ packer.startup(function(use)
   }
   use {
     "williamboman/mason.nvim",
-    config = function()
-      require "user.mason"
-    end,
   }
   use {
     "williamboman/mason-lspconfig.nvim",

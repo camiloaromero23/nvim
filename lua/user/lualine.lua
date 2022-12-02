@@ -92,10 +92,12 @@ local components = {
 
       -- add formatter
       local supported_formatters = lualine_utils.list_registered_formatters(buf_ft)
+      ---@diagnostic disable-next-line: missing-parameter
       vim.list_extend(buf_client_names, supported_formatters)
 
       -- add linter
       local supported_linters = lualine_utils.list_registered_linters(buf_ft)
+      ---@diagnostic disable-next-line: missing-parameter
       vim.list_extend(buf_client_names, supported_linters)
 
       ---@diagnostic disable-next-line: missing-parameter
