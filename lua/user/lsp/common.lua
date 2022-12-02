@@ -64,7 +64,7 @@ M.on_attach = function(client, bufnr)
     client.server_capabilities.document_formatting = false
   end
   -- Formatting
-  if client.server_capabilities.documentFormattingProvider and custom_nvim.format_on_save.status then
+  if client.server_capabilities.documentFormattingProvider and custom_nvim.format_on_save.enable then
     custom_nvim.format_on_save.autocmd_id = vim.api.nvim_create_autocmd("BufWritePre", {
       group = augroups.autoformat,
       pattern = "*",

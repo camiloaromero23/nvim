@@ -12,7 +12,7 @@ custom_nvim = {
     mappings = {},
   },
   format_on_save = {
-    status = true,
+    enable = true,
     autocmd_id = -1,
   },
   colorscheme = "material",
