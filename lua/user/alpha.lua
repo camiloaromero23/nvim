@@ -48,9 +48,12 @@ dashboard.section.header.val = header
 dashboard.section.buttons.val = {
    dashboard.button( "e", "  New file" , ":ene <BAR> startinsert <CR>"),
    dashboard.button( "q", "  Quit NVIM" , ":qa<CR>"),
+   dashboard.button( "c", "  Configuration", "<CMD>edit " .. "~/.config/nvim/init.lua" .. " <CR>")
 }
 
-dashboard.section.footer.val = "Neovim"
+local version = vim.version()
+
+dashboard.section.footer.val = "NVIM" .. " v" .. version.major .. "." .. version.minor .. "." .. version.patch
 
 dashboard.config.opts.noautocmd = true
 
