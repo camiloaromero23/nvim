@@ -30,4 +30,7 @@ return {
   NavicText = { fg = colors.fg },
   NavicSeparator = { fg = colors.fg },
   IndentBlanklineContextChar = { fg = colors.fg },
+  NvimTreeGitDirty = { fg = colors.main.green },
+  NvimTreeGitNew = { fg = colors.main.green },
+  NvimTreeOpenedFolderName = { link = "NvimTreeFolderName" },
 }
