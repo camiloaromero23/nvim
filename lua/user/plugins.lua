@@ -192,7 +192,6 @@ packer.startup(function(use)
       require "user.comment"
     end,
   }
-
   use "antoinemadec/FixCursorHold.nvim" -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
   use {
     "folke/lua-dev.nvim",
@@ -206,6 +205,13 @@ packer.startup(function(use)
     end,
   }
 
+  use {
+    "windwp/nvim-autopairs",
+    -- event = "InsertEnter",
+    config = function()
+      require "user.autopairs"
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
