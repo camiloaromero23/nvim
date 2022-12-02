@@ -3,6 +3,8 @@ if not status_ok then
   return
 end
 
+local icons = require "user.icons"
+
 bufferline.setup {
   options = {
     numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
@@ -37,10 +39,23 @@ bufferline.setup {
     tab_size = 21,
     diagnostics = "nvim_lsp",
     diagnostics_update_in_insert = false,
-    diagnostics_indicator = nil,
-    -- diagnostics_indicator = function(count)
-    --   return "("..count..")"
-    -- end,
+    -- diagnostics_indicator = nil,
+    diagnostics_indicator = function (_, _, diagnostics, _)
+      local result = {}
+      local symbols = {
+        error = icons.diagnostics.Error,
+        warning = icons.diagnostics.Warning,
+        info = icons.diagnostics.Information,
+      }
+      for name, count in pairs(diagnostics) do
+        if symbols[name] and count > 0 then
+          table.insert(result, symbols[name] .. " " .. count)
+        end
+      end
+      local res = table.concat(result, " ")
+      return #res > 0 and res or ""
+    end
+,
     -- NOTE: this will be called a lot so don't do any heavy processing here
     -- custom_filter = function(buf_number)
     --   -- filter out filetypes you don't want to see
