@@ -1,9 +1,9 @@
 vim.api.nvim_create_user_command("ToggleDarkPlus", function()
   local colorscheme = vim.api.nvim_exec("colorscheme", true)
 
-  if colorscheme == "material" then
+  if colorscheme == custom_nvim.colorscheme then
     vim.cmd [[colorscheme darkplus]]
-    return
+  else
+    vim.cmd("colorscheme " .. custom_nvim.colorscheme)
   end
-  vim.cmd [[colorscheme material]]
 end, {})

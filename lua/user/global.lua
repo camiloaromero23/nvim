@@ -12,4 +12,5 @@ custom_nvim = {
     mappings = {},
   },
   format_on_save = true,
+  colorscheme = "material",
 }
