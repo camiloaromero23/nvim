@@ -27,8 +27,7 @@ function M.format(opts)
 
   if vim.lsp.buf.formatting_sync then
     ---@diagnostic disable-next-line: missing-parameter
-    return vim.lsp.buf.formatting_sync()
-    -- return vim.lsp.buf.formatting_sync(opts)
+    return vim.lsp.buf.formatting_sync(opts)
   end
 
   local bufnr = opts.bufnr or vim.api.nvim_get_current_buf()

@@ -4,11 +4,13 @@ if not ok then
   return
 end
 
+local lualine_utils = require "user.lsp.lualine_utils"
+
 local window_width_limit = 70
 
 local conditions = {
   buffer_not_empty = function()
----@diagnostic disable-next-line: missing-parameter
+    ---@diagnostic disable-next-line: missing-parameter
     return vim.fn.empty(vim.fn.expand "%:t") ~= 1
   end,
   hide_in_width = function()
@@ -38,7 +40,7 @@ local components = {
   },
   filetype = {
     "filetype",
-    cond = conditions.hide_in_width
+    cond = conditions.hide_in_width,
   },
   diagnostics = {
     "diagnostics",
@@ -78,7 +80,7 @@ local components = {
         end
         return msg
       end
-      -- local buf_ft = vim.bo.filetype
+      local buf_ft = vim.bo.filetype
       local buf_client_names = {}
 
       -- add client
@@ -89,14 +91,12 @@ local components = {
       end
 
       -- add formatter
-      -- local formatters = require "lvim.lsp.null-ls.formatters"
-      -- local supported_formatters = formatters.list_registered(buf_ft)
-      -- vim.list_extend(buf_client_names, supported_formatters)
+      local supported_formatters = lualine_utils.list_registered_formatters(buf_ft)
+      vim.list_extend(buf_client_names, supported_formatters)
 
       -- add linter
-      -- local linters = require "lvim.lsp.null-ls.linters"
-      -- local supported_linters = linters.list_registered(buf_ft)
-      -- vim.list_extend(buf_client_names, supported_linters)
+      local supported_linters = lualine_utils.list_registered_linters(buf_ft)
+      vim.list_extend(buf_client_names, supported_linters)
 
       ---@diagnostic disable-next-line: missing-parameter
       local unique_client_names = vim.fn.uniq(buf_client_names)
@@ -104,7 +104,7 @@ local components = {
     end,
     color = { gui = "bold" },
     cond = conditions.hide_in_width,
-  }
+  },
 }
 
 local opts = {
@@ -115,7 +115,7 @@ local opts = {
     icons_enabled = true,
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
-    theme = 'auto',
+    theme = "auto",
     disabled_filetypes = { "alpha", "NvimTree", "Outline" },
     always_divide_middle = true,
   },

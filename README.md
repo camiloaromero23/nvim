@@ -5,7 +5,7 @@
 - [x] lsp
 - [x] cmp
 - [x] snippets
-- [ ] null-ls
+- [x] null-ls
 - [x] vim-go
 - [x] rust-tools
 - [x] Personal commands & autocommands

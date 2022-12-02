@@ -2,16 +2,16 @@ local fn = vim.fn
 
 -- Automatically install packer
 local ensure_packer = function()
-  local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
   ---@diagnostic disable-next-line: missing-parameter
   if fn.empty(fn.glob(install_path)) > 0 then
     fn.system {
-      'git',
-      'clone',
-      '--depth',
-      '1',
-      'https://github.com/wbthomason/packer.nvim',
-      install_path
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/wbthomason/packer.nvim",
+      install_path,
     }
     vim.cmd [[packadd packer.nvim]]
     return true
@@ -44,7 +44,7 @@ packer.init {
 
 packer.startup(function(use)
   -- Core plugins
-  use 'wbthomason/packer.nvim' -- Packer manages itself
+  use "wbthomason/packer.nvim" -- Packer manages itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
@@ -61,7 +61,7 @@ packer.startup(function(use)
   }
   use {
     "p00f/nvim-ts-rainbow",
-    requires = { "nvim-treesitter/nvim-treesitter" }
+    requires = { "nvim-treesitter/nvim-treesitter" },
   }
   use {
     "windwp/nvim-ts-autotag",
@@ -78,17 +78,18 @@ packer.startup(function(use)
 
   -- Telescope
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.0",
     config = function()
       require "user.telescope"
     end,
-    requires = { { 'nvim-lua/plenary.nvim' } }
+    requires = { { "nvim-lua/plenary.nvim" } },
   }
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    run = 'make',
-    cond = vim.fn.executable "make" == 1
+    "nvim-telescope/telescope-fzf-native.nvim",
+    run = "make",
+    cond = vim.fn.executable "make" == 1,
   }
 
   -- LSP
@@ -103,25 +104,33 @@ packer.startup(function(use)
     "williamboman/mason.nvim",
     config = function()
       require "user.mason"
-    end
+    end,
   }
   use {
-    "williamboman/mason-lspconfig.nvim"
+    "williamboman/mason-lspconfig.nvim",
   }
   use {
     "neovim/nvim-lspconfig",
   }
 
+  --Null LS
+  use { "tamago324/nlsp-settings.nvim" }
+  use {
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      require "user.null_ls"
+    end,
+  }
 
   -- CMP
-  use 'onsails/lspkind-nvim' -- Completion icons
+  use "onsails/lspkind-nvim" -- Completion icons
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-nvim-lsp" -- lsp completions
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use 'L3MON4D3/LuaSnip' -- Snippets
+  use "L3MON4D3/LuaSnip" -- Snippets
   -- TODO: Change this with own snippets
   use "rafamadriz/friendly-snippets" -- Pre-made snippets
 
@@ -136,42 +145,42 @@ packer.startup(function(use)
     event = "BufWinEnter",
   }
   use {
-    'goolord/alpha-nvim',
+    "goolord/alpha-nvim",
     config = function()
       require "user.alpha"
     end,
   }
   use {
-    'kyazdani42/nvim-web-devicons',
+    "kyazdani42/nvim-web-devicons",
     config = function()
       require "user.devicons"
-    end
+    end,
   }
   use {
-    'kyazdani42/nvim-tree.lua',
+    "kyazdani42/nvim-tree.lua",
     config = function()
       require("user.nvimtree").setup()
     end,
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+      "kyazdani42/nvim-web-devicons", -- optional, for file icons
     },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    tag = "nightly", -- optional, updated every week. (see issue #1193)
   }
   use {
-    'akinsho/bufferline.nvim',
+    "akinsho/bufferline.nvim",
     config = function()
       require "user.bufferline"
     end,
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+      "kyazdani42/nvim-web-devicons", -- optional, for file icons
     },
   }
   use {
-    'nvim-lualine/lualine.nvim',
+    "nvim-lualine/lualine.nvim",
     config = function()
       require "user.lualine"
     end,
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    requires = { "kyazdani42/nvim-web-devicons", opt = true },
   }
   use {
     "lewis6991/gitsigns.nvim",
@@ -261,11 +270,9 @@ packer.startup(function(use)
     ft = { "rust", "rs" },
   }
 
-
-
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
-    require('packer').sync()
+    require("packer").sync()
   end
 end)

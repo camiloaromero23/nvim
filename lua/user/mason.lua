@@ -39,6 +39,8 @@ local servers = {
   "volar",
   "yamlls",
   "zk",
+  -- Formatters & Linters
+  "prettier",
 }
 
 local opts = {
@@ -57,8 +59,8 @@ local opts = {
     icons = {
       package_installed = "✓",
       package_pending = "➜",
-      package_uninstalled = "✗"
-    }
+      package_uninstalled = "✗",
+    },
   },
   log_level = vim.log.levels.INFO,
   max_concurrent_installers = 4,
@@ -80,8 +82,8 @@ mason_lspconfig.setup {
   automatic_installation = true,
 }
 
-local capabilities = require "user.lsp.common".capabilities
-local on_attach = require "user.lsp.common".on_attach
+local capabilities = require("user.lsp.common").capabilities
+local on_attach = require("user.lsp.common").on_attach
 
 lspconfig.sumneko_lua.setup {
   capabilities = capabilities,
@@ -92,10 +94,10 @@ lspconfig.sumneko_lua.setup {
         globals = { "vim", "custom_nvim", "packer_plugins" },
       },
       workspace = {
-        library = vim.api.nvim_get_runtime_file("", true)
-      }
-    }
-  }
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+    },
+  },
 }
 
 local web_dev_filetypes = {
@@ -110,21 +112,21 @@ lspconfig.tsserver.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   filetypes = web_dev_filetypes,
-  cmd = { "typescript-language-server", "--stdio" }
+  cmd = { "typescript-language-server", "--stdio" },
 }
 
 lspconfig.eslint.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   filetypes = web_dev_filetypes,
-  cmd = { "vscode-eslint-language-server", "--stdio" }
+  cmd = { "vscode-eslint-language-server", "--stdio" },
 }
 
 lspconfig.rust_analyzer.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   filetypes = { "rust", "rs" },
-  cmd = { "rust-analyzer" }
+  cmd = { "rust-analyzer" },
 }
 
 lspconfig.gopls.setup {
@@ -132,7 +134,7 @@ lspconfig.gopls.setup {
   on_attach = on_attach,
   single_file_support = true,
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  cmd = { "gopls" }
+  cmd = { "gopls" },
 }
 
 lspconfig.golangci_lint_ls.setup {
