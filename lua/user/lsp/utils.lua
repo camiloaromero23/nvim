@@ -25,9 +25,8 @@ function M.format(opts)
   opts = opts or {}
   opts.filter = opts.filter or M.format_filter
 
-  if vim.lsp.buf.formatting_sync then
-    ---@diagnostic disable-next-line: missing-parameter
-    return vim.lsp.buf.formatting_sync(opts)
+  if vim.lsp.buf.format then
+    return vim.lsp.buf.format(opts)
   end
 
   local bufnr = opts.bufnr or vim.api.nvim_get_current_buf()
@@ -41,11 +40,13 @@ function M.format(opts)
   }
 
   if opts.filter then
+    ---@diagnostic disable-next-line: param-type-mismatch
     clients = vim.tbl_filter(opts.filter, clients)
   end
 
   clients = vim.tbl_filter(function(client)
     return client.supports_method "textDocument/formatting"
+    ---@diagnostic disable-next-line: param-type-mismatch
   end, clients)
 
   if #clients == 0 then
