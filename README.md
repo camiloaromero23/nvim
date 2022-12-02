@@ -7,7 +7,7 @@
 - [x] snippets
 - [ ] null-ls
 - [x] vim-go
-- [ ] rust-tools
+- [x] rust-tools
 - [x] Personal commands & autocommands
 - [ ] winbar
 - [ ] sideways.nvim

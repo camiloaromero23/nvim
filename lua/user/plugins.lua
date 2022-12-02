@@ -253,6 +253,14 @@ packer.startup(function(use)
     end,
     ft = { "go" },
   }
+  use {
+    "simrat39/rust-tools.nvim",
+    config = function()
+      require "user.rust_tools"
+    end,
+    ft = { "rust", "rs" },
+  }
+
 
 
   -- Automatically set up your configuration after cloning packer.nvim
