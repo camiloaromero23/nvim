@@ -14,9 +14,15 @@ local colors = {
   tsBlue = "#3178c6",
   txtBlue = "#05a8fa",
   vueGreen = "#42B883",
+  white = "#FFFFFF",
 }
 
 local custom_icons = {
+  astro = {
+    icon = "",
+    color = colors.white,
+    name = "astro",
+  },
   css = {
     icon = "",
     color = colors.cssBlue,

@@ -141,3 +141,16 @@ lspconfig.golangci_lint_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
+
+lspconfig.astro.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  init_options = {
+    configuration = {},
+    typescript = {
+      serverPath = "/usr/local/lib/node_modules/typescript/lib/typescript.js",
+    },
+  },
+  filetypes = { "astro" },
+  cmd = { "astro-ls", "--stdio" },
+}
