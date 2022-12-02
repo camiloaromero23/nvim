@@ -9,6 +9,7 @@ custom_nvim = {
     },
   },
   which_key = {
-      mappings = {},
+    mappings = {},
   },
+  format_on_save = true,
 }

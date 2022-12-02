@@ -8,6 +8,7 @@ local window_width_limit = 70
 
 local conditions = {
   buffer_not_empty = function()
+---@diagnostic disable-next-line: missing-parameter
     return vim.fn.empty(vim.fn.expand "%:t") ~= 1
   end,
   hide_in_width = function()
@@ -35,7 +36,7 @@ local components = {
     color = {},
     cond = nil,
   },
-  filetype = { 
+  filetype = {
     "filetype",
     cond = conditions.hide_in_width
   },
@@ -65,6 +66,45 @@ local components = {
     color = { bg = "#202328", fg = "#ADD8E6" },
     cond = nil,
   },
+  lsp = {
+    function(msg)
+      msg = msg or "LS Inactive"
+      ---@diagnostic disable-next-line: missing-parameter
+      local buf_clients = vim.lsp.buf_get_clients()
+      if next(buf_clients) == nil then
+        -- TODO: clean up this if statement
+        if type(msg) == "boolean" or #msg == 0 then
+          return "LS Inactive"
+        end
+        return msg
+      end
+      -- local buf_ft = vim.bo.filetype
+      local buf_client_names = {}
+
+      -- add client
+      for _, client in pairs(buf_clients) do
+        if client.name ~= "null-ls" then
+          table.insert(buf_client_names, client.name)
+        end
+      end
+
+      -- add formatter
+      -- local formatters = require "lvim.lsp.null-ls.formatters"
+      -- local supported_formatters = formatters.list_registered(buf_ft)
+      -- vim.list_extend(buf_client_names, supported_formatters)
+
+      -- add linter
+      -- local linters = require "lvim.lsp.null-ls.linters"
+      -- local supported_linters = linters.list_registered(buf_ft)
+      -- vim.list_extend(buf_client_names, supported_linters)
+
+      ---@diagnostic disable-next-line: missing-parameter
+      local unique_client_names = vim.fn.uniq(buf_client_names)
+      return "[" .. table.concat(unique_client_names, ", ") .. "]"
+    end,
+    color = { gui = "bold" },
+    cond = conditions.hide_in_width,
+  }
 }
 
 local opts = {
@@ -85,7 +125,7 @@ local opts = {
     lualine_c = { components.branch, components.filename, components.diagnostics },
     lualine_x = {
       components.filetype,
-      -- components.lsp,
+      components.lsp,
       components.encoding,
       components.location,
     },

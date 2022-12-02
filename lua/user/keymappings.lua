@@ -70,6 +70,7 @@ local keymaps = {
 		["<C-8>"] = ":%s/<c-r><c-w>/",
 		["<S-l>"] = ":BufferLineCycleNext<CR>",
 		["<S-h>"] = ":BufferLineCyclePrev<CR>",
+
 	},
 
 	term_mode = {
@@ -110,9 +111,9 @@ local keymaps = {
 -- Load key mappings for a given mode
 -- @param mode The keymap mode, can be one of the keys of mode_adapters
 -- @param keymaps The list of key mappings
-function M.load_mode(mode, keymaps)
+function M.load_mode(mode, mode_keymaps)
 	mode = mode_adapters[mode] or mode
-	for k, v in pairs(keymaps) do
+	for k, v in pairs(mode_keymaps) do
 		M.set_keymaps(mode, k, v)
 	end
 end

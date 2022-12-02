@@ -24,7 +24,7 @@ local pre_hook = function(ctx)
   }
 end
 
-opts = {
+local opts = {
   ---Add a space b/w comment and the line
   ---@type boolean
   padding = true,

@@ -3,6 +3,7 @@ local fn = vim.fn
 -- Automatically install packer
 local ensure_packer = function()
   local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+  ---@diagnostic disable-next-line: missing-parameter
   if fn.empty(fn.glob(install_path)) > 0 then
     fn.system {
       'git',

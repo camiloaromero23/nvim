@@ -1,4 +1,4 @@
-local opts = {
+local which_key_opts = {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -208,7 +208,7 @@ if not ok then
   return
 end
 
-which_key.setup(opts)
+which_key.setup(which_key_opts)
 if not custom_nvim.which_key then
   return
 end
