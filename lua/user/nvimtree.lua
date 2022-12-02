@@ -186,6 +186,9 @@ end
 
 function M.start_telescope(telescope_mode)
   local node = require("nvim-tree.lib").get_node_at_cursor()
+  if node == nil then
+    return
+  end
   local abspath = node.link_to or node.absolute_path
   local is_folder = node.open ~= nil
   local basedir = is_folder and abspath or vim.fn.fnamemodify(abspath, ":h")
