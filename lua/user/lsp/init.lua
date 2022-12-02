@@ -6,7 +6,6 @@ local configured_servers = {
   "astro",
   "eslint",
   "gopls",
-  "rust_analyzer",
   "sumneko_lua",
   "tailwindcss",
   "tsserver",
