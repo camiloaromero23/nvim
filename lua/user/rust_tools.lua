@@ -3,10 +3,22 @@ if not status_ok then
   return
 end
 
+local ok, lsp = pcall(require, "user.lsp.common")
+if not ok then
+  return
+end
+
+local on_attach = lsp.on_attach
+local capabilities = lsp.capabilities
+
 rust_tools.setup {
   tools = {
     executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
     reload_workspace_from_cargo_toml = true,
+    autoSetHints = true,
+    runnables = {
+      use_telescope = true,
+    },
     inlay_hints = {
       auto = false,
       only_current_line = false,
@@ -34,6 +46,8 @@ rust_tools.setup {
     },
   },
   server = {
-    on_attach = require("user.lsp.common").on_attach,
+    on_attach = on_attach,
+    capabilities = capabilities,
+    standalone = false,
   },
 }
