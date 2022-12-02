@@ -10,5 +10,6 @@ M.lspDocumentHighlight = augroup("lsp_document_highlight", { clear = true })
 M.noNewLineComments = augroup("NoNewLineComments", { clear = true })
 M.winbar = augroup("_WinBar", { clear = true })
 M.inlayHints = augroup("LspAttachInlayHints", { clear = true })
+M.codelens = augroup("LspCodelens", { clear = true })
 
 return M

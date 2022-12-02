@@ -21,6 +21,19 @@ local function lsp_highlight_document(bufnr, client)
   })
 end
 
+local code_lens = function()
+  vim.cmd [[hi link LspCodelens NONE]]
+  vim.cmd [[hi LspCodelens guibg=None guifg=darkgray gui=bold]]
+  vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+    group = augroups.codelens,
+    pattern = "*",
+    desc = "Refresh codelens",
+    callback = function()
+      pcall(vim.lsp.codelens.refresh)
+    end,
+  })
+end
+
 local attach_navic = function(client, bufnr)
   vim.g.navic_silence = true
   local status_ok, navic = pcall(require, "nvim-navic")
@@ -34,6 +47,10 @@ M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.on_attach = function(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     attach_navic(client, bufnr)
+  end
+  -- Code lens
+  if client.server_capabilities.codeLensProvider then
+    code_lens()
   end
   -- Disable lsp server formatting
   if client.name == "tsserver" then
