@@ -213,6 +213,11 @@ custom_nvim.which_key.mappings = {
       "Source lua file",
     },
   },
+  t = {
+    name = "Toggle",
+    f = { "<cmd>ToggleFormatOnSave<cr>", "Toggle Format On Save" },
+    d = { "<cmd>ToggleDarkPlus<cr>", "Toggle DarkPlus Theme" },
+  },
   T = {
     name = "Treesitter",
     i = { ":TSConfigInfo<cr>", "Info" },
