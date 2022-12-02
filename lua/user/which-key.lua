@@ -1,4 +1,3 @@
-custom_nvim.which_key = {}
 local opts = {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
@@ -79,6 +78,7 @@ custom_nvim.which_key.mappings = {
   ["q"] = { "<cmd>lua require('user.utils.functions').smart_quit()<CR>", "Quit" },
   ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
   ["c"] = { "<cmd>BufferKill<CR>", "Close Buffer" },
+  ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
   -- ["f"] = { require("lvim.core.telescope.custom-finders").find_project_files, "Find File" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   b = {

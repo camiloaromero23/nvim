@@ -57,9 +57,25 @@ packer.startup(function(use)
   }
   use {
     'goolord/alpha-nvim',
-    config = function ()
+    config = function()
       require "user.alpha"
     end,
+  }
+  use {
+    'kyazdani42/nvim-web-devicons',
+    config = function()
+      require "user.devicons"
+    end
+  }
+  use {
+    'kyazdani42/nvim-tree.lua',
+    config = function()
+      require("user.nvimtree").setup()
+    end,
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
