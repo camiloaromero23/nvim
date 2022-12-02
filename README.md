@@ -2,7 +2,7 @@
 
 ## TODO:
 
-- [ ] lsp w alpha
+- [x] lsp
 - [ ] cmp
 - [ ] snippets
 - [ ] null-ls

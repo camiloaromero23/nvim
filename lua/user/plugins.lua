@@ -91,6 +91,19 @@ packer.startup(function(use)
     cond = vim.fn.executable "make" == 1
   }
 
+  -- LSP
+  use {
+    "williamboman/mason.nvim",
+    config = function()
+      require "user.mason"
+    end
+  }
+  use {
+    "williamboman/mason-lspconfig.nvim"
+  }
+  use {
+    "neovim/nvim-lspconfig",
+  }
 
   -- My plugins here
   use "lunarvim/colorschemes"
