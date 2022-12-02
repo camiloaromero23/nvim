@@ -93,6 +93,13 @@ packer.startup(function(use)
 
   -- LSP
   use {
+    "ray-x/lsp_signature.nvim",
+    event = "InsertEnter",
+    config = function()
+      require "user.lsp_signature"
+    end,
+  }
+  use {
     "williamboman/mason.nvim",
     config = function()
       require "user.mason"
@@ -104,6 +111,7 @@ packer.startup(function(use)
   use {
     "neovim/nvim-lspconfig",
   }
+
 
   -- CMP
   use 'onsails/lspkind-nvim' -- Completion icons
