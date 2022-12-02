@@ -280,6 +280,13 @@ packer.startup(function(use)
     end,
   }
 
+  use {
+    "ThePrimeagen/harpoon",
+    config = function()
+      require "user.harpoon"
+    end,
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

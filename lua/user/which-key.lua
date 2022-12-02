@@ -80,7 +80,15 @@ custom_nvim.which_key.mappings = {
   ["c"] = { "<cmd>bd<CR>", "Close Buffer" },
   ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
   ["f"] = { require("user.telescope.custom-finders").find_project_files, "Find File" },
-  ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+  h = {
+    name = "Harpoon",
+    a = { '<cmd>lua require("harpoon.mark").add_file()<CR>', "Mark file" },
+    m = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', "Quick menu" },
+    y = { '<cmd>lua require("harpoon.ui").nav_file(1)<CR>', "Go to mark 1" },
+    u = { '<cmd>lua require("harpoon.ui").nav_file(2)<CR>', "Go to mark 2" },
+    i = { '<cmd>lua require("harpoon.ui").nav_file(3)<CR>', "Go to mark 3" },
+    o = { '<cmd>lua require("harpoon.ui").nav_file(4)<CR>', "Go to mark 4" },
+  },
   b = {
     name = "Buffers",
     j = { "<cmd>BufferLinePick<cr>", "Jump" },
