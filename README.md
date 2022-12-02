@@ -9,5 +9,5 @@
 - [x] vim-go
 - [x] rust-tools
 - [x] Personal commands & autocommands
-- [ ] winbar
+- [x] winbar
 - [ ] sideways.nvim

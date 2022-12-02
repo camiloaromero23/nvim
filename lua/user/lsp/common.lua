@@ -21,10 +21,22 @@ local function lsp_highlight_document(bufnr, client)
   })
 end
 
+local attach_navic = function(client, bufnr)
+  vim.g.navic_silence = true
+  local status_ok, navic = pcall(require, "nvim-navic")
+  if not status_ok then
+    return
+  end
+  navic.attach(client, bufnr)
+end
+
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.on_attach = function(client, bufnr)
   M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+  if client.server_capabilities.documentSymbolProvider then
+    attach_navic(client, bufnr)
+  end
   -- Disable lsp server formatting
   if client.name == "tsserver" then
     client.server_capabilities.document_formatting = false

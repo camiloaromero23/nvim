@@ -1,4 +1,5 @@
 local ok, material = pcall(require, "material")
+local custom_highlights = require "user.theme.material.custom_highlights"
 
 if not ok then
   return
@@ -28,6 +29,7 @@ material.setup {
     eob_lines = true,
   },
   async_loading = true,
+  custom_highlights = custom_highlights,
 }
 
 vim.g.material_style = "darker"

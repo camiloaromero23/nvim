@@ -8,4 +8,5 @@ M.autotex = augroup("AutoTex", { clear = true })
 M.general_settings = augroup("GeneralSettings", { clear = true })
 M.lspDocumentHighlight = augroup("lsp_document_highlight", { clear = true })
 M.noNewLineComments = augroup("NoNewLineComments", { clear = true })
+M.winbar = augroup("_WinBar", { clear = true })
 return M

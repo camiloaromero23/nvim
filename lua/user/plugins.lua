@@ -273,6 +273,12 @@ packer.startup(function(use)
     end,
     ft = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
   }
+  use {
+    "SmiteshP/nvim-navic",
+    config = function()
+      require "user.breadcrumbs"
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
