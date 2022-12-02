@@ -27,20 +27,20 @@ M.on_attach = function(client, bufnr)
 
   -- Disable lsp server formatting
   if client.name == "tsserver" then
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.document_formatting = false
   end
   if client.name == "volar" then
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.document_formatting = false
   end
   if client.name == "sumneko_lua" then
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.document_formatting = false
   end
   -- Formatting
   if client.server_capabilities.documentFormattingProvider and custom_nvim.format_on_save then
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = augroups.autoformat,
       pattern = "*",
-      command = "lua vim.lsp.buf.formatting_sync()",
+      command = "lua vim.lsp.buf.format()",
     })
   end
   require("user.lsp.lsp_keymappings").set_lsp_keymaps(bufnr)
