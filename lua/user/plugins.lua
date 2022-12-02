@@ -266,6 +266,13 @@ packer.startup(function(use)
     end,
     ft = { "rust", "rs" },
   }
+  use {
+    "axelvc/template-string.nvim",
+    config = function()
+      require "user.template_string"
+    end,
+    ft = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
