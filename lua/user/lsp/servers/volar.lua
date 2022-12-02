@@ -1,6 +1,10 @@
 local M = {}
 
 M.setup = function()
+  if not require("user.lsp.utils").is_vue_project() then
+    return
+  end
+
   local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
   if not lspconfig_ok then
     return

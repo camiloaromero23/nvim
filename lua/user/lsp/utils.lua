@@ -65,4 +65,31 @@ function M.format(opts)
   end
 end
 
+M.is_in_package_json = function(field)
+  if vim.fn.filereadable(vim.fn.getcwd() .. "/package.json") == 0 then
+    return false
+  end
+
+  local package_json = vim.fn.json_decode(vim.fn.readfile "package.json")
+  if package_json == nil then
+    return false
+  end
+  if package_json[field] ~= nil then
+    return true
+  end
+  local dev_dependencies = package_json["devDependencies"]
+  if dev_dependencies ~= nil and dev_dependencies[field] ~= nil then
+    return true
+  end
+  local dependencies = package_json["dependencies"]
+  if dependencies ~= nil and dependencies[field] ~= nil then
+    return true
+  end
+end
+
+M.is_vue_project = function()
+  ---@diagnostic disable-next-line: missing-parameter
+  return (vim.fn.glob "*.vue" ~= "" or M.is_in_package_json "vue")
+end
+
 return M
