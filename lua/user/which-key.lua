@@ -196,6 +196,10 @@ custom_nvim.which_key.mappings = {
       "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>",
       "Colorscheme with Preview",
     },
+    P = {
+      "<cmd>Telescope projects<cr>",
+      "Recent Projects",
+    },
   },
   T = {
     name = "Treesitter",
