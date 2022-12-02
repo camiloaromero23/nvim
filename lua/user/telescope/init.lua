@@ -30,6 +30,18 @@ telescope.setup {
       },
       vertical = { mirror = false },
     },
+    preview = {
+      timeout_hook = function(filepath, bufnr, opts)
+        local max_bytes = 1000
+        local cmd = { "head", "-c", max_bytes, filepath }
+        require("telescope.previewers.utils").job_maker(cmd, bufnr, opts)
+      end,
+      filesize_hook = function(filepath, bufnr, opts)
+        local max_bytes = 1000
+        local cmd = { "head", "-c", max_bytes, filepath }
+        require("telescope.previewers.utils").job_maker(cmd, bufnr, opts)
+      end,
+    },
     vimgrep_arguments = {
       "rg",
       "--color=never",
