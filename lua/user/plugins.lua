@@ -93,7 +93,13 @@ packer.startup(function(use)
     end,
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-
+  use {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require "user.gitsigns"
+    end,
+    event = "BufRead",
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
