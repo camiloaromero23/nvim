@@ -55,6 +55,12 @@ packer.startup(function(use)
     end,
     event = "BufWinEnter",
   }
+  use {
+    'goolord/alpha-nvim',
+    config = function ()
+      require "user.alpha"
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
