@@ -3,7 +3,7 @@
 ## TODO:
 
 - [x] lsp
-- [ ] cmp
+- [x] cmp
 - [ ] snippets
 - [ ] null-ls
 - [ ] vim-go

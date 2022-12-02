@@ -26,6 +26,7 @@ function M.format(opts)
   opts.filter = opts.filter or M.format_filter
 
   if vim.lsp.buf.formatting_sync then
+    ---@diagnostic disable-next-line: missing-parameter
     return vim.lsp.buf.formatting_sync()
     -- return vim.lsp.buf.formatting_sync(opts)
   end
@@ -33,6 +34,7 @@ function M.format(opts)
   local bufnr = opts.bufnr or vim.api.nvim_get_current_buf()
 
   ---@type table|nil
+  ---@diagnostic disable-next-line: redundant-parameter
   local clients = vim.lsp.get_active_clients {
     id = opts.id,
     bufnr = bufnr,
