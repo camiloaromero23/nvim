@@ -4,7 +4,7 @@
 
 - [x] lsp
 - [x] cmp
-- [ ] snippets
+- [x] snippets
 - [ ] null-ls
 - [ ] vim-go
 - [ ] rust-tools

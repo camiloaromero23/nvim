@@ -13,6 +13,16 @@ if not snip_status_ok then
   return
 end
 
+require("luasnip/loaders/from_vscode").lazy_load()
+
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+end
+
+local check_backspace = function()
+  return not has_words_before()
+end
 
 cmp.setup {
   snippet = {
@@ -37,12 +47,12 @@ cmp.setup {
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-        -- elseif luasnip.expandable() then
-        --   luasnip.expand()
-        -- elseif luasnip.expand_or_jumpable() then
-        --   luasnip.expand_or_jump()
-        -- elseif check_backspace() then
-        --   fallback()
+      elseif luasnip.expandable() then
+        luasnip.expand()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif check_backspace() then
+        fallback()
       else
         fallback()
       end
@@ -53,8 +63,8 @@ cmp.setup {
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-        -- elseif luasnip.jumpable(-1) then
-        --   luasnip.jump(-1)
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
@@ -68,6 +78,7 @@ cmp.setup {
     format = lspkind.cmp_format({
       mode = 'symbol', -- show only symbol annotations
       maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      preset = 'codicons',
       -- wirth_text = false,
 
       -- The function below will be called before any actual modifications from lspkind
@@ -92,9 +103,9 @@ cmp.setup {
   },
   sources = {
     { name = "nvim_lsp" },
+    { name = "path" },
     { name = "luasnip" },
     { name = "buffer" },
-    { name = "path" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
