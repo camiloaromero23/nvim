@@ -1,3 +1,4 @@
+custom_nvim = {}
 -- foldexpr = "nvim_treesitter#foldexpr()"
 -- foldmethod = "expr"
 -- foldmethod = "manual" -- folding set to "expr" for treesitter based folding

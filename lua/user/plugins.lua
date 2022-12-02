@@ -48,7 +48,13 @@ packer.startup(function(use)
   -- use 'foo2/bar2.nvim'
   use "lunarvim/colorschemes"
   use "marko-cerovac/material.nvim"
-
+  use {
+    "max397574/which-key.nvim",
+    config = function()
+      require "user.which-key"
+    end,
+    event = "BufWinEnter",
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
