@@ -30,5 +30,5 @@ material.setup {
   async_loading = true,
 }
 
-vim.cmd 'colorscheme material'
 vim.g.material_style = "darker"
+vim.cmd 'colorscheme material'
