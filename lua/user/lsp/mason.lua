@@ -65,8 +65,8 @@ local servers = {
   "yamlls",
   "zk",
   -- Formatters & Linters
-  "black",
-  "prettier",
+  -- "black",
+  -- "prettier",
 }
 
 mason_lspconfig.setup {

@@ -18,4 +18,4 @@ for _, server in pairs(configured_servers) do
   require("user.lsp.servers." .. server).setup()
 end
 
-require("user.lsp.setup").setup_handler "golangci_lint_ls"
+-- require("user.lsp.setup").setup_handler "golangci_lint_ls"
