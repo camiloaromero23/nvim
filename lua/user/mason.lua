@@ -100,12 +100,67 @@ lspconfig.sumneko_lua.setup {
   },
 }
 
-local web_dev_filetypes = {
+local eslint_filetypes = {
   "javascript",
   "javascriptreact",
   "typescript",
   "typescriptreact",
   "vue",
+}
+
+local web_dev_filetypes = {
+  "javascript",
+  "javascriptreact",
+  "typescript",
+  "typescriptreact",
+}
+
+lspconfig.volar.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  filetypes = { "javascript", "typescript", "vue" },
+  root_dir = lspconfig.util.root_pattern "package.json"
+    or lspconfig.util.root_pattern "vue.config.js"
+    or vim.fn.getcwd(),
+  init_options = {
+    documentFeatures = {
+      documentColor = false,
+      documentFormatting = {
+        defaultPrintWidth = 80,
+      },
+      documentSymbol = true,
+      foldingRange = true,
+      linkedEditingRange = true,
+      selectionRange = true,
+    },
+    languageFeatures = {
+      callHierarchy = true,
+      codeAction = true,
+      codeLens = true,
+      completion = {
+        autoImport = true,
+        defaultAttrNameCase = "kebabCase",
+        defaultTagNameCase = "both",
+        useScaffoldSnippets = true,
+      },
+      definition = true,
+      diagnostics = true,
+      documentHighlight = true,
+      documentLink = true,
+      hover = true,
+      implementation = true,
+      references = true,
+      rename = true,
+      renameFileRefactoring = true,
+      schemaRequestService = true,
+      semanticTokens = false,
+      signatureHelp = true,
+      typeDefinition = true,
+    },
+    typescript = {
+      serverPath = "/usr/local/lib/node_modules/typescript/lib/typescript.js",
+    },
+  },
 }
 
 lspconfig.tsserver.setup {
@@ -118,7 +173,7 @@ lspconfig.tsserver.setup {
 lspconfig.eslint.setup {
   capabilities = capabilities,
   on_attach = on_attach,
-  filetypes = web_dev_filetypes,
+  filetypes = eslint_filetypes,
   cmd = { "vscode-eslint-language-server", "--stdio" },
 }
 
