@@ -7,6 +7,16 @@ local organize_imports = function()
   }
 end
 
+local inlayHints = {
+  includeInlayParameterNameHints = "all",
+  includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+  includeInlayFunctionParameterTypeHints = true,
+  includeInlayVariableTypeHints = false,
+  includeInlayPropertyDeclarationTypeHints = true,
+  includeInlayFunctionLikeReturnTypeHints = true,
+  includeInlayEnumMemberValueHints = true,
+}
+
 M.setup = function()
   if require("user.lsp.utils").is_vue_project() then
     return
@@ -26,6 +36,14 @@ M.setup = function()
       OrganizeImports = {
         organize_imports,
         description = "OrganizeImports",
+      },
+    },
+    settings = {
+      typescript = {
+        inlayHints = inlayHints,
+      },
+      javascript = {
+        inlayHints = inlayHints,
       },
     },
   })

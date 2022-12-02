@@ -8,7 +8,7 @@ rust_tools.setup {
     executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
     reload_workspace_from_cargo_toml = true,
     inlay_hints = {
-      auto = true,
+      auto = false,
       only_current_line = false,
       show_parameter_hints = true,
       parameter_hints_prefix = "<-",

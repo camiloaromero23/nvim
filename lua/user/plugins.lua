@@ -109,6 +109,12 @@ packer.startup(function(use)
   use {
     "neovim/nvim-lspconfig",
   }
+  use {
+    "lvimuser/lsp-inlayhints.nvim",
+    config = function()
+      require "user.inlay_hints"
+    end,
+  }
 
   --Null LS
   use { "tamago324/nlsp-settings.nvim" }
