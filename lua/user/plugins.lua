@@ -75,6 +75,22 @@ packer.startup(function(use)
     requires = { "nvim-treesitter/nvim-treesitter" },
   }
 
+  -- Telescope
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.0',
+    config = function()
+      require "user.telescope"
+    end,
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+  use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make',
+    cond = vim.fn.executable "make" == 1
+  }
+
+
   -- My plugins here
   use "lunarvim/colorschemes"
   use "marko-cerovac/material.nvim"
