@@ -4,6 +4,7 @@ if not ok then
   return
 end
 
-inlay_hints.setup()
+inlay_hints.setup {
+}
 
 vim.cmd [[hi LspInlayHint guibg=None guifg=darkgray]]

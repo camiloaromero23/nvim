@@ -26,7 +26,7 @@ if not ok then
   return
 end
 
-local packer_group = vim.api.nvim_create_augroup("PackerUserConfig", { clear = true })
+local packer_group = require("user.augroups").packer_group
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = packer_group,
