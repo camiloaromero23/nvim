@@ -4,6 +4,8 @@ if not ok then
   return
 end
 
+vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = "gray" })
+
 local opts = {
   signs = {
     add = {
@@ -35,6 +37,12 @@ local opts = {
       text = "▎",
       numhl = "GitSignsChangeNr",
       linehl = "GitSignsChangeLn",
+    },
+    untracked = {
+      hl = "GitSignsUntracked",
+      text = "▎",
+      numhl = "GitSignsAddNr",
+      linehl = "GitSignsAddLn",
     },
   },
   numhl = false,
