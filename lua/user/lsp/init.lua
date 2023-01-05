@@ -10,6 +10,7 @@ local configured_servers = {
   "gopls",
   "jsonls",
   "sumneko_lua",
+  "svelte",
   "tailwindcss",
   "tsserver",
   "volar",
