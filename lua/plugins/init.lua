@@ -1,102 +1,13 @@
 return {
   -- Core plugins
   "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
-  { "nvim-lua/plenary.nvim" }, -- Useful lua functions used ny lots of plugins
+  "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
 
-  -- Treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    config = function()
-      require "user.treesitter-context"
-    end,
-  },
-  {
-    "p00f/nvim-ts-rainbow",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-  },
-  {
-    "windwp/nvim-ts-autotag",
-    config = function()
-      require "user.autotag"
-    end,
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-  },
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    event = "BufReadPost",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-  },
-
-  -- Telescope
-  {
-    "nvim-telescope/telescope.nvim",
-    version = "0.1.0",
-    config = function()
-      require "user.telescope"
-    end,
-    dependencies = { { "nvim-lua/plenary.nvim" } },
-  },
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    build = "make",
-    cond = vim.fn.executable "make" == 1,
-  },
-
-  -- LSP
-  {
-    "ray-x/lsp_signature.nvim",
-    event = "InsertEnter",
-    config = function()
-      require "user.lsp_signature"
-    end,
-  },
-  {
-    "williamboman/mason.nvim",
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-  },
-  {
-    "neovim/nvim-lspconfig",
-  },
-  {
-    "lvimuser/lsp-inlayhints.nvim",
-    config = function()
-      require "user.inlay_hints"
-    end,
-  },
-
-  --Null LS
-  { "tamago324/nlsp-settings.nvim" },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      require "user.null_ls"
-    end,
-  },
-
-  -- CMP
-  { "onsails/lspkind-nvim" }, -- Completion icons
-  { "hrsh7th/nvim-cmp" }, -- The completion plugin
-  { "hrsh7th/cmp-nvim-lsp" }, -- lsp completions
-  { "hrsh7th/cmp-buffer" }, -- buffer completions
-  { "hrsh7th/cmp-path" }, -- path completions
-  { "hrsh7th/cmp-cmdline" }, -- cmdline completions
-  { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
-  { "L3MON4D3/LuaSnip" }, -- Snippets
-  -- TODO: Change this with own snippets
-  { "rafamadriz/friendly-snippets" }, -- Pre-made snippets
-
-  -- My plugins here
+  -- My plugins
   { "lunarvim/colorschemes" },
   { "marko-cerovac/material.nvim" },
   {
-    "max397574/which-key.nvim",
+    "folke/which-key.nvim",
     config = function()
       require "user.which-key"
     end,
