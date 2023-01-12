@@ -36,6 +36,7 @@ material.setup {
     "nvim-cmp",
     "nvim-navic",
     "nvim-tree",
+    -- "nvim-web-devicons",
     -- "sneak",
     "telescope",
     -- "trouble",
