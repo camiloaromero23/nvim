@@ -1,14 +1,14 @@
-local lua_dev_loaded, lua_dev = pcall(require, "lua-dev")
-if not lua_dev_loaded then
+local neodev_loaded, neodev = pcall(require, "neodev")
+if not neodev_loaded then
   return
 end
 
-local lua_dev_opts = {
+local neodev_opts = {
   lspconfig = {
     settings = {
       Lua = {
         completion = {
-          globals = { "vim", "custom_nvim", "packer_plugins" },
+          globals = { "vim", "custom_nvim" },
           -- callSnippet = "Replace"
         },
         workspace = {
@@ -28,4 +28,4 @@ local lua_dev_opts = {
 }
 
 -- lua_dev.setup()
-lua_dev.setup(lua_dev_opts)
+neodev.setup(neodev_opts)

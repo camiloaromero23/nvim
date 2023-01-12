@@ -1,6 +1,7 @@
 local M = {}
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 local generic_opts_any = { noremap = true, silent = true }
 

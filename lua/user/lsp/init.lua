@@ -1,5 +1,5 @@
 require "user.lsp.configs"
-require "user.lua_dev"
+require "user.neodev"
 require "user.lsp.mason"
 
 local configured_servers = {

@@ -1,7 +1,7 @@
 require "user.options"
 require "user.global"
 require "user.keymappings"
-require "user.plugins"
+require "user.plugin_manager"
 require "user.treesitter"
 require "user.lsp"
 require "user.cmp"
