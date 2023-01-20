@@ -44,6 +44,7 @@ vim.o.updatetime = 300 -- faster completion
 vim.o.wrap = false -- display lines as one long line
 vim.o.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
 vim.opt.completeopt = { "menuone", "noselect" }
+-- vim.opt.guicursor = "" -- use block cursor always
 
 vim.opt.whichwrap:append "<,>,[,],h,l"
 vim.opt.iskeyword:append "-"

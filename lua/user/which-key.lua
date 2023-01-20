@@ -116,7 +116,9 @@ custom_nvim.which_key.mappings = {
   },
   L = {
     name = "Lazy",
-
+    s = { "<cmd>Lazy sync<cr>", "Sync"},
+    L = { "<cmd>Lazy home<cr>", "Home" },
+    u = { "<cmd>Lazy update<cr>", "Update" },
   },
   -- p = {
   --   name = "Packer",
