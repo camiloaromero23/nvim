@@ -15,5 +15,5 @@ custom_nvim = {
     enable = true,
     autocmd_id = -1,
   },
-  colorscheme = "material",
+  colorscheme = "onedark",
 }

@@ -1,0 +1,11 @@
+vim.cmd [[hi LspInlayHint guibg=None guifg=darkgray]]
+vim.cmd [[hi CursorLineNr guifg=#ADD8E6]]
+
+vim.cmd [[hi rainbowcol1 guifg=#c49060]]
+vim.cmd [[hi rainbowcol2 guifg=#bb70d2]]
+vim.cmd [[hi rainbowcol3 guifg=#51a8b3]]
+vim.cmd [[hi rainbowcol4 guifg=#c49060]]
+vim.cmd [[hi rainbowcol5 guifg=#bb70d2]]
+vim.cmd [[hi rainbowcol6 guifg=#51a8b3]]
+vim.cmd [[hi rainbowcol7 guifg=#c49060]]
+vim.cmd [[hi Todo ctermbg=None ctermfg=None guibg=None guifg=#c49060]]
