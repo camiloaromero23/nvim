@@ -5,7 +5,7 @@ return {
     config = function()
       require "user.telescope"
     end,
-    dependencies = { { "nvim-lua/plenary.nvim" } },
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim"  },
   },
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   {

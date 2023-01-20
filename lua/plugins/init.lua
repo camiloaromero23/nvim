@@ -4,14 +4,29 @@ return {
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
 
   -- My plugins
-  { "lunarvim/colorschemes" },
-  { "marko-cerovac/material.nvim" },
+  "folke/neodev.nvim",
+  "navarasu/onedark.nvim",
+  "marko-cerovac/material.nvim",
+  "tpope/vim-fugitive",
+  "tpope/vim-surround",
+  "b0o/schemastore.nvim",
+
   {
     "folke/which-key.nvim",
     config = function()
       require "user.which-key"
     end,
     event = "BufWinEnter",
+  },
+  {
+    "folke/todo-comments.nvim",
+    config = function()
+      require("todo-comments").setup {
+        signs = false,
+        highlight = { multiline = false },
+      }
+    end,
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
   {
     "goolord/alpha-nvim",
@@ -86,12 +101,6 @@ return {
     end,
   },
   {
-    "tpope/vim-fugitive",
-  },
-  {
-    "tpope/vim-surround",
-  },
-  {
     "NvChad/nvim-colorizer.lua",
     config = function()
       require("user.nvim_colorizer").config()
@@ -104,11 +113,6 @@ return {
       require "user.comment"
     end,
   },
-  { "antoinemadec/FixCursorHold.nvim" }, -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
-  {
-    "folke/neodev.nvim",
-  },
-  { "b0o/schemastore.nvim" },
   {
     "ahmedkhalf/project.nvim",
     config = function()
