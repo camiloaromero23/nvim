@@ -56,6 +56,7 @@ M.on_attach = function(client, bufnr)
   if client.name == "tsserver" then
     require("user.lsp.servers.tsserver").organize_imports()
     client.server_capabilities.document_formatting = false
+    -- client.server_capabilities.semanticTokensProvider = nil
   end
   if client.name == "volar" then
     client.server_capabilities.document_formatting = false
