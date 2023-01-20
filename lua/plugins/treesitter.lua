@@ -8,6 +8,7 @@ return {
     config = function()
       require "user.treesitter-context"
     end,
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   {
     "p00f/nvim-ts-rainbow",
@@ -25,4 +26,8 @@ return {
     event = "BufReadPost",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
+  {
+    "nvim-treesitter/playground",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  }
 }
