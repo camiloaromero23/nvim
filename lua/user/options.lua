@@ -40,10 +40,11 @@ vim.o.timeoutlen = 250 -- time to wait for a mapped sequence to complete (in mil
 vim.o.title = true -- set the title of window to the value of the titlestring
 vim.o.undodir = vim.fn.stdpath "cache" .. "/undo"
 vim.o.undofile = true -- enable persistent undo
-vim.o.updatetime = 300 -- faster completion
+vim.o.updatetime = 50 -- faster completion
 vim.o.wrap = false -- display lines as one long line
 vim.o.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
 vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.isfname:append("@-@")
 -- vim.opt.guicursor = "" -- use block cursor always
 
 vim.opt.whichwrap:append "<,>,[,],h,l"
