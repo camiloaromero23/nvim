@@ -62,13 +62,15 @@ local keymaps = {
     ["<A-k>"] = ":m .-2<CR>==",
 
     -- QuickFix
+    ["<C-q>"] = ":call QuickFixToggle()<CR>",
+
     ["]q"] = ":cnext<CR>",
     ["[q"] = ":cprev<CR>",
-    ["<C-q>"] = ":call QuickFixToggle()<CR>",
+    ["<C-d>"] = "<C-d>zz",
+    ["<C-u>"] = "<C-u>zz",
     ["N"] = "Nzzzv",
     ["n"] = "nzzzv",
     ["J"] = "mzJ`z",
-    ["<C-8>"] = ":%s/<c-r><c-w>/",
     ["<S-l>"] = ":BufferLineCycleNext<CR>",
     ["<S-h>"] = ":BufferLineCyclePrev<CR>",
   },
@@ -98,8 +100,10 @@ local keymaps = {
     -- Move current line / block with Alt-j/k ala vscode.
     ["<A-j>"] = ":m '>+1<CR>gv-gv",
     ["<A-k>"] = ":m '<-2<CR>gv-gv",
-  },
 
+    --Paste without overriding current paste
+    ["<leader>p"] = '"_dP',
+  },
   command_mode = {
     -- navigate tab completion with <c-j> and <c-k>
     -- runs conditionally
