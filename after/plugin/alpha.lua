@@ -38,7 +38,7 @@ dashboard.section.buttons.val = {
   dashboard.button("SPC L c", "  Configuration", "<cmd>edit " .. "~/.config/nvim/init.lua" .. " <cr>"),
 }
 
-local version = vim.version()
+local version = vim.version() or {}
 
 dashboard.section.footer.val = "NVIM" .. " v" .. version.major .. "." .. version.minor .. "." .. version.patch
 

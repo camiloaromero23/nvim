@@ -120,6 +120,7 @@ custom_nvim.which_key.mappings = {
     L = { "<cmd>Lazy home<cr>", "Home" },
     u = { "<cmd>Lazy update<cr>", "Update" },
   },
+  ["8"] = {[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace all occurences of word"},
   -- p = {
   --   name = "Packer",
   --   c = { "<cmd>PackerCompile<cr>", "Compile" },
