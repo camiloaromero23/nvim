@@ -1,4 +1,15 @@
-local opts = {
+local ok, autopairs = pcall(require, "nvim-autopairs")
+
+if not ok then
+  return
+end
+
+local rule_ok, Rule = pcall(require, "nvim-autopairs.rule")
+if not rule_ok then
+  return
+end
+
+autopairs.setup {
   ---@usage  modifies the function or method delimiter by filetypes
   map_char = {
     all = "(",
@@ -39,19 +50,6 @@ local opts = {
     highlight_grey = "Comment",
   },
 }
-
-local ok, autopairs = pcall(require, "nvim-autopairs")
-
-if not ok then
-  return
-end
-
-local rule_ok, Rule = pcall(require, "nvim-autopairs.rule")
-if not rule_ok then
-  return
-end
-
-autopairs.setup(opts)
 
 local ts_conds = require "nvim-autopairs.ts-conds"
 

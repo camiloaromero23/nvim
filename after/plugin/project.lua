@@ -1,11 +1,9 @@
-local opts = {
-  ---@usage set to false to disable project.nvim.
-  --- This is on by default since it's currently the expected behavior.
-  active = true,
+local ok, project = pcall(require, "project_nvim")
+if not ok then
+  return
+end
 
-  on_config_done = nil,
-
-  ---@usage set to true to disable setting the current-woriking directory
+project.setup {
   --- Manual mode doesn't automatically change your root directory, so you have
   --- the option to manually do so using `:ProjectRoot` command.
   manual_mode = false,
@@ -35,10 +33,3 @@ local opts = {
   ---@usage path to store the project history for use in telescope
   datapath = vim.fn.stdpath "cache",
 }
-
-local ok, project = pcall(require, "project_nvim")
-if not ok then
-  return
-end
-
-project.setup(opts)
