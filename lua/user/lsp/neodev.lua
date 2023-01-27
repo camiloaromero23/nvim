@@ -13,8 +13,11 @@ local neodev_opts = {
         },
         workspace = {
           library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false
           -- library = "~/.config/nvim"
         },
+        hint = { enable = true },
+        telemetry = { enable = false },
       },
     },
   },
@@ -27,5 +30,4 @@ local neodev_opts = {
   },
 }
 
--- lua_dev.setup()
 neodev.setup(neodev_opts)
