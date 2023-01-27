@@ -92,4 +92,9 @@ M.is_vue_project = function()
   return (vim.fn.glob "*.vue" ~= "" or M.is_in_package_json "vue")
 end
 
+M.is_deno_project = function()
+  local res = vim.fn.filereadable(vim.fn.getcwd() .. "/deno.json")
+    or vim.fn.filereadable(vim.fn.getcwd() .. "/deno.jsonc")
+  return res
+end
 return M
