@@ -11,7 +11,6 @@ M.noNewLineComments = augroup("NoNewLineComments", { clear = true })
 M.winbar = augroup("_WinBar", { clear = true })
 M.inlayHints = augroup("LspAttachInlayHints", { clear = true })
 M.codelens = augroup("LspCodelens", { clear = true })
-M.packer_group  = augroup("PackerUserConfig", { clear = true })
-M.quickClose  = augroup("QuickCloseQuickFix", { clear = true })
+M.quickClose = augroup("QuickCloseQuickFix", { clear = true })
 
 return M
