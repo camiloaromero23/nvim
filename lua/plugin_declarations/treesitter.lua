@@ -5,9 +5,6 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    config = function()
-      require "user.treesitter-context"
-    end,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   {
@@ -16,9 +13,6 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    config = function()
-      require "user.autotag"
-    end,
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   {
