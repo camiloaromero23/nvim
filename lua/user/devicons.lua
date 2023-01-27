@@ -10,7 +10,7 @@ local colors = {
   htmlRed = "#e34c26",
   jsYellow = "#f7df1e",
   packageJsonGreen = "#75bb39",
-  testTeal = "#04bbcb",
+  teal = "#04bbcb",
   tsBlue = "#3178c6",
   txtBlue = "#05a8fa",
   vueGreen = "#42B883",
@@ -44,6 +44,11 @@ local custom_icons = {
     color = colors.jsYellow,
     cterm_color = "185",
     name = "js",
+  },
+  markdown = {
+    icon = "",
+    color = colors.white,
+    name = "markdown"
   },
   ts = {
     icon = "ﯤ",
@@ -87,7 +92,7 @@ local custom_icons = {
   },
   ["test.jsx"] = {
     icon = "",
-    color = colors.testTeal,
+    color = colors.teal,
     name = "testJSX",
   },
   ["spec.js"] = {
@@ -102,7 +107,7 @@ local custom_icons = {
   },
   ["spec.jsx"] = {
     icon = "",
-    color = colors.testTeal,
+    color = colors.teal,
     name = "testJSX",
   },
   ["angular.json"] = {
@@ -120,6 +125,11 @@ local custom_icons = {
     color = colors.gitignoreRed,
     name = "GitIgnore",
   },
+  ["tailwind.config.js"] = {
+    icon = "󱏿",
+    color = colors.teal,
+    name = "tailwind"
+  },
 }
 
 custom_icons["component.tsx"] = custom_icons.tsx
@@ -130,6 +140,7 @@ custom_icons["module.ts"] = custom_icons["angular.json"]
 custom_icons["package-lock.json"] = custom_icons["package.json"]
 custom_icons["spec.tsx"] = custom_icons["spec.jsx"]
 custom_icons["test.tsx"] = custom_icons["test.jsx"]
+custom_icons["tailwind.config.cjs"] = custom_icons["tailwind.config.js"]
 
 devicons.setup {
   override = custom_icons,
