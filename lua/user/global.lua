@@ -13,7 +13,6 @@ custom_nvim = {
   },
   format_on_save = {
     enable = true,
-    autocmd_id = -1,
   },
   colorscheme = "onedark",
 }
