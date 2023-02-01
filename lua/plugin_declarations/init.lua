@@ -10,6 +10,7 @@ return {
   "marko-cerovac/material.nvim",
   "tpope/vim-surround",
   "b0o/schemastore.nvim",
+  { "exafunction/codeium.vim", enabled = custom_nvim.enable_codeium },
 
   {
     "folke/which-key.nvim",
