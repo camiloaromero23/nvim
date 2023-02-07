@@ -23,7 +23,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = augroups.autoformat,
         pattern = "*",
-        command = "lua vim.lsp.buf.format()",
+        callback = function()
+          vim.lsp.buf.format { timeout_ms = 2000 }
+        end,
       })
     end
 
