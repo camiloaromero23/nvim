@@ -12,7 +12,7 @@ local diagnostics = nls.builtins.diagnostics
 nls.setup {
   debug = false,
   sources = {
-    formatting.prettier.with {
+    formatting.prettierd.with {
       filetypes = {
         "astro",
         "javascript",
