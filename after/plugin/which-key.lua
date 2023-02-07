@@ -116,11 +116,11 @@ custom_nvim.which_key.mappings = {
   },
   L = {
     name = "Lazy",
-    s = { "<cmd>Lazy sync<cr>", "Sync"},
+    s = { "<cmd>Lazy sync<cr>", "Sync" },
     L = { "<cmd>Lazy home<cr>", "Home" },
     u = { "<cmd>Lazy update<cr>", "Update" },
   },
-  ["8"] = {[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace all occurences of word"},
+  ["8"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace all occurences of word" },
   -- p = {
   --   name = "Packer",
   --   c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -167,7 +167,12 @@ custom_nvim.which_key.mappings = {
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
     d = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", "Buffer Diagnostics" },
     w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
-    f = { require("user.lsp.utils").format, "Format" },
+    f = {
+      function()
+        require("user.lsp.utils").format { timeout_ms = 2000 }
+      end,
+      "Format",
+    },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>Mason<cr>", "Mason Info" },
     j = {
