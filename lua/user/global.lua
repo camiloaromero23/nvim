@@ -16,4 +16,5 @@ custom_nvim = {
   },
   colorscheme = "onedark",
   enable_codeium = false,
+  enable_copilot = false,
 }

@@ -11,6 +11,7 @@ return {
   "tpope/vim-surround",
   "b0o/schemastore.nvim",
   { "exafunction/codeium.vim", enabled = custom_nvim.enable_codeium },
+  { "github/copilot.vim", enabled = custom_nvim.enable_copilot },
 
   {
     "folke/which-key.nvim",

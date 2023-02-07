@@ -5,7 +5,7 @@ vim.g.codeium_disable_bindings = 1
 
 local keymappings = require "user.keymappings.utils"
 
-keymappings.set_keymaps("i", "<C-g>", {
+keymappings.set_keymaps("i", "kk", {
   vim.fn["codeium#Accept"],
   { expr = true },
 })
