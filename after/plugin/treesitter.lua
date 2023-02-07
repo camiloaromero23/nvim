@@ -4,9 +4,40 @@ if not status_ok then
 end
 
 configs.setup {
-  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  -- ensure_installed = "all",
+  ensure_installed = {
+    "astro",
+    "css",
+    "dockerfile",
+    "git_rebase",
+    "gitcommit",
+    "gitignore",
+    "go",
+    "gomod",
+    "gowork",
+    "html",
+    "javascript",
+    "json",
+    "json5",
+    "jsonc",
+    "latex",
+    "lua",
+    "markdown",
+    "markdown_inline",
+    "python",
+    "query",
+    "regex",
+    "rust",
+    "scheme",
+    "scss",
+    "sql",
+    "svelte",
+    "tsx",
+    "typescript",
+    "vue",
+  }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-  ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
+  ignore_install = {}, -- List of parsers to ignore installing
   highlight = {
     enable = true, -- false will disable the whole extension
     disable = { "" }, -- list of language that will be disabled
@@ -35,7 +66,7 @@ configs.setup {
     },
   },
   matchup = {
-    enable = false, -- mandatory, false will disable the whole extension
+    enable = true, -- mandatory, false will disable the whole extension
     -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
   },
   rainbow = {
