@@ -13,5 +13,6 @@ M.inlayHints = augroup("LspAttachInlayHints", { clear = true })
 M.lspFeatures = augroup("LspAttachGeneralFeatures", { clear = true })
 M.codelens = augroup("LspCodelens", { clear = true })
 M.quickClose = augroup("QuickCloseQuickFix", { clear = true })
+M.closePrettier = augroup("ClosePrettier", { clear = true })
 
 return M

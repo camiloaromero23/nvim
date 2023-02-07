@@ -37,3 +37,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = augroups.quickClose,
 })
 
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+  callback = function()
+    local command = "! " .. "pkill -f " .. "prettierd"
+    vim.cmd(command)
+  end,
+  group = augroups.closePrettier,
+})
