@@ -97,4 +97,16 @@ M.is_deno_project = function()
     or vim.fn.filereadable(vim.fn.getcwd() .. "/deno.jsonc")
   return res
 end
+
+M.is_tsserver_attached = function()
+  local clients = vim.lsp.get_active_clients()
+  for _, client in ipairs(clients) do
+    if client.name == "tsserver" then
+      return true
+    end
+  end
+  return false
+end
+
+
 return M
