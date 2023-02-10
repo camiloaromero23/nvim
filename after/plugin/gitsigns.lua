@@ -4,9 +4,7 @@ if not ok then
   return
 end
 
-vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = "gray" })
-
-local opts = {
+gitsigns.setup {
   signs = {
     add = {
       hl = "GitSignsAdd",
@@ -55,16 +53,6 @@ local opts = {
   signcolumn = true,
   word_diff = false,
   attach_to_untracked = true,
-  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-  current_line_blame_opts = {
-    virt_text = true,
-    virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-    delay = 1000,
-    ignore_whitespace = false,
-  },
-  current_line_blame_formatter_opts = {
-    relative_time = false,
-  },
   max_file_length = 40000,
   preview_config = {
     -- Options passed to nvim_open_win
@@ -84,4 +72,4 @@ local opts = {
   yadm = { enable = false },
 }
 
-gitsigns.setup(opts)
+vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = "gray" })
