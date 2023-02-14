@@ -3,7 +3,7 @@ if not neodev_loaded then
   return
 end
 
-local neodev_opts = {
+neodev.setup {
   lspconfig = {
     settings = {
       Lua = {
@@ -29,5 +29,3 @@ local neodev_opts = {
     plugins = { "plenary.nvim" },
   },
 }
-
-neodev.setup(neodev_opts)
