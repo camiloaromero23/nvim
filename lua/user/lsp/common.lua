@@ -22,8 +22,7 @@ M.lsp_highlight_document = function(bufnr, client)
 end
 
 M.code_lens = function()
-  vim.cmd [[hi link LspCodelens NONE]]
-  vim.cmd [[hi LspCodelens guibg=None guifg=darkgray gui=bold]]
+  vim.api.nvim_set_hl(0, "LspCodelens", { fg = "darkgray", bold = true })
   vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
     group = augroups.codelens,
     pattern = "*",
