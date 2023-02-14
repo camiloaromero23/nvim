@@ -1,11 +1,11 @@
-vim.cmd [[hi LspInlayHint guibg=None guifg=darkgray]]
-vim.cmd [[hi CursorLineNr guifg=#ADD8E6]]
+vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "darkgray" })
 
-vim.cmd [[hi rainbowcol1 guifg=#c49060]]
-vim.cmd [[hi rainbowcol2 guifg=#bb70d2]]
-vim.cmd [[hi rainbowcol3 guifg=#51a8b3]]
-vim.cmd [[hi rainbowcol4 guifg=#c49060]]
-vim.cmd [[hi rainbowcol5 guifg=#bb70d2]]
-vim.cmd [[hi rainbowcol6 guifg=#51a8b3]]
-vim.cmd [[hi rainbowcol7 guifg=#c49060]]
-vim.cmd [[hi Todo ctermbg=None ctermfg=None guibg=None guifg=#c49060]]
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ADD8E6" })
+
+vim.api.nvim_set_hl(0, "rainbowcol1", { fg = "#c49060" })
+vim.api.nvim_set_hl(0, "rainbowcol2", { fg = "#bb70d2" })
+vim.api.nvim_set_hl(0, "rainbowcol3", { fg = "#51a8b3" })
+vim.api.nvim_set_hl(0, "rainbowcol4", { fg = "#c49060" })
+vim.api.nvim_set_hl(0, "rainbowcol5", { fg = "#bb70d2" })
+vim.api.nvim_set_hl(0, "rainbowcol6", { fg = "#51a8b3" })
+vim.api.nvim_set_hl(0, "rainbowcol7", { fg = "#c49060" })
