@@ -40,4 +40,9 @@ M.list_registered_linters = function(filetype)
   return providers_for_methods
 end
 
+M.hide_in_width = function()
+  local window_width_limit = 70
+  return vim.fn.winwidth(0) > window_width_limit
+end
+
 return M

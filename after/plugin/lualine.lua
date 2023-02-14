@@ -6,18 +6,6 @@ end
 
 local lualine_utils = require "user.lsp.lualine_utils"
 
-local window_width_limit = 70
-
-local conditions = {
-  buffer_not_empty = function()
-    ---@diagnostic disable-next-line: missing-parameter
-    return vim.fn.empty(vim.fn.expand "%:t") ~= 1
-  end,
-  hide_in_width = function()
-    return vim.fn.winwidth(0) > window_width_limit
-  end,
-}
-
 local components = {
   mode = {
     function()
@@ -31,7 +19,7 @@ local components = {
     "b:gitsigns_head",
     icon = " ",
     color = { gui = "bold" },
-    cond = conditions.hide_in_width,
+    cond = lualine_utils.hide_in_width,
   },
   filename = {
     "filename",
@@ -40,21 +28,21 @@ local components = {
   },
   filetype = {
     "filetype",
-    cond = conditions.hide_in_width,
+    cond = lualine_utils.hide_in_width,
   },
   diagnostics = {
     "diagnostics",
     sources = { "nvim_diagnostic" },
     symbols = { error = " ", warn = " ", info = " ", hint = " " },
-    cond = conditions.hide_in_width,
+    cond = lualine_utils.hide_in_width,
   },
   encoding = {
     "o:encoding",
     fmt = string.upper,
     color = {},
-    cond = conditions.hide_in_width,
+    cond = lualine_utils.hide_in_width,
   },
-  location = { "location", cond = conditions.hide_in_width, color = {} },
+  location = { "location", cond = lualine_utils.hide_in_width, color = {} },
   progress = {
     "progress",
     fmt = function()
@@ -112,11 +100,11 @@ local components = {
       return "[" .. table.concat(unique_client_names, ", ") .. "]"
     end,
     color = { gui = "bold" },
-    cond = conditions.hide_in_width,
+    cond = lualine_utils.hide_in_width,
   },
 }
 
-local opts = {
+lualine.setup {
   active = true,
   style = "nvim",
   options = {
@@ -152,5 +140,3 @@ local opts = {
   tabline = nil,
   extensions = { "nvim-tree" },
 }
-
-lualine.setup(opts)
