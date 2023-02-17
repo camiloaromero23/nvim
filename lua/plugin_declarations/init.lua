@@ -4,97 +4,81 @@ return {
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
 
   -- My plugins
-  "folke/neodev.nvim",
-  "navarasu/onedark.nvim",
-  "lunarvim/darkplus.nvim",
-  "marko-cerovac/material.nvim",
+  { "folke/neodev.nvim", ft = { "lua" } },
   "tpope/vim-surround",
   "b0o/schemastore.nvim",
-  "rcarriga/nvim-notify",
-  { "exafunction/codeium.vim", enabled = custom_nvim.enable_codeium },
-  { "github/copilot.vim", enabled = custom_nvim.enable_copilot },
 
   {
     "folke/which-key.nvim",
+    config = function()
+      require "user.which-key"
+    end,
   },
   -- Git
-  "tpope/vim-fugitive",
-  {
-    "lewis6991/gitsigns.nvim",
-    event = "BufRead",
-  },
-  {
-    "f-person/git-blame.nvim",
-  },
-  {
-    "numToStr/Comment.nvim",
-    event = "BufRead",
-  },
+  { "tpope/vim-fugitive", event = "User FileOpened" },
   {
     "goolord/alpha-nvim",
-  },
-  {
-    "nvim-tree/nvim-tree.lua",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons", -- optional, for file icons
-    },
-    tag = "nightly", -- optional, updated every week. (see issue #1193)
+    config = function()
+      require "user.alpha"
+    end,
   },
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
+    config = function()
+      require "user.lualine"
+    end,
+    event = "User FileOpened",
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    opts = {
+      show_current_context = true,
+      show_current_context_start = true,
+      buftype_exclude = { "terminal", "nofile" },
+    },
+    event = "User FileOpened",
   },
-  {
-    "NvChad/nvim-colorizer.lua",
-  },
-  {
-    "ahmedkhalf/project.nvim",
-  },
-
   {
     "windwp/nvim-autopairs",
-    -- event = "InsertEnter",
-  },
-  {
-    "fatih/vim-go",
-    ft = { "go" },
-  },
-  {
-    "simrat39/rust-tools.nvim",
-    ft = { "rust", "rs" },
+    config = function()
+      require "user.autopairs"
+    end,
+    -- lazy = true,
+    event = "User FileOpened",
   },
   {
     "axelvc/template-string.nvim",
+    opts = {
+      filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" }, -- filetypes where the plugin is active
+      jsx_brackets = true, -- must add brackets to jsx attributes
+      remove_template_string = true, -- remove backticks when there are no template string
+    },
     ft = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
   },
   {
-    "camiloaromero23/bufferline.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons", -- optional, for file icons
-    },
+    "SmiteshP/nvim-navic",
+    config = function()
+      require "user.breadcrumbs"
+    end,
+    event = "User FileOpened",
   },
   {
-    "SmiteshP/nvim-navic",
+    "mbbill/undotree",
+    keys = { { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undotree" } },
   },
-  "mbbill/undotree",
   {
     "j-hui/fidget.nvim",
-    config = function()
-      require("fidget").setup {}
-    end,
+    config = true,
+    event = "User FileOpened",
   },
   {
     "folke/todo-comments.nvim",
-    config = function()
-      require("todo-comments").setup {
-        signs = false,
-        highlight = { multiline = false },
-      }
-    end,
+    opts = {
+      signs = false,
+      highlight = { multiline = false },
+    },
     dependencies = { "nvim-lua/plenary.nvim" },
+    event = "User FileOpened",
   },
   {
     "iamcco/markdown-preview.nvim",
@@ -103,19 +87,20 @@ return {
     config = function()
       vim.g.mkdp_auto_start = 1
     end,
+    keys = { { "<leader>mp", "<cmd>MarkdownPreview<cr>", desc = "Markdown Preview" } },
   },
   {
     "andymass/vim-matchup",
     config = function()
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end,
-    event = "CursorMoved",
+    event = "User FileOpened",
   },
-  -- WARN: Do not move to after/plugin
   {
     "nvim-tree/nvim-web-devicons",
     config = function()
       require "user.devicons"
     end,
+    event = "User FileOpened",
   },
 }
