@@ -6,3 +6,5 @@ if not ok then
 end
 vim.api.nvim_set_hl(0, "DashboardLogo", { fg = "#158DA2" })
 vim.api.nvim_set_hl(0, "GitSignsUntracked", { fg = "gray" })
+vim.api.nvim_set_hl(0, "GitSignsChange", { fg = "#dbb671" })
+vim.api.nvim_set_hl(0, "FloatTitle", { fg = "#bb70d2" })
