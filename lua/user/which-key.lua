@@ -70,15 +70,15 @@ custom_nvim.which_key.vopts = {
 -- NOTE: Prefer using : over <cmd> as the latter avoids going back in normal-mode.
 -- see https://neovim.io/doc/user/map.html#:map-cmd
 custom_nvim.which_key.vmappings = {
-  ["/"] = { "<Plug>(comment_toggle_linewise_visual)", "Comment toggle linewise (visual)" },
+  --  ["/"] = { "<Plug>(comment_toggle_linewise_visual)", "Comment toggle linewise (visual)" },
 }
 custom_nvim.which_key.mappings = {
   [";"] = { "<cmd>Alpha<CR>", "Dashboard" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>lua require('user.utils.functions').smart_quit()<CR>", "Quit" },
-  ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
+  -- ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
   ["c"] = { "<cmd>bd<CR>", "Close Buffer" },
-  ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
+  -- ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
   ["f"] = { require("user.telescope.custom-finders").find_project_files, "Find File" },
   h = {
     name = "Harpoon",
@@ -228,7 +228,7 @@ custom_nvim.which_key.mappings = {
   t = {
     name = "Toggle",
     f = { "<cmd>ToggleFormatOnSave<cr>", "Toggle Format On Save" },
-    d = { "<cmd>ToggleDarkPlus<cr>", "Toggle DarkPlus Theme" },
+    -- d = { "<cmd>ToggleDarkPlus<cr>", "Toggle DarkPlus Theme" },
   },
   T = {
     name = "Treesitter",

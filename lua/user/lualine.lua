@@ -140,3 +140,5 @@ lualine.setup {
   tabline = nil,
   extensions = { "nvim-tree" },
 }
+vim.o.laststatus = 3
+vim.o.cmdheight = 1 -- more space in the neovim command line for displaying messages

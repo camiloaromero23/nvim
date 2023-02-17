@@ -22,21 +22,47 @@ return {
       { "L3MON4D3/LuaSnip" }, -- Required
       { "rafamadriz/friendly-snippets" }, -- Optional
     },
+    lazy = true,
   },
-
+  {
+    "hrsh7th/nvim-cmp",
+    lazy = true,
+    config = function()
+      require "user.lsp.cmp"
+    end,
+  },
   {
     "lvimuser/lsp-inlayhints.nvim",
+    config = true,
+    lazy = true,
   },
 
   {
     "ray-x/lsp_signature.nvim",
+    config = true,
     event = "InsertEnter",
   },
 
   -- Null-LS
-  "jay-babu/mason-null-ls.nvim",
   {
     "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      require "user.lsp.null_ls"
+    end,
+    event = "User FileOpened"
   },
-  "tamago324/nlsp-settings.nvim",
+  {
+    "simrat39/rust-tools.nvim",
+    config = function()
+      require "user.lsp.server_configurations.rust_analyzer"
+    end,
+    ft = { "rust", "rs" },
+  },
+  {
+    "fatih/vim-go",
+    config = function()
+      require "user.lsp.vim-go"
+    end,
+    ft = { "go", "gomod" },
+  },
 }
