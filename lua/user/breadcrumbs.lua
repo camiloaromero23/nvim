@@ -44,6 +44,10 @@ local get_filename = function()
       { default = true }
     )
 
+    if extension:find("-") then
+      extension = extension:gsub("-", "_")
+    end
+
     local hl_group = "FileIconColor" .. extension
 
     vim.api.nvim_set_hl(0, hl_group, { fg = file_icon_color })
