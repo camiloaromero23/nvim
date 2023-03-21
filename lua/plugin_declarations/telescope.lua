@@ -137,6 +137,14 @@ return {
             override_file_sorter = true, -- override the file sorter
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
           },
+          file_browser = {
+            -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = true,
+            hidden = true,
+            respect_gitignore = false,
+            git_status = false,
+          },
+
           ["ui-select"] = {
             require("telescope.themes").get_dropdown {
               -- even more opts
@@ -148,6 +156,7 @@ return {
       pcall(telescope.load_extension, "fzf")
       pcall(telescope.load_extension, "projects")
       pcall(telescope.load_extension, "ui-select")
+      pcall(telescope.load_extension, "file_browser")
     end,
   },
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
@@ -155,6 +164,10 @@ return {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "make",
     cond = vim.fn.executable "make" == 1,
+    lazy = true,
+  },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
     lazy = true,
   },
   { "nvim-telescope/telescope-ui-select.nvim", lazy = true },
