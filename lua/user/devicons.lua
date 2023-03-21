@@ -48,7 +48,13 @@ local custom_icons = {
   markdown = {
     icon = "",
     color = colors.white,
-    name = "markdown"
+    name = "markdown",
+  },
+  scss = {
+    icon = "",
+    color = "#f55385",
+    cterm_color = "204",
+    name = "Scss",
   },
   ts = {
     icon = "ﯤ",
@@ -128,7 +134,7 @@ local custom_icons = {
   ["tailwind.config.js"] = {
     icon = "󱏿",
     color = colors.teal,
-    name = "tailwind"
+    name = "tailwind",
   },
 }
 
@@ -141,6 +147,7 @@ custom_icons["package-lock.json"] = custom_icons["package.json"]
 custom_icons["spec.tsx"] = custom_icons["spec.jsx"]
 custom_icons["test.tsx"] = custom_icons["test.jsx"]
 custom_icons["tailwind.config.cjs"] = custom_icons["tailwind.config.js"]
+custom_icons["module.scss"] = custom_icons.scss
 
 devicons.setup {
   override = custom_icons,
