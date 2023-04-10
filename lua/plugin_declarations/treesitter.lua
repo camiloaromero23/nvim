@@ -76,13 +76,18 @@ return {
         },
         rainbow = {
           enable = true,
-          extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-          max_file_lines = 5000, -- Do not enable for files with more than n lines, int
-          colors = {
-            "Gold",
-            "Orchid",
-            "LightSkyBlue",
-          }, -- table of hex strings
+          -- list of languages you want to disable the plug
+          disable = { "jsx", "cpp" },
+          -- Which query to use for finding delimiters
+          query = { "rainbow-parens" },
+          -- Highlight the entire buffer all at once
+          strategy = require("ts-rainbow").strategy.global,
+          -- Groups for highlighting
+          hlgroups = {
+            "rainbowcol1",
+            "rainbowcol2",
+            "rainbowcol3",
+          },
         },
         indent = {
           enable = true,
@@ -114,7 +119,7 @@ return {
       }
     end,
     lazy = true,
-    dependencies = {"p00f/nvim-ts-rainbow"}
+    dependencies = { "HiPhish/nvim-ts-rainbow2" },
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
@@ -190,15 +195,15 @@ return {
       zindex = 20, -- The Z-index of the context window
       mode = "topline", -- Line used to calculate context. Choices: 'cursor', 'topline'
     },
-    event = "User FileOpened"
+    event = "User FileOpened",
   },
   {
-    "p00f/nvim-ts-rainbow",
+    "HiPhish/nvim-ts-rainbow2",
     event = "User FileOpened",
   },
   {
     "windwp/nvim-ts-autotag",
-    event = "User FileOpened"
+    event = "User FileOpened",
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
