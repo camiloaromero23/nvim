@@ -70,6 +70,13 @@ custom_nvim.which_key.vopts = {
 -- NOTE: Prefer using : over <cmd> as the latter avoids going back in normal-mode.
 -- see https://neovim.io/doc/user/map.html#:map-cmd
 custom_nvim.which_key.vmappings = {
+  l = {
+    name = "LSP",
+    f = {
+      ":lua require('user.lsp.utils').format_selection()<CR>",
+      "Format selection",
+    },
+  },
   --  ["/"] = { "<Plug>(comment_toggle_linewise_visual)", "Comment toggle linewise (visual)" },
 }
 custom_nvim.which_key.mappings = {

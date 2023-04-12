@@ -108,5 +108,10 @@ M.is_tsserver_attached = function()
   return false
 end
 
+M.format_selection = function()
+  vim.lsp.buf.format {
+    range = { ["start"] = vim.api.nvim_buf_get_mark(0, "<"), ["end"] = vim.api.nvim_buf_get_mark(0, ">") },
+  }
+end
 
 return M

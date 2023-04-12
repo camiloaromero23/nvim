@@ -32,7 +32,7 @@ local lsp_mappings = {
           end,
         }
         config.scope = "line"
-        vim.diagnostic.open_float(0, config)
+        vim.diagnostic.open_float(config)
       end,
       "Show line diagnostics",
     },
