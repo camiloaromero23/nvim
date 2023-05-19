@@ -1,7 +1,7 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    version = "0.1.0",
+    -- version = "0.1.1",
     dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
     config = function()
       local telescope = require "telescope"
@@ -20,7 +20,7 @@ return {
           layout_strategy = "horizontal",
 
           layout_config = {
-            width = 0.75,
+            width = 0.85,
             preview_cutoff = 120,
             horizontal = {
               preview_width = function(_, cols, _)
