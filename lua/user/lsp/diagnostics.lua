@@ -1,3 +1,15 @@
+local icons = require "user.icons"
+custom_nvim.signs = {
+  { name = "DiagnosticSignError", text = icons.diagnostics.Error },
+  { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
+  { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
+  { name = "DiagnosticSignInfo", text = icons.diagnostics.BigInformation },
+}
+
+for _, sign in ipairs(custom_nvim.signs) do
+  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
+end
+
 vim.diagnostic.config {
   float = {
     focusable = false,
@@ -23,14 +35,3 @@ vim.diagnostic.config {
   },
   title = false,
 }
-
-custom_nvim.signs = {
-  { name = "DiagnosticSignError", text = "" },
-  { name = "DiagnosticSignWarn", text = "" },
-  { name = "DiagnosticSignHint", text = "" },
-  { name = "DiagnosticSignInfo", text = "" },
-}
-
-for _, sign in ipairs(custom_nvim.signs) do
-  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
-end

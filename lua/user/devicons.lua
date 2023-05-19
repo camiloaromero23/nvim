@@ -6,10 +6,13 @@ end
 local colors = {
   angularRed = "#dd1b16",
   cssBlue = "#029ae6",
+  eslintPurple = "#472FB9",
   gitignoreRed = "#fc3404",
   htmlRed = "#e34c26",
   jsYellow = "#f7df1e",
+  luaBlue = "#51a0cf",
   packageJsonGreen = "#75bb39",
+  scssPink = "#f55385",
   teal = "#04bbcb",
   tsBlue = "#3178c6",
   txtBlue = "#05a8fa",
@@ -40,7 +43,7 @@ local custom_icons = {
     name = "Html",
   },
   js = {
-    icon = "",
+    icon = "󰌞",
     color = colors.jsYellow,
     cterm_color = "185",
     name = "js",
@@ -52,12 +55,12 @@ local custom_icons = {
   },
   scss = {
     icon = "",
-    color = "#f55385",
+    color = colors.scssPink,
     cterm_color = "204",
     name = "Scss",
   },
   ts = {
-    icon = "ﯤ",
+    icon = "󰛦",
     color = colors.tsBlue,
     cterm_color = "67",
     name = "ts",
@@ -76,7 +79,7 @@ local custom_icons = {
   },
 
   vue = {
-    icon = "﵂",
+    icon = "󰡄",
     cterm_color = "67",
     color = colors.vueGreen,
     name = "vue",
@@ -136,11 +139,32 @@ local custom_icons = {
     color = colors.teal,
     name = "tailwind",
   },
+  [".editorconfig"] = {
+    icon = "",
+    color = colors.white,
+    name = "editorconfig",
+  },
+  [".luacheckrc"] = {
+    icon = "",
+    color = colors.luaBlue,
+    name = "luacheckrc",
+  },
+  [".eslintrc"] = {
+    icon = "󰱺",
+    color = colors.eslintPurple,
+    name = "eslint",
+  },
+  ["Jenkinsfile"] = {
+    icon = "",
+    color = colors.white,
+    name = "JenkinsFile",
+  },
 }
 
 custom_icons["component.tsx"] = custom_icons.tsx
 custom_icons["styles.tsx"] = custom_icons.tsx
 custom_icons["styles.ts"] = custom_icons.ts
+custom_icons["tsconfig.json"] = custom_icons.ts
 custom_icons["config.js"] = custom_icons.js
 custom_icons["module.ts"] = custom_icons["angular.json"]
 custom_icons["package-lock.json"] = custom_icons["package.json"]
@@ -148,6 +172,13 @@ custom_icons["spec.tsx"] = custom_icons["spec.jsx"]
 custom_icons["test.tsx"] = custom_icons["test.jsx"]
 custom_icons["tailwind.config.cjs"] = custom_icons["tailwind.config.js"]
 custom_icons["module.scss"] = custom_icons.scss
+custom_icons[".nvmrc"] = custom_icons["package.json"]
+custom_icons[".eslintrc.js"] = custom_icons[".eslintrc"]
+custom_icons[".eslintOverrides.js"] = custom_icons[".eslintrc"]
+custom_icons[".eslintignore"] = custom_icons[".eslintrc"]
+custom_icons[".env.example"] = custom_icons[".env"]
+custom_icons[".env.dev"] = custom_icons[".env"]
+custom_icons[".env.test"] = custom_icons[".env"]
 
 devicons.setup {
   override = custom_icons,

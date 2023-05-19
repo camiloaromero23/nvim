@@ -1,40 +1,41 @@
+local icons = require "user.icons"
 return {
   "lewis6991/gitsigns.nvim",
   opts = {
     signs = {
       add = {
         hl = "GitSignsAdd",
-        text = "▎",
+        text = icons.ui.BoldLineLeft,
         numhl = "GitSignsAddNr",
         linehl = "GitSignsAddLn",
       },
       change = {
         hl = "GitSignsChange",
-        text = "▎",
+        text = icons.ui.BoldLineLeft,
         numhl = "GitSignsChangeNr",
         linehl = "GitSignsChangeLn",
       },
       delete = {
         hl = "GitSignsDelete",
-        text = "契",
+        text = icons.ui.TriangleShortArrowRight,
         numhl = "GitSignsDeleteNr",
         linehl = "GitSignsDeleteLn",
       },
       topdelete = {
         hl = "GitSignsDelete",
-        text = "契",
+        text = icons.ui.TriangleShortArrowRight,
         numhl = "GitSignsDeleteNr",
         linehl = "GitSignsDeleteLn",
       },
       changedelete = {
         hl = "GitSignsChange",
-        text = "▎",
+        text = icons.ui.BoldLineLeft,
         numhl = "GitSignsChangeNr",
         linehl = "GitSignsChangeLn",
       },
       untracked = {
         hl = "GitSignsUntracked",
-        text = "▎",
+        text = icons.ui.BoldLineLeft,
         numhl = "GitSignsAddNr",
         linehl = "GitSignsAddLn",
       },
