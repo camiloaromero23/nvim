@@ -114,6 +114,7 @@ cmp.setup {
     natives = true,
   },
   experimental = {
-    ghost_text = true,
+    -- ghost_text = { hl_group = "Comment" },
+    ghost_text = false,
   },
 }

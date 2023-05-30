@@ -161,6 +161,7 @@ local custom_icons = {
   },
 }
 
+custom_icons["cy.ts"] = custom_icons["test.ts"]
 custom_icons["component.tsx"] = custom_icons.tsx
 custom_icons["styles.tsx"] = custom_icons.tsx
 custom_icons["styles.ts"] = custom_icons.ts
