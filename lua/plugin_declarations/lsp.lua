@@ -6,10 +6,11 @@ return {
     dependencies = {
       -- LSP Support
       { "neovim/nvim-lspconfig" }, -- Required
-      {                                      -- Optional
-        'williamboman/mason.nvim',
+      -- Optional
+      {
+        "williamboman/mason.nvim",
         build = function()
-          pcall(vim.cmd, 'MasonUpdate')
+          pcall(vim.cmd, "MasonUpdate")
         end,
       }, -- Optional
       { "williamboman/mason-lspconfig.nvim" }, -- Optional
@@ -54,7 +55,7 @@ return {
     config = function()
       require "user.lsp.null_ls"
     end,
-    event = "User FileOpened"
+    event = "User FileOpened",
   },
   {
     "simrat39/rust-tools.nvim",
