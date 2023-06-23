@@ -1,5 +1,3 @@
-vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "darkgray" })
-
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ADD8E6" })
 
 vim.api.nvim_set_hl(0, "rainbowcol1", { fg = "#c49060" })

@@ -23,10 +23,10 @@ M.setup = function()
   }
 
   require "user.lsp.server_configurations"
+  require "user.autocommands.inlay_hints"
 
   lsp.setup()
   require "user.lsp.diagnostics"
-  require "user.autocommands.inlay_hints"
 end
 
 return M

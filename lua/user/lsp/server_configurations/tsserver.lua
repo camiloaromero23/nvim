@@ -1,4 +1,4 @@
-local lsp_ok, lsp = pcall(require, "lsp-zero")
+local lsp_ok, _ = pcall(require, "lsp-zero")
 if not lsp_ok then
   return
 end
@@ -14,7 +14,12 @@ end
 if require("user.lsp.utils").is_deno_project() then
   return
 end
-
+	-- "typescript.inlayHints.enumMemberValues.enabled": true,
+	-- "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+	-- "typescript.inlayHints.parameterNames.enabled": "literals",
+	-- "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+	-- "typescript.inlayHints.parameterTypes.enabled": true,
+	-- "typescript.inlayHints.variableTypes.enabled": true,
 local inlayHints = {
   includeInlayParameterNameHints = "all",
   includeInlayParameterNameHintsWhenArgumentMatchesName = false,
@@ -32,20 +37,24 @@ local filetypes = {
   "typescriptreact",
 }
 
-lsp.configure("tsserver", {
+lspconfig.tsserver.setup {
   root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
   filetypes = filetypes,
   cmd = { "typescript-language-server", "--stdio" },
+  init_options = {
+    preferences = inlayHints,
+  },
   settings = {
-    typescript = {
+    javascript = {
       inlayHints = inlayHints,
     },
-    javascript = {
+    typescript = {
       inlayHints = inlayHints,
     },
   },
   on_attach = function(client)
     client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
     -- client.server_capabilities.semanticTokensProvider = nil
   end,
-})
+}

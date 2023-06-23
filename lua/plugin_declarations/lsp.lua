@@ -38,12 +38,6 @@ return {
     end,
   },
   {
-    "lvimuser/lsp-inlayhints.nvim",
-    config = true,
-    lazy = true,
-  },
-
-  {
     "ray-x/lsp_signature.nvim",
     config = true,
     event = "InsertEnter",
