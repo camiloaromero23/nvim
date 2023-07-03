@@ -4,7 +4,7 @@ if not ok then
 end
 
 -- local capabilities = require("user.lsp.common").capabilities
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lsp.configure("cssls", {
@@ -13,12 +13,21 @@ lsp.configure("cssls", {
   settings = {
     css = {
       validate = true,
+      lint = {
+        unknownAtRules = "ignore",
+      },
     },
     less = {
       validate = true,
+      lint = {
+        unknownAtRules = "ignore",
+      },
     },
     scss = {
       validate = true,
+      lint = {
+        unknownAtRules = "ignore",
+      },
     },
   },
   single_file_support = true,
