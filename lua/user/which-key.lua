@@ -193,9 +193,9 @@ custom_nvim.which_key.mappings = {
     l = { vim.lsp.codelens.run, "CodeLens Action" },
     p = {
       name = "Peek",
-      d = { "<cmd>lua require('lvim.lsp.peek').Peek('definition')<cr>", "Definition" },
-      t = { "<cmd>lua require('lvim.lsp.peek').Peek('typeDefinition')<cr>", "Type Definition" },
-      i = { "<cmd>lua require('lvim.lsp.peek').Peek('implementation')<cr>", "Implementation" },
+      -- d = { "<cmd>lua require('lvim.lsp.peek').Peek('definition')<cr>", "Definition" },
+      -- t = { "<cmd>lua require('lvim.lsp.peek').Peek('typeDefinition')<cr>", "Type Definition" },
+      -- i = { "<cmd>lua require('lvim.lsp.peek').Peek('implementation')<cr>", "Implementation" },
     },
     q = { vim.diagnostic.setloclist, "Quickfix" },
     r = { vim.lsp.buf.rename, "Rename" },
