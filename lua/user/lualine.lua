@@ -1,4 +1,5 @@
 local ok, lualine = pcall(require, "lualine")
+local icons = require("user.icons").diagnostics
 
 if not ok then
   return
@@ -33,7 +34,7 @@ local components = {
   diagnostics = {
     "diagnostics",
     sources = { "nvim_diagnostic" },
-    symbols = { error = " ", warn = " ", info = " ", hint = " " },
+    symbols = { error = " ", warn = " ", info = " ", hint = icons.Hint .. " " },
     cond = lualine_utils.hide_in_width,
   },
   encoding = {
