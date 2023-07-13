@@ -3,6 +3,7 @@ local colors = require "material.colors"
 vim.api.nvim_set_hl(0, "rainbowcol1", { fg = "Gold" })
 vim.api.nvim_set_hl(0, "rainbowcol2", { fg = "Orchid" })
 vim.api.nvim_set_hl(0, "rainbowcol3", { fg = "LightSkyBlue" })
+vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "gray", bg="#252525" })
 
 return {
   IndentBlanklineContextChar = { fg = colors.fg },
