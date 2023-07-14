@@ -72,12 +72,12 @@ local keymaps = {
 
   visual_block_mode = {
     -- Move selected line / block of text in visual mode
-    ["K"] = ":move '<-2<CR>gv-gv",
-    ["J"] = ":move '>+1<CR>gv-gv",
+    ["K"] = ":move '<-2<CR>gv=gv",
+    ["J"] = ":move '>+1<CR>gv=gv",
 
     -- Move current line / block with Alt-j/k ala vscode.
-    ["<A-j>"] = ":m '>+1<CR>gv-gv",
-    ["<A-k>"] = ":m '<-2<CR>gv-gv",
+    ["<A-j>"] = ":m '>+1<CR>gv=gv",
+    ["<A-k>"] = ":m '<-2<CR>gv=gv",
 
     --Paste without overriding current paste
     ["<leader>p"] = '"_dP',
@@ -90,7 +90,7 @@ local keymaps = {
   },
 }
 
-local keymappings = require('user.keymappings.utils')
+local keymappings = require "user.keymappings.utils"
 
 for mode, mapping in pairs(keymaps) do
   keymappings.load_mode(mode, mapping)
