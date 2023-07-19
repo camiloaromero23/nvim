@@ -8,11 +8,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+    if not client then
+      return
+    end
+
     local server_has_inlay_hints = client.server_capabilities.inlayHintsProvider
       or client.server_capabilities.inlayHintProvider
 
     if custom_nvim.enable_inlayHints and server_has_inlay_hints then
-      vim.lsp.buf.inlay_hint(0, true)
+      vim.lsp.inlay_hint(0, true)
     end
   end,
 })
