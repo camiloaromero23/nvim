@@ -1,2 +1,3 @@
 queries
 lua/custom_config.lua
+lua/plugin_declarations/custom_plugins.lua
