@@ -83,6 +83,7 @@ custom_nvim.which_key.mappings = {
   [";"] = { "<cmd>Alpha<CR>", "Dashboard" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>lua require('user.utils.functions').smart_quit()<CR>", "Quit" },
+  ["Q"] = { "<cmd>qa!<CR>", "Quit" },
   -- ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
   ["c"] = { "<cmd>bd<CR>", "Close Buffer" },
   -- ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
