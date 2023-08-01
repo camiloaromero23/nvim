@@ -72,7 +72,7 @@ local custom_icons = {
     name = "tsx",
   },
   txt = {
-    icon = "",
+    icon = "",
     color = colors.txtBlue,
     cterm_color = "67",
     name = "txt",
