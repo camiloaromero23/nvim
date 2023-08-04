@@ -213,6 +213,14 @@ custom_nvim.which_key.mappings = {
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     f = { "<cmd>Telescope find_files<cr>", "Find File" },
     F = { "<cmd>Telescope file_browser<cr>", "Telescope File Browser" },
+    d = {
+      require("user.telescope.custom-finders").grep_current_directory,
+      "Grep in cwd",
+    },
+    D = {
+      require("user.telescope.custom-finders").find_current_working_directory_file,
+      "Find file in cwd",
+    },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
     H = { "<cmd>Telescope highlights<cr>", "Find highlight groups" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
