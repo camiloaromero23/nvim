@@ -74,21 +74,6 @@ return {
           enable = true, -- mandatory, false will disable the whole extension
           -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
         },
-        rainbow = {
-          enable = true,
-          -- list of languages you want to disable the plug
-          disable = { "jsx", "cpp" },
-          -- Which query to use for finding delimiters
-          query = { "rainbow-parens" },
-          -- Highlight the entire buffer all at once
-          strategy = require("ts-rainbow").strategy.global,
-          -- Groups for highlighting
-          hlgroups = {
-            "rainbowcol1",
-            "rainbowcol2",
-            "rainbowcol3",
-          },
-        },
         indent = {
           enable = true,
           disable = { "yaml", "python" },
@@ -118,8 +103,28 @@ return {
         },
       }
     end,
-    lazy = true,
-    dependencies = { "HiPhish/nvim-ts-rainbow2" },
+  },
+  {
+    "hiphish/rainbow-delimiters.nvim",
+    config = function()
+      -- This module contains a number of default definitions
+      local rainbow_delimiters = require "rainbow-delimiters"
+
+      vim.g.rainbow_delimiters = {
+        strategy = {
+          [""] = rainbow_delimiters.strategy["global"],
+        },
+        query = {
+          [""] = "rainbow-delimiters",
+          tsx = "rainbow-parens",
+        },
+        highlight = {
+          "rainbowcol1",
+          "rainbowcol2",
+          "rainbowcol3",
+        },
+      }
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
@@ -194,12 +199,8 @@ return {
 
       zindex = 20, -- The Z-index of the context window
       mode = "topline", -- Line used to calculate context. Choices: 'cursor', 'topline'
+      event = "User FileOpened",
     },
-    event = "User FileOpened",
-  },
-  {
-    "HiPhish/nvim-ts-rainbow2",
-    event = "User FileOpened",
   },
   {
     "windwp/nvim-ts-autotag",

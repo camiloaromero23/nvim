@@ -11,6 +11,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     local bufnr = args.buf
 
+    if client == nil then
+      return
+    end
+
     if client.server_capabilities.documentSymbolProvider then
       lsp_common.attach_navic(client, bufnr)
     end

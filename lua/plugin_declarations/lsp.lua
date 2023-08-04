@@ -1,23 +1,26 @@
 return {
   -- LSP
   {
-    "VonHeikemen/lsp-zero.nvim",
-    branch = "v2.x",
+    -- LSP Configuration & Plugins
+    "neovim/nvim-lspconfig",
     dependencies = {
-      -- LSP Support
-      { "neovim/nvim-lspconfig" }, -- Required
-      -- Optional
-      {
-        "williamboman/mason.nvim",
-        build = function()
-          pcall(vim.cmd, "MasonUpdate")
-        end,
-      }, -- Optional
-      { "williamboman/mason-lspconfig.nvim" }, -- Optional
+      -- Automatically install LSPs to stdpath for neovim
+      { "williamboman/mason.nvim", config = true },
+      "williamboman/mason-lspconfig.nvim",
 
+      -- Additional lua configuration, makes nvim stuff amazing!
+      "folke/neodev.nvim",
+
+      -- Useful status updates for LSP
+      { "j-hui/fidget.nvim", tag = "legacy", opts = {}, event = "User FileOpened" },
+    },
+  },
+  {
+    -- Autocompletion
+    "hrsh7th/nvim-cmp",
+    dependencies = {
       -- Autocompletion
       "onsails/lspkind-nvim", -- Completion icons
-      { "hrsh7th/nvim-cmp" }, -- Required
       { "hrsh7th/cmp-nvim-lsp" }, -- Required
       { "hrsh7th/cmp-buffer" }, -- Optional
       { "hrsh7th/cmp-path" }, -- Optional
@@ -27,15 +30,16 @@ return {
       -- Snippets
       { "L3MON4D3/LuaSnip" }, -- Required
       { "rafamadriz/friendly-snippets" }, -- Optional
+      -- Snippet Engine & its associated nvim-cmp source
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+
+      -- Adds LSP completion capabilities
+      "hrsh7th/cmp-nvim-lsp",
+
+      -- Adds a number of user-friendly snippets
+      "rafamadriz/friendly-snippets",
     },
-    lazy = true,
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    lazy = true,
-    config = function()
-      require "user.lsp.cmp"
-    end,
   },
   {
     "ray-x/lsp_signature.nvim",

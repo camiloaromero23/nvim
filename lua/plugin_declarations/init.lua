@@ -67,12 +67,6 @@ return {
     keys = { { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undotree" } },
   },
   {
-    "j-hui/fidget.nvim",
-    tag = "legacy",
-    config = true,
-    event = "User FileOpened",
-  },
-  {
     "folke/todo-comments.nvim",
     opts = {
       signs = false,

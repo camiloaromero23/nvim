@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
     local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
     if not (vim.fn.expand "%" == "" or buftype == "nofile") then
       vim.cmd "do User FileOpened"
-      require("user.lsp").setup()
+      require "user.lsp"
       vim.cmd "LspStart"
     end
   end,

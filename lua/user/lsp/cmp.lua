@@ -98,8 +98,8 @@ cmp.setup {
   },
   sources = {
     { name = "nvim_lsp" },
-    { name = "path" },
     { name = "luasnip" },
+    { name = "path" },
     { name = "buffer" },
   },
   confirm_opts = {

@@ -17,5 +17,4 @@ return {
     }
     vim.notify = notify
   end,
-  event = "User FileOpened",
 }

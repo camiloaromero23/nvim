@@ -37,7 +37,7 @@ M.setup_rust_tools = function(capabilities, on_attach)
           { "╰", "FloatBorder" },
           { "│", "FloatBorder" },
         },
-        auto_focus = true,
+        auto_focus = false,
       },
     },
     server = {
