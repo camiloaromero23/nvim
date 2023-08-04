@@ -1,5 +1,5 @@
-local ok, lsp = pcall(require, "lsp-zero")
-if not ok then
+local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_ok then
   return
 end
 
@@ -11,7 +11,8 @@ local filetypes = {
   "vue",
 }
 
-lsp.configure("eslint", {
+lspconfig.eslint.setup {
   filetypes = filetypes,
   cmd = { "vscode-eslint-language-server", "--stdio" },
-})
+  capabilities = custom_nvim.lsp.capabilities,
+}

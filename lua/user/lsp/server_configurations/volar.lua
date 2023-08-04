@@ -1,8 +1,3 @@
-local lsp_ok, lsp = pcall(require, "lsp-zero")
-if not lsp_ok then
-  return
-end
-
 if not require("user.lsp.utils").is_vue_project() then
   return
 end
@@ -12,7 +7,7 @@ if not lspconfig_ok then
   return
 end
 
-lsp.configure("volar", {
+lspconfig.volar.setup {
   filetypes = { "javascript", "typescript", "vue" },
   root_dir = lspconfig.util.root_pattern "package.json"
     or lspconfig.util.root_pattern "vue.config.js"
@@ -59,4 +54,5 @@ lsp.configure("volar", {
   on_attach = function(client)
     client.server_capabilities.document_formatting = false
   end,
-})
+  capabilities = custom_nvim.lsp.capabilities,
+}

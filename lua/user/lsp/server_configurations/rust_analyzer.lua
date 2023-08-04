@@ -1,7 +1,3 @@
-local ok, lsp = pcall(require, "lsp-zero")
-if not ok then
-  return
-end
 local status_ok, rust_tools = pcall(require, "rust-tools")
 if not status_ok then
   return
@@ -42,8 +38,7 @@ rust_tools.setup {
     },
   },
   server = {
-    on_attach = lsp.on_attach,
-    capabilities = lsp.capabilities,
+    capabilities = custom_nvim.lsp.capabilities,
     standalone = false,
   },
 }

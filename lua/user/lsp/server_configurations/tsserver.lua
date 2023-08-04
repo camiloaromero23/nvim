@@ -1,30 +1,22 @@
-local lsp_ok, _ = pcall(require, "lsp-zero")
-if not lsp_ok then
-  return
-end
 local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_ok then
   return
 end
 
--- if require("user.lsp.utils").is_vue_project() then
+if require("user.lsp.utils").is_vue_project() then
+  return
+end
+-- if require("user.lsp.utils").is_deno_project() then
 --   return
 -- end
 
-if require("user.lsp.utils").is_deno_project() then
-  return
-end
-	-- "typescript.inlayHints.enumMemberValues.enabled": true,
-	-- "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-	-- "typescript.inlayHints.parameterNames.enabled": "literals",
-	-- "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
-	-- "typescript.inlayHints.parameterTypes.enabled": true,
-	-- "typescript.inlayHints.variableTypes.enabled": true,
+-- LSP settings (for overriding per client)
 local inlayHints = {
+  includeInlayVariableTypeHintsWhenTypeMatchesName = false,
   includeInlayParameterNameHints = "all",
   includeInlayParameterNameHintsWhenArgumentMatchesName = false,
   includeInlayFunctionParameterTypeHints = true,
-  includeInlayVariableTypeHints = false,
+  includeInlayVariableTypeHints = true,
   includeInlayPropertyDeclarationTypeHints = true,
   includeInlayFunctionLikeReturnTypeHints = true,
   includeInlayEnumMemberValueHints = true,
@@ -57,4 +49,5 @@ lspconfig.tsserver.setup {
     client.server_capabilities.document_range_formatting = false
     -- client.server_capabilities.semanticTokensProvider = nil
   end,
+  capabilities = custom_nvim.lsp.capabilities,
 }

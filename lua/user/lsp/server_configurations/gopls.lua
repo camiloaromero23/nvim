@@ -1,9 +1,9 @@
-local ok, lsp = pcall(require, "lsp-zero")
-if not ok then
+local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_ok then
   return
 end
 
-lsp.configure("gopls", {
+lspconfig.gopls.setup {
   single_file_support = true,
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
   cmd = { "gopls" },
@@ -19,4 +19,5 @@ lsp.configure("gopls", {
       },
     },
   },
-})
+  capabilities = custom_nvim.lsp.capabilities,
+}

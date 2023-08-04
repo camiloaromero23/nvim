@@ -1,9 +1,9 @@
-local ok, lsp = pcall(require, "lsp-zero")
-if not ok then
+local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_ok then
   return
 end
 
-lsp.configure("astro", {
+lspconfig.astro.setup {
   init_options = {
     configuration = {},
     typescript = {
@@ -12,4 +12,5 @@ lsp.configure("astro", {
   },
   filetypes = { "astro" },
   cmd = { "astro-ls", "--stdio" },
-})
+  capabilities = custom_nvim.lsp.capabilities,
+}

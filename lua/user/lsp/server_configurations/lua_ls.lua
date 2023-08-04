@@ -1,11 +1,11 @@
-local lsp_ok, lsp = pcall(require, "lsp-zero")
-if not lsp_ok then
+local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_ok then
   return
 end
 
 require "user.lsp.neodev"
 
-lsp.configure("lua_ls", {
+lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       diagnostics = {
@@ -20,4 +20,5 @@ lsp.configure("lua_ls", {
   on_attach = function(client)
     client.server_capabilities.document_formatting = false
   end,
-})
+  capabilities = custom_nvim.lsp.capabilities,
+}
