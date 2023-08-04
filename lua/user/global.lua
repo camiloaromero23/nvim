@@ -1,5 +1,6 @@
 custom_nvim = {
   nvimtree = {
+    side = "left", -- can be left or right
     setup = {
       view = {
         mappings = {

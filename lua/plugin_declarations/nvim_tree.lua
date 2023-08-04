@@ -41,7 +41,7 @@ return {
     view = {
       width = 30,
       hide_root_folder = false,
-      side = "left",
+      side = custom_nvim.nvimtree.side,
       preserve_window_proportions = false,
       mappings = {
         custom_only = false,
