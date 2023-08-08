@@ -3,6 +3,16 @@ if not status_ok then
   return
 end
 
+local registry_ok, mason_registry = pcall(require, "mason-registry")
+if not registry_ok then
+  return
+end
+
+local codelldb = mason_registry.get_package "codelldb"
+local extension_path = codelldb:get_install_path() .. "/extension/"
+local codelldb_path = extension_path .. "adapter/codelldb"
+local liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
+
 rust_tools.setup {
   tools = {
     executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
@@ -40,5 +50,8 @@ rust_tools.setup {
   server = {
     capabilities = custom_nvim.lsp.capabilities,
     standalone = false,
+  },
+  dap = {
+    adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
   },
 }
