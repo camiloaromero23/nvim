@@ -14,6 +14,7 @@ return {
       -- Useful status updates for LSP
       { "j-hui/fidget.nvim", tag = "legacy", opts = {}, event = "User FileOpened" },
     },
+    lazy = true,
   },
   {
     -- Autocompletion
@@ -40,6 +41,7 @@ return {
       -- Adds a number of user-friendly snippets
       "rafamadriz/friendly-snippets",
     },
+    lazy = true,
   },
   {
     "ray-x/lsp_signature.nvim",

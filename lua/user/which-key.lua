@@ -87,7 +87,7 @@ custom_nvim.which_key.mappings = {
   -- ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
   ["c"] = { "<cmd>bd<CR>", "Close Buffer" },
   -- ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
-  ["f"] = { require("user.telescope.custom-finders").find_project_files, "Find File" },
+  ["f"] = { "<cmd>lua require('user.telescope.custom-finders').find_project_files()<cr>", "Find File" },
   h = {
     name = "Harpoon",
     a = { '<cmd>lua require("harpoon.mark").add_file()<CR>', "Mark file" },
@@ -103,7 +103,7 @@ custom_nvim.which_key.mappings = {
     f = { "<cmd>Telescope buffers<cr>", "Find" },
     b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
     n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
-    -- w = { "<cmd>BufferWipeout<cr>", "Wipeout" }, -- TODO: implement this for bufferline
+    w = { "<cmd>BufferLineCloseOthers<cr>", "Close others" },
     e = {
       "<cmd>BufferLinePickClose<cr>",
       "Pick which buffer to close",
@@ -129,22 +129,6 @@ custom_nvim.which_key.mappings = {
     u = { "<cmd>Lazy update<cr>", "Update" },
   },
   ["8"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace all occurences of word" },
-  -- p = {
-  --   name = "Packer",
-  --   c = { "<cmd>PackerCompile<cr>", "Compile" },
-  --   i = { "<cmd>PackerInstall<cr>", "Install" },
-  --   s = { "<cmd>PackerSync<cr>", "Sync" },
-  --   S = { "<cmd>PackerStatus<cr>", "Status" },
-  --   u = { "<cmd>PackerUpdate<cr>", "Update" },
-  -- },
-
-  -- " Available Debug Adapters:
-  -- "   https://microsoft.github.io/debug-adapter-protocol/implementors/adapters/
-  -- " Adapter configuration and installation instructions:
-  -- "   https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
-  -- " Debug Adapter protocol:
-  -- "   https://microsoft.github.io/debug-adapter-protocol/
-  -- " Debugging
   g = {
     name = "Git",
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
@@ -175,12 +159,7 @@ custom_nvim.which_key.mappings = {
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
     d = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", "Buffer Diagnostics" },
     w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
-    f = {
-      function()
-        require("user.lsp.utils").format { timeout_ms = 2000 }
-      end,
-      "Format",
-    },
+    f = { "<cmd>lua require('user.lsp.utils').format { timeout_ms = 2000 }<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>Mason<cr>", "Mason Info" },
     j = {
@@ -214,11 +193,11 @@ custom_nvim.which_key.mappings = {
     f = { "<cmd>Telescope find_files<cr>", "Find File" },
     F = { "<cmd>Telescope file_browser<cr>", "Telescope File Browser" },
     d = {
-      require("user.telescope.custom-finders").grep_current_directory,
+      "<cmd>lua require('user.telescope.custom-finders').grep_current_directory()<cr>",
       "Grep in cwd",
     },
     D = {
-      require("user.telescope.custom-finders").find_current_working_directory_file,
+      "<cmd>lua require('user.telescope.custom-finders').find_current_working_directory_file()<cr>",
       "Find file in cwd",
     },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },

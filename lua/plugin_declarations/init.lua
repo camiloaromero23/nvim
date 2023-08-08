@@ -1,12 +1,11 @@
 return {
   -- Core plugins
-  "nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
 
   -- My plugins
   { "folke/neodev.nvim", ft = { "lua" } },
-  "tpope/vim-surround",
-  "b0o/schemastore.nvim",
+  { "tpope/vim-surround", event = "User FileOpened" },
+  { "b0o/schemastore.nvim", event = "User FileOpened" },
 
   {
     "folke/which-key.nvim",

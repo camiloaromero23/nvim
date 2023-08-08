@@ -33,5 +33,6 @@ return {
         },
       }
     end,
+    lazy = true,
   },
 }

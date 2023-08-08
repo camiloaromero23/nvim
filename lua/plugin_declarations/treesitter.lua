@@ -125,6 +125,7 @@ return {
         },
       }
     end,
+    event = "User FileOpened",
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
@@ -199,8 +200,8 @@ return {
 
       zindex = 20, -- The Z-index of the context window
       mode = "topline", -- Line used to calculate context. Choices: 'cursor', 'topline'
-      event = "User FileOpened",
     },
+    event = "User FileOpened",
   },
   {
     "windwp/nvim-ts-autotag",

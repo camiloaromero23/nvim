@@ -9,6 +9,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
       vim.cmd "do User FileOpened"
       require "user.lsp"
       vim.cmd "LspStart"
+      vim.cmd "ColorizerAttachToBuffer"
     end
   end,
 })
