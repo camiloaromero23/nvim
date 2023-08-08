@@ -7,6 +7,8 @@ return {
       -- Automatically install LSPs to stdpath for neovim
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
+      "jay-babu/mason-null-ls.nvim",
+      "jay-babu/mason-nvim-dap.nvim",
 
       -- Additional lua configuration, makes nvim stuff amazing!
       "folke/neodev.nvim",
