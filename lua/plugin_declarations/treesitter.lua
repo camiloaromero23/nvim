@@ -215,4 +215,12 @@ return {
     "nvim-treesitter/playground",
     keys = { { "<leader>Tp", "<cmd>TSPlaygroundToggle<cr>", desc = "Toggle Treesitter Playground" } },
   },
+  {
+    "Wansmer/treesj",
+    opts = {
+      use_default_keymaps = false,
+    },
+    keys = { { "<space>j", "<cmd>lua require('treesj').toggle()<cr>", desc = "Toggle Split Join" } },
+    event = "User FileOpened",
+  },
 }
