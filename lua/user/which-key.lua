@@ -240,9 +240,31 @@ custom_nvim.which_key.mappings = {
     },
   },
   t = {
-    name = "Toggle",
-    f = { "<cmd>ToggleFormatOnSave<cr>", "Toggle Format On Save" },
-    -- d = { "<cmd>ToggleDarkPlus<cr>", "Toggle DarkPlus Theme" },
+    name = "Test",
+    t = {
+      "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>",
+      "Run all tests",
+    },
+    r = {
+      "<cmd>lua require('neotest').run.run()<cr>",
+      "Run nearest test",
+    },
+    -- s = {
+    --   "<cmd>lua require('neotest').run.stop()<cr>",
+    --   "Stop current test",
+    -- },
+    -- a = {
+    --   "<cmd>lua require('neotest').run.attach()<cr>",
+    --   "Attach to nearest test",
+    -- },
+    s = {
+      "<cmd>lua require('neotest').summary.toggle()<cr>",
+      "Toggle tests summary",
+    },
+    o = {
+      "<cmd>lua require('neotest').output.open()<cr>",
+      "Open test output",
+    },
   },
   T = {
     name = "Treesitter",
