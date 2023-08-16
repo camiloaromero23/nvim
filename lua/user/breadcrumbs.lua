@@ -158,7 +158,7 @@ vim.api.nvim_create_autocmd(
 navic.setup {
   icons = {
     Array = icons.kind.Array .. " ",
-    Boolean = icons.kind.Boolean,
+    Boolean = icons.kind.Boolean .. " ",
     Class = icons.kind.Class .. " ",
     Color = icons.kind.Color .. " ",
     Constant = icons.kind.Constant .. " ",
