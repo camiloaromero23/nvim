@@ -67,9 +67,18 @@ return {
     ft = { "rust", "rs" },
   },
   {
-    "fatih/vim-go",
-    config = function()
-      require "user.lsp.vim-go"
+    "olexsmir/gopher.nvim",
+    opts = {
+      commands = {
+        go = "go",
+        gomodifytags = os.getenv "HOME" .. "/go/bin/gomodifytags",
+        gotests = os.getenv "HOME" .. "/go/bin/gotests",
+        impl = os.getenv "HOME" .. "/go/bin/impl",
+        iferr = os.getenv "HOME" .. "/go/bin/iferr",
+      },
+    },
+    build = function()
+      vim.cmd [[silent! GoInstallDeps]]
     end,
     ft = { "go", "gomod" },
   },

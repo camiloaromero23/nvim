@@ -50,6 +50,8 @@ mason_null_ls.setup {
     "black",
     "prettierd",
     "stylua",
+    "gofumpt",
+    "goimports-reviser",
   },
 }
 
