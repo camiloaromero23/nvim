@@ -172,6 +172,7 @@ custom_nvim.which_key.mappings = {
       "Git Diff",
     },
   },
+  D = { name = "Dependencies manager 📦" },
   l = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },

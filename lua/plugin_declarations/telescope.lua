@@ -150,6 +150,10 @@ return {
               -- even more opts
             },
           },
+          package_info = {
+            -- Optional theme (the extension doesn't set a default theme)
+            -- theme = "ivy",
+          },
         },
       }
 

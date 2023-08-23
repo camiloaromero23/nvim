@@ -15,5 +15,6 @@ M.codelens = augroup("LspCodelens", { clear = true })
 M.quickClose = augroup("QuickCloseQuickFix", { clear = true })
 M.closePrettier = augroup("ClosePrettier", { clear = true })
 M.fileOpened = augroup("FileOpened", { clear = true })
+M.packageUtils = augroup("PackageUtils", { clear = true })
 
 return M
