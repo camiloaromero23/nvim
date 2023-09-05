@@ -31,9 +31,7 @@ local excludes = function()
 end
 
 local get_filename = function()
-  ---@diagnostic disable-next-line: missing-parameter
   local filename = vim.fn.expand "%:t"
-  ---@diagnostic disable-next-line: missing-parameter
   local extension = vim.fn.expand "%:e"
   local f = require "user.utils.functions"
 
@@ -55,29 +53,6 @@ local get_filename = function()
       file_icon = icons.kind.File
     end
 
-    -- local buf_ft = vim.bo.filetype
-
-    -- if buf_ft == "dapui_breakpoints" then
-    --   file_icon = icons.ui.Bug
-    -- end
-
-    -- if buf_ft == "dapui_stacks" then
-    --   file_icon = icons.ui.Stacks
-    -- end
-
-    -- if buf_ft == "dapui_scopes" then
-    --   file_icon = icons.ui.Scopes
-    -- end
-
-    -- if buf_ft == "dapui_watches" then
-    --   file_icon = icons.ui.Watches
-    -- end
-
-    -- if buf_ft == "dapui_console" then
-    --   file_icon = icons.ui.DebugConsole
-    -- end
-
-    -- local navic_text = vim.api.nvim_get_hl_by_name("Normal", true)
     vim.api.nvim_set_hl(0, "Winbar", {})
 
     return " " .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#Winbar#" .. filename .. "%*"
@@ -116,18 +91,8 @@ local get_winbar = function()
 
   if not f.isempty(value) then
     local gps_value = get_gps()
-    -- print "**************************"
-    -- print(gps_value)
-    -- print "**************************"
     value = value .. " " .. gps_value
   end
-
-  -- local num_tabs = #vim.api.nvim_list_tabpages()
-
-  -- if num_tabs > 1 and not f.isempty(value) then
-  --   local tabpage_number = tostring(vim.api.nvim_tabpage_get_number(0))
-  --   value = value .. "%=" .. tabpage_number .. "/" .. tostring(num_tabs)
-  -- end
 
   local status_ok, _ = pcall(vim.api.nvim_set_option_value, "winbar", value, { scope = "local" })
   if not status_ok then
