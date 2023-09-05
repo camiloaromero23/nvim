@@ -31,9 +31,7 @@ function M.format(opts)
 
   local bufnr = opts.bufnr or vim.api.nvim_get_current_buf()
 
-  ---@type table|nil
-  ---@diagnostic disable-next-line: redundant-parameter
-  local clients = vim.lsp.get_active_clients {
+  local clients = vim.lsp.get_clients {
     id = opts.id,
     bufnr = bufnr,
     name = opts.name,
@@ -46,7 +44,6 @@ function M.format(opts)
 
   clients = vim.tbl_filter(function(client)
     return client.supports_method "textDocument/formatting"
-    ---@diagnostic disable-next-line: param-type-mismatch
   end, clients)
 
   if #clients == 0 then
@@ -99,7 +96,7 @@ M.is_deno_project = function()
 end
 
 M.is_tsserver_attached = function()
-  local clients = vim.lsp.get_active_clients()
+  local clients = vim.lsp.get_clients()
   for _, client in ipairs(clients) do
     if client.name == "tsserver" then
       return true

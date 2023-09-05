@@ -172,6 +172,7 @@ custom_icons["package-lock.json"] = custom_icons["package.json"]
 custom_icons["spec.tsx"] = custom_icons["spec.jsx"]
 custom_icons["test.tsx"] = custom_icons["test.jsx"]
 custom_icons["tailwind.config.cjs"] = custom_icons["tailwind.config.js"]
+custom_icons["tailwind.config.ts"] = custom_icons["tailwind.config.js"]
 custom_icons["module.scss"] = custom_icons.scss
 custom_icons[".nvmrc"] = custom_icons["package.json"]
 custom_icons[".eslintrc.js"] = custom_icons[".eslintrc"]
