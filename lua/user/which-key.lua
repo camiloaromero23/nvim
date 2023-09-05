@@ -270,6 +270,7 @@ custom_nvim.which_key.mappings = {
   T = {
     name = "Treesitter",
     i = { ":TSConfigInfo<cr>", "Info" },
+    p = { "<cmd>InspectTree<cr>", "Toggle Treesitter Playground" },
   },
 }
 

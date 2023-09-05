@@ -12,8 +12,4 @@ return {
       },
     }
   end,
-  -- TODO: Check better keybindings than the ones defined in which-key.lua file
-  -- keys = {
-    -- { "<leader>Tp", "<cmd>TSPlaygroundToggle<cr>", desc = "Toggle Treesitter Playground" },
-  -- },
 }
