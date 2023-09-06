@@ -38,7 +38,7 @@ return {
       -- Adds a number of user-friendly snippets
       "rafamadriz/friendly-snippets",
 
-      { "roobert/tailwindcss-colorizer-cmp.nvim", config = true, disable = true }, -- Enable this when plugin loads custom colors,
+      { "roobert/tailwindcss-colorizer-cmp.nvim", config = true, enabled = false }, -- Enable this when plugin loads custom colors,
     },
     lazy = true,
   },
