@@ -1,3 +1,4 @@
+local icons = require "user.icons"
 return {
   -- Core plugins
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
@@ -30,10 +31,9 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     opts = {
-      show_current_context = true,
-      show_current_context_start = true,
-      buftype_exclude = { "terminal", "nofile" },
+      indent = { char = icons.ui.LineLeft },
     },
     event = "User FileOpened",
   },
