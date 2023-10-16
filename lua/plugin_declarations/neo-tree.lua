@@ -54,7 +54,8 @@ return {
           ["l"] = { "open", config = { focus = true } },
           ["h"] = { "close_node" },
           ["v"] = { "open_vsplit" },
-          ["f"] = { "fuzzy_finder" },
+          ["f"] = { "filter_on_submit" },
+          ["P"] = { "toggle_preview", config = { use_float = false } }, -- Temp fix for highlight issues. See https://github.com/nvim-neo-tree/neo-tree.nvim/issues/881
           ["/"] = "noop",
         },
         position = "float",
