@@ -142,4 +142,5 @@ return {
   },
   tag = "nightly", -- optional, updated every week. (see issue #1193)
   keys = { { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" } },
+  enabled = false,
 }
