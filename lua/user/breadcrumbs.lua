@@ -1,5 +1,6 @@
 local winbar_augroup = require("user.augroups").winbar
 local icons = require "user.icons"
+local devicons = require "nvim-web-devicons"
 
 local filetype_exclude = {
   "help",
@@ -32,29 +33,36 @@ end
 
 local get_filename = function()
   local filename = vim.fn.expand "%:t"
-  local extension = vim.fn.expand "%:e"
+  local extension = vim.fn.expand "%:e:e"
   local f = require "user.utils.functions"
 
-  if not f.isempty(filename) then
-    local file_icon, file_icon_color = require("nvim-web-devicons").get_icon_color(
-      filename,
-      extension,
-      { default = true }
-    )
+  if f.isempty(filename) then
+    return
+  end
 
-    if extension:find("-") then
-      extension = extension:gsub("-", "_")
-    end
+  local file_icon, file_icon_color = devicons.get_icon_color(filename, extension, { default = true })
 
-    local hl_group = "FileIconColor" .. extension
+  if file_icon:find "" then
+    extension = vim.fn.expand "%:e"
+    file_icon, file_icon_color = devicons.get_icon_color(filename, extension, { default = true })
+  end
 
-    vim.api.nvim_set_hl(0, hl_group, { fg = file_icon_color })
-    if f.isempty(file_icon) then
-      file_icon = icons.kind.File
-    end
+  ---@diagnostic disable-next-line: param-type-mismatch
+  if extension:find "-" then
+    ---@diagnostic disable-next-line: param-type-mismatch
+    extension = extension:gsub("-", "_")
+  end
 
-    vim.api.nvim_set_hl(0, "Winbar", {})
+  local hl_group = "FileIconColor" .. extension
 
+  vim.api.nvim_set_hl(0, hl_group, { fg = file_icon_color })
+  if f.isempty(file_icon) then
+    file_icon = icons.kind.File
+  end
+
+  vim.api.nvim_set_hl(0, "Winbar", {})
+
+  do
     return " " .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#Winbar#" .. filename .. "%*"
   end
 end
