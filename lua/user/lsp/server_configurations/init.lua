@@ -1,3 +1,4 @@
+require "user.lsp.server_configurations.angular"
 require "user.lsp.server_configurations.astro"
 require "user.lsp.server_configurations.cssls"
 require "user.lsp.server_configurations.denols"
