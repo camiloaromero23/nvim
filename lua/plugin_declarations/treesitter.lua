@@ -7,6 +7,7 @@ return {
       if not status_ok then
         return
       end
+      vim.g.skip_ts_context_commentstring_module = true
 
       configs.setup {
         -- ensure_installed = "all",
@@ -234,6 +235,22 @@ return {
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
+    config = function()
+      require("ts_context_commentstring").setup {
+        enable = true,
+        enable_autocmd = false,
+        config = {
+          -- Languages that have a single comment style
+          typescript = "// %s",
+          css = "/* %s */",
+          scss = "/* %s */",
+          html = "<!-- %s -->",
+          svelte = "<!-- %s -->",
+          vue = "<!-- %s -->",
+          json = "",
+        },
+      }
+    end,
     event = "BufReadPost",
   },
   {
