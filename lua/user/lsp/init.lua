@@ -12,9 +12,8 @@ custom_nvim.lsp.capabilities = capabilities
 
 local mason_ok, mason = pcall(require, "mason")
 local lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
-local nvim_dap_ok, mason_nvim_dap = pcall(require, "mason-nvim-dap")
 local null_ls_ok, mason_null_ls = pcall(require, "mason-null-ls")
-if not mason_ok or not lspconfig_ok or not nvim_dap_ok or not null_ls_ok then
+if not mason_ok or not lspconfig_ok or not null_ls_ok then
   return
 end
 
@@ -52,14 +51,6 @@ mason_null_ls.setup {
     "stylua",
     "gofumpt",
     "goimports-reviser",
-  },
-}
-
-mason_nvim_dap.setup {
-  ensure_installed = {
-    "codelldb",
-    "delve",
-    "js-debug-adapter",
   },
 }
 

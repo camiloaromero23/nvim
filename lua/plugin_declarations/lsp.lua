@@ -8,13 +8,12 @@ return {
       { "williamboman/mason.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
       "jay-babu/mason-null-ls.nvim",
-      "jay-babu/mason-nvim-dap.nvim",
 
       -- Additional lua configuration, makes nvim stuff amazing!
       "folke/neodev.nvim",
 
       -- Useful status updates for LSP
-      { "j-hui/fidget.nvim", tag = "legacy", opts = {}, event = "User FileOpened" },
+      { "j-hui/fidget.nvim", opts = {}, event = "User FileOpened" },
     },
     lazy = true,
   },
