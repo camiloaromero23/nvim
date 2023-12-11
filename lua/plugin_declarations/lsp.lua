@@ -49,7 +49,7 @@ return {
 
   -- Null-LS
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     config = function()
       require "user.lsp.null_ls"
     end,
