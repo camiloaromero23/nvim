@@ -91,8 +91,12 @@ cmp.setup {
     select = false,
   },
   window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered {
+      winhighlight = "FloatBorder:Normal,NormalFloat:Normal",
+    },
+    documentation = cmp.config.window.bordered {
+      winhighlight = "FloatBorder:Normal,NormalFloat:Normal",
+    },
   },
   view = {
     natives = true,
