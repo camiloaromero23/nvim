@@ -8,6 +8,7 @@ return {
       hl_mode = "combine",
       priority = 10000,
     },
+    gitblame_delay = 1000,
   },
   event = "User FileOpened",
 }
