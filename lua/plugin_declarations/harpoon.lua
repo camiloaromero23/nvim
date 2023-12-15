@@ -1,21 +1,55 @@
 return {
   "ThePrimeagen/harpoon",
-  opts = {
-    global_settings = {
-      -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
-      save_on_toggle = false,
-      -- saves the harpoon file upon every change. disabling is unrecommended.
-      save_on_change = true,
-      -- filetypes that you want to prevent from adding to the harpoon list menu.
-      excluded_filetypes = { "harpoon" },
-    },
-  },
+  branch = "harpoon2",
+  config = function()
+    local harpoon = require "harpoon"
+
+    harpoon:setup {
+      settings = {
+        save_on_toggle = true,
+        sync_on_ui_close = true,
+        key = function()
+          return vim.loop.cwd()
+        end,
+      },
+    }
+  end,
   keys = {
-    { "<leader>ha", '<cmd> lua require("harpoon.mark").add_file()<CR>', silent = true, desc = "Mark File" },
-    { "<leader>hm", '<cmd> lua require("harpoon.ui").toggle_quick_menu()<CR>', silent = true, desc = "Quick Menu" },
-    { "<leader>hy", '<cmd> lua require("harpoon.ui").nav_file(1)<CR>', silent = true, desc = "Go to mark 1" },
-    { "<leader>hu", '<cmd> lua require("harpoon.ui").nav_file(2)<CR>', silent = true, desc = "Go to mark 2" },
-    { "<leader>hi", '<cmd> lua require("harpoon.ui").nav_file(3)<CR>', silent = true, desc = "Go to mark 3" },
-    { "<leader>ho", '<cmd> lua require("harpoon.ui").nav_file(4)<CR>', silent = true, desc = "Go to mark 4" },
+    {
+      "<leader>ha",
+      '<cmd> lua require("harpoon"):list():append()<CR>',
+      silent = true,
+      desc = "Mark File",
+    },
+    {
+      "<leader>hm",
+      '<cmd> lua require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())<CR>',
+      silent = true,
+      desc = "Quick Menu",
+    },
+    {
+      "<leader>hy",
+      '<cmd> lua require("harpoon"):list():select(1)<CR>',
+      silent = true,
+      desc = "Go to mark 1",
+    },
+    {
+      "<leader>hu",
+      '<cmd> lua require("harpoon"):list():select(2)<CR>',
+      silent = true,
+      desc = "Go to mark 2",
+    },
+    {
+      "<leader>hi",
+      '<cmd> lua require("harpoon"):list():select(3)<CR>',
+      silent = true,
+      desc = "Go to mark 3",
+    },
+    {
+      "<leader>ho",
+      '<cmd> lua require("harpoon"):list():select(4)<CR>',
+      silent = true,
+      desc = "Go to mark 4",
+    },
   },
 }
