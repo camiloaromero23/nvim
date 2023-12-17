@@ -1,14 +1,8 @@
+vim.g.blamer_enabled = true
+vim.g.blamer_delay = 0
+vim.g.blamer_relative_time = 1
+vim.g.blamer_prefix = "     "
+
 return {
-  "f-person/git-blame.nvim",
-  opts = {
-    message_template = "      <author>, <date> • <summary>",
-    date_format = "%r",
-    ignored_filetypes = { "NvimTree", "netrw", "packer", "neo-tree" },
-    set_extmark_options = {
-      hl_mode = "combine",
-      priority = 10000,
-    },
-    gitblame_delay = 1000,
-  },
-  event = "User FileOpened",
+  "APZelos/blamer.nvim",
 }
