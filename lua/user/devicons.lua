@@ -48,6 +48,12 @@ local custom_icons = {
     cterm_color = "185",
     name = "js",
   },
+  json = {
+    icon = "󰘦",
+    color = colors.jsYellow,
+    cterm_color = "185",
+    name = "json",
+  },
   markdown = {
     icon = "",
     color = colors.white,
