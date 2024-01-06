@@ -58,3 +58,11 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
   end,
   group = augroups.closePrettier,
 })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
+  group = augroups.envFiles,
+  pattern = ".env.*",
+  callback = function()
+    vim.cmd [[set filetype=sh]]
+  end,
+})

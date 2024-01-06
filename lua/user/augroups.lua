@@ -16,5 +16,6 @@ M.quickClose = augroup("QuickCloseQuickFix", { clear = true })
 M.closePrettier = augroup("ClosePrettier", { clear = true })
 M.fileOpened = augroup("FileOpened", { clear = true })
 M.packageUtils = augroup("PackageUtils", { clear = true })
+M.envFiles = augroup("EnvFiles", { clear = true })
 
 return M
