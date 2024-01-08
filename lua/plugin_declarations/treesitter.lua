@@ -57,20 +57,6 @@ return {
           enable = true,
           disable = { "" },
         },
-        context_commentstring = {
-          enable = true,
-          enable_autocmd = false,
-          config = {
-            -- Languages that have a single comment style
-            typescript = "// %s",
-            css = "/* %s */",
-            scss = "/* %s */",
-            html = "<!-- %s -->",
-            svelte = "<!-- %s -->",
-            vue = "<!-- %s -->",
-            json = "",
-          },
-        },
         matchup = {
           enable = true, -- mandatory, false will disable the whole extension
           -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
@@ -129,6 +115,7 @@ return {
       }
     end,
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+    event = "User FileOpened",
   },
   {
     "hiphish/rainbow-delimiters.nvim",
