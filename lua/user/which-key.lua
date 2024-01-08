@@ -119,6 +119,9 @@ custom_nvim.which_key.mappings = {
     L = { "<cmd>Lazy home<cr>", "Home" },
     u = { "<cmd>Lazy update<cr>", "Update" },
   },
+  h = {
+    name = "Harpoon",
+  },
   d = {
     name = "Debug",
     t = { "<cmd>lua require('dap').toggle_breakpoint()<cr>", "Toggle Breakpoint" },
