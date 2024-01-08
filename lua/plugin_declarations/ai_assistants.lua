@@ -7,7 +7,11 @@ return {
       vim.g.copilot_node_command = "$FNM_DIR/aliases/lts-latest/bin/node"
       -- vim.g.copilot_filetypes = { lua = false } -- Disable copilot for filetypes
 
-      vim.cmd [[ imap <silent><script><expr> kk copilot#Accept("") ]]
+      vim.keymap.set("i", "kk", 'copilot#Accept("")', {
+        expr = true,
+        replace_keycodes = false,
+      })
+      vim.g.copilot_no_tab_map = true
     end,
     event = "User FileOpened",
   },
