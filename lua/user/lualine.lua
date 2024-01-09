@@ -67,8 +67,7 @@ local components = {
   lsp = {
     function(msg)
       msg = msg or "LS Inactive"
-      ---@diagnostic disable-next-line: missing-parameter
-      local buf_clients = vim.lsp.get_active_clients()
+      local buf_clients = vim.lsp.get_clients()
       if next(buf_clients) == nil then
         -- TODO: clean up this if statement
         if type(msg) == "boolean" or #msg == 0 then
@@ -88,16 +87,14 @@ local components = {
 
       -- add formatter
       local supported_formatters = lualine_utils.list_registered_formatters(buf_ft)
-      ---@diagnostic disable-next-line: missing-parameter
       vim.list_extend(buf_client_names, supported_formatters)
 
       -- add linter
       local supported_linters = lualine_utils.list_registered_linters(buf_ft)
-      ---@diagnostic disable-next-line: missing-parameter
       vim.list_extend(buf_client_names, supported_linters)
 
-      ---@diagnostic disable-next-line: missing-parameter
       local unique_client_names = vim.fn.uniq(buf_client_names)
+      ---@diagnostic disable-next-line: param-type-mismatch
       return "[" .. table.concat(unique_client_names, ", ") .. "]"
     end,
     color = { gui = "bold" },
@@ -109,12 +106,12 @@ lualine.setup {
   active = true,
   style = "nvim",
   options = {
-    glabalstatus = true,
+    globalstatus = true,
     icons_enabled = true,
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     theme = "auto",
-    disabled_filetypes = { "alpha", "NvimTree", "Outline" },
+    disabled_filetypes = { "alpha", "neo-tree", "NvimTree", "Outline" },
     always_divide_middle = true,
   },
   sections = {
