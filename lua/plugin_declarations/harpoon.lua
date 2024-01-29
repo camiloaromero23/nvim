@@ -28,6 +28,30 @@ return {
       desc = "Quick Menu",
     },
     {
+      "<leader>hq",
+      '<cmd> lua require("harpoon"):list():select(1)<CR>',
+      silent = true,
+      desc = "Go to mark 1",
+    },
+    {
+      "<leader>hw",
+      '<cmd> lua require("harpoon"):list():select(2)<CR>',
+      silent = true,
+      desc = "Go to mark 2",
+    },
+    {
+      "<leader>he",
+      '<cmd> lua require("harpoon"):list():select(3)<CR>',
+      silent = true,
+      desc = "Go to mark 3",
+    },
+    {
+      "<leader>hr",
+      '<cmd> lua require("harpoon"):list():select(4)<CR>',
+      silent = true,
+      desc = "Go to mark 4",
+    },
+    {
       "<leader>hy",
       '<cmd> lua require("harpoon"):list():select(1)<CR>',
       silent = true,
