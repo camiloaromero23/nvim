@@ -16,11 +16,15 @@ custom_nvim = {
     enable = true,
   },
   lsp = {
-    capabilities = nil
+    capabilities = nil,
   },
   colorscheme = "onedark",
   enable_codeium = false,
   enable_copilot = false,
   enable_chatgpt = false,
   enable_inlayHints = true,
+  silicon_screenshots = {
+    font = "CaskaydiaCove Nerd Font=34",
+    theme = "OneHalfDark",
+  },
 }
