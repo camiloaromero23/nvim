@@ -23,6 +23,7 @@ mason_lspconfig.setup {
   ensure_installed = {
     "astro",
     "bashls",
+    "biome",
     "cssls",
     "denols",
     "dockerls",
@@ -33,6 +34,7 @@ mason_lspconfig.setup {
     "lua_ls",
     "pyright",
     "rust_analyzer",
+    "ruff_lsp",
     "svelte",
     "tailwindcss",
     "taplo",
