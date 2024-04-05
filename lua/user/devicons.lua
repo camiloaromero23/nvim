@@ -22,7 +22,7 @@ local colors = {
 
 local custom_icons = {
   astro = {
-    icon = "",
+    icon = "",
     color = colors.white,
     name = "astro",
   },
