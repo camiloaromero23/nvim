@@ -8,47 +8,10 @@ if not lspconfig_ok then
 end
 
 lspconfig.volar.setup {
-  filetypes = { "javascript", "typescript", "vue" },
-  root_dir = lspconfig.util.root_pattern "package.json"
-    or lspconfig.util.root_pattern "vue.config.js"
-    or vim.fn.getcwd(),
+  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
   init_options = {
-    documentFeatures = {
-      documentColor = false,
-      documentFormatting = {
-        defaultPrintWidth = 80,
-      },
-      documentSymbol = true,
-      foldingRange = true,
-      linkedEditingRange = true,
-      selectionRange = true,
-    },
-    languageFeatures = {
-      callHierarchy = true,
-      codeAction = true,
-      codeLens = true,
-      completion = {
-        autoImport = true,
-        defaultAttrNameCase = "kebabCase",
-        defaultTagNameCase = "both",
-        useScaffoldSnippets = true,
-      },
-      definition = true,
-      diagnostics = true,
-      documentHighlight = true,
-      documentLink = true,
-      hover = true,
-      implementation = true,
-      references = true,
-      rename = true,
-      renameFileRefactoring = true,
-      schemaRequestService = true,
-      semanticTokens = false,
-      signatureHelp = true,
-      typeDefinition = true,
-    },
-    typescript = {
-      serverPath = "/usr/local/lib/node_modules/typescript/lib/typescript.js",
+    vue = {
+      hybridMode = false,
     },
   },
   on_attach = function(client)
