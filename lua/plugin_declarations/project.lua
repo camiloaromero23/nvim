@@ -33,4 +33,5 @@ return {
       datapath = vim.fn.stdpath "cache",
     }
   end,
+  enabled = false,
 }
