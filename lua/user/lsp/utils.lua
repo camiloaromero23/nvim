@@ -98,7 +98,7 @@ end
 M.is_tsserver_attached = function()
   local clients = vim.lsp.get_clients()
   for _, client in ipairs(clients) do
-    if client.name == "tsserver" then
+    if client.name == "tsserver" or client.name == "typescript-tools" then
       return true
     end
   end

@@ -17,6 +17,7 @@ custom_nvim = {
   },
   lsp = {
     capabilities = nil,
+    use_typescript_tools = false,
   },
   colorscheme = "onedark",
   enable_codeium = false,

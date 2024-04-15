@@ -101,19 +101,28 @@ return {
     dependencies = { "MunifTanjim/nui.nvim" },
   },
   {
-    "olexsmir/gopher.nvim",
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {
-      commands = {
-        go = "go",
-        gomodifytags = os.getenv "HOME" .. "/go/bin/gomodifytags",
-        gotests = os.getenv "HOME" .. "/go/bin/gotests",
-        impl = os.getenv "HOME" .. "/go/bin/impl",
-        iferr = os.getenv "HOME" .. "/go/bin/iferr",
+      capabilities = custom_nvim.lsp.capabilities,
+      on_attach = function(client)
+        client.server_capabilities.document_formatting = false
+        client.server_capabilities.document_range_formatting = false
+        -- client.server_capabilities.semanticTokensProvider = nil
+      end,
+      settings = {
+        tsserver_file_preferences = {
+          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+          includeInlayParameterNameHints = "all",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
       },
     },
-    build = function()
-      vim.cmd [[silent! GoInstallDeps]]
-    end,
-    ft = { "go", "gomod" },
+    enabled = custom_nvim.lsp.use_typescript_tools
   },
 }
