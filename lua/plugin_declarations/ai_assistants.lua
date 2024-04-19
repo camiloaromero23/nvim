@@ -3,7 +3,6 @@ return {
     "github/copilot.vim",
     cond = custom_nvim.enable_copilot,
     config = function()
-      vim.g.copilot_no_tab_map = true
       vim.g.copilot_node_command = "$FNM_DIR/aliases/lts-latest/bin/node"
       -- vim.g.copilot_filetypes = { lua = false } -- Disable copilot for filetypes
 
@@ -11,7 +10,8 @@ return {
         expr = true,
         replace_keycodes = false,
       })
-      vim.g.copilot_no_tab_map = true
+      vim.keymap.del("i", "<Tab>")
+      vim.cmd "Copilot enable"
     end,
     event = "User FileOpened",
   },

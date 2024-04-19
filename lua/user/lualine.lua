@@ -81,7 +81,8 @@ local components = {
       -- add client
       for _, client in pairs(buf_clients) do
         if client.name ~= "null-ls" then
-          table.insert(buf_client_names, client.name)
+          local client_name = client.name == "GitHub Copilot" and "copilot" or client.name
+          table.insert(buf_client_names, client_name)
         end
       end
 
