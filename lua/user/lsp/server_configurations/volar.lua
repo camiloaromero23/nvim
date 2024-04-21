@@ -7,11 +7,49 @@ if not lspconfig_ok then
   return
 end
 
+local inlayHints = {
+  enumMemberValues = {
+    enabled = true,
+  },
+  functionLikeReturnTypes = {
+    enabled = false,
+  },
+  parameterNames = {
+    enabled = "none",
+    suppressWhenArgumentMatchesName = false,
+  },
+  parameterTypes = {
+    enabled = true,
+  },
+  propertyDeclarationTypes = {
+    enabled = true,
+  },
+  variableTypes = {
+    enabled = true,
+  },
+}
+
 lspconfig.volar.setup {
   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
   init_options = {
     vue = {
       hybridMode = false,
+    },
+  },
+  settings = {
+    typescript = {
+      inlayHints = inlayHints,
+    },
+    javascript = {
+      inlayHints = inlayHints,
+    },
+    vue = {
+      inlayHints = {
+        inlineHandlerLeading = true,
+        missingProps = true,
+        optionsWrapper = true,
+        vBindShorthand = true,
+      },
     },
   },
   on_attach = function(client)

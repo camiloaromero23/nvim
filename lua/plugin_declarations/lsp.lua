@@ -103,26 +103,32 @@ return {
   {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {
-      capabilities = custom_nvim.lsp.capabilities,
-      on_attach = function(client)
-        client.server_capabilities.document_formatting = false
-        client.server_capabilities.document_range_formatting = false
-        -- client.server_capabilities.semanticTokensProvider = nil
-      end,
-      settings = {
-        tsserver_file_preferences = {
-          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-          includeInlayParameterNameHints = "all",
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
+    config = function()
+      if require("user.lsp.utils").is_vue_project() then
+        return
+      end
+
+      require("typescript-tools").setup {
+        capabilities = custom_nvim.lsp.capabilities,
+        on_attach = function(client)
+          client.server_capabilities.document_formatting = false
+          client.server_capabilities.document_range_formatting = false
+          -- client.server_capabilities.semanticTokensProvider = nil
+        end,
+        settings = {
+          tsserver_file_preferences = {
+            includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+            includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          },
         },
-      },
-    },
-    enabled = custom_nvim.lsp.use_typescript_tools
+      }
+    end,
+    enabled = custom_nvim.lsp.use_typescript_tools,
   },
 }
