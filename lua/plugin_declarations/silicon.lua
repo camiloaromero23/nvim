@@ -1,11 +1,7 @@
 return {
   "michaelrommel/nvim-silicon",
   cmd = "Silicon",
-  opts = {
-    font = custom_nvim.silicon_screenshots.font,
-    theme = custom_nvim.silicon_screenshots.theme,
-    to_clipboard = true,
-  },
+  opts = custom_nvim.silicon_screenshots,
   keys = {
     {
       "<leader>S",

@@ -27,5 +27,8 @@ custom_nvim = {
   silicon_screenshots = {
     font = "CaskaydiaCove Nerd Font=34",
     theme = "OneHalfDark",
+    to_clipboard = true,
+    background = "#16191F",
+    shadow_blur_radius = 0,
   },
 }
