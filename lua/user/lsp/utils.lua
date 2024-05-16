@@ -82,6 +82,12 @@ M.is_in_package_json = function(field)
   if dependencies ~= nil and dependencies[field] ~= nil then
     return true
   end
+  
+  local peer_dependencies = package_json["peerDependencies"]
+  if peer_dependencies ~= nil and peer_dependencies[field] ~= nil then
+    return true
+  end
+
 end
 
 M.is_vue_project = function()
