@@ -14,6 +14,13 @@ lspconfig.tailwindcss.setup {
   capabilities = custom_nvim.lsp.capabilities,
   settings = {
     tailwindCSS = {
+      experimental = {
+        classRegex = {
+          { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+          { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+          { "cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+        },
+      },
       -- suggestions = false, -- This one is what makes it slow (needed for nvim-cmp)
     },
   },
