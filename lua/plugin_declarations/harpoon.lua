@@ -17,7 +17,7 @@ return {
   keys = {
     {
       "<leader>ha",
-      '<cmd> lua require("harpoon"):list():append()<CR>',
+      '<cmd> lua require("harpoon"):list():add()<CR>',
       silent = true,
       desc = "Mark File",
     },
