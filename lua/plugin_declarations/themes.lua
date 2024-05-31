@@ -1,5 +1,13 @@
 return {
   { "navarasu/onedark.nvim", cond = custom_nvim.colorscheme == "onedark" },
   { "marko-cerovac/material.nvim", cond = custom_nvim.colorscheme == "material" },
-  { "catppuccin/nvim", name = "catppuccin", cond = custom_nvim.colorscheme == "catppuccin" },
+  {
+    "HoNamDuong/hybrid.nvim",
+    cond = custom_nvim.colorscheme == "hybrid",
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    cond = custom_nvim.colorscheme == "catppuccin",
+  },
 }
