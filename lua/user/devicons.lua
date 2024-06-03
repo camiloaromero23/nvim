@@ -182,6 +182,7 @@ custom_icons["tailwind.config.ts"] = custom_icons["tailwind.config.js"]
 custom_icons["module.scss"] = custom_icons.scss
 custom_icons[".nvmrc"] = custom_icons["package.json"]
 custom_icons[".eslintrc.js"] = custom_icons[".eslintrc"]
+custom_icons[".eslintrc.cjs"] = custom_icons[".eslintrc"]
 custom_icons[".eslintOverrides.js"] = custom_icons[".eslintrc"]
 custom_icons[".eslintignore"] = custom_icons[".eslintrc"]
 custom_icons[".env.example"] = custom_icons[".env"]
