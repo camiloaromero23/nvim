@@ -48,7 +48,6 @@ mason_lspconfig.setup {
 
 mason_null_ls.setup {
   ensure_installed = {
-    "black",
     "prettierd",
     "stylua",
     "gofumpt",

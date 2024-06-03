@@ -7,7 +7,7 @@ end
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 local formatting = nls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-local diagnostics = nls.builtins.diagnostics
+-- local diagnostics = nls.builtins.diagnostics
 
 nls.setup {
   debug = false,
