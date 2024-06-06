@@ -10,4 +10,5 @@ return {
     name = "catppuccin",
     cond = custom_nvim.colorscheme == "catppuccin",
   },
+  { "folke/tokyonight.nvim", name = "tokyonight", cond = custom_nvim.colorscheme == "tokyonight" },
 }
