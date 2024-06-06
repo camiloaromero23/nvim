@@ -28,6 +28,12 @@ return {
       desc = "Quick Menu",
     },
     {
+      "<leader>hs",
+      '<cmd> lua require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())<CR>',
+      silent = true,
+      desc = "Quick Menu",
+    },
+    {
       "<leader>hq",
       '<cmd> lua require("harpoon"):list():select(1)<CR>',
       silent = true,
