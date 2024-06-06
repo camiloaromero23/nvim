@@ -74,20 +74,14 @@ M.is_in_package_json = function(field)
   if package_json[field] ~= nil then
     return true
   end
-  local dev_dependencies = package_json["devDependencies"]
-  if dev_dependencies ~= nil and dev_dependencies[field] ~= nil then
-    return true
-  end
-  local dependencies = package_json["dependencies"]
-  if dependencies ~= nil and dependencies[field] ~= nil then
-    return true
-  end
-  
-  local peer_dependencies = package_json["peerDependencies"]
-  if peer_dependencies ~= nil and peer_dependencies[field] ~= nil then
-    return true
-  end
+  local dependency_types = { "devDependencies", "dependencies", "peerDependencies" }
 
+  for _, dep_type in ipairs(dependency_types) do
+    local dependencies = package_json[dep_type]
+    if dependencies and dependencies[field] then
+      return true
+    end
+  end
 end
 
 M.is_vue_project = function()
