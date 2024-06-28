@@ -6,28 +6,44 @@ custom_nvim.signs = {
   { name = "DiagnosticSignInfo", text = icons.diagnostics.BigInformation },
 }
 
-for _, sign in ipairs(custom_nvim.signs) do
-  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
-end
-
 vim.diagnostic.config {
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+      [vim.diagnostic.severity.WARN] = icons.diagnostics.Warning,
+      [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+      [vim.diagnostic.severity.INFO] = icons.diagnostics.BigInformation,
+    },
+    -- linehl = {
+    --   [vim.diagnostic.severity.ERROR] = "DiagnosticError",
+    --   [vim.diagnostic.severity.WARN] = "DiagnosticWarn",
+    --   [vim.diagnostic.severity.HINT] = "DiagnosticHint",
+    --   [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+    -- },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticError",
+      [vim.diagnostic.severity.WARN] = "DiagnosticWarn",
+      [vim.diagnostic.severity.HINT] = "DiagnosticHint",
+      [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+    },
+  },
   float = {
     focusable = false,
     style = "minimal",
     border = "rounded",
-    source = "always",
+    source = false,
     header = "",
     prefix = "",
     format = function(d)
       local code = d.code or (d.user_data and d.user_data.lsp.code)
       if code then
-        return string.format("%s [%s]", d.message, code):gsub("1. ", "")
+        local message, _ = string.format("%s [%s]", d.message, code):gsub("1. ", "")
+        return message
       end
       return d.message
     end,
   },
   severity_sort = true,
-  signs = true,
   underline = true,
   update_in_insert = true,
   virtual_text = {
