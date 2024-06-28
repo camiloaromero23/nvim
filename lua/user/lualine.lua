@@ -5,7 +5,7 @@ if not ok then
   return
 end
 
-local mocha_ok, mocha = pcall(require("catppuccin.palettes").get_palette "mocha")
+local mocha_ok, mocha = pcall(require("catppuccin.palettes").get_palette, "mocha")
 
 local lualine_utils = require "user.lsp.lualine_utils"
 
