@@ -3,8 +3,6 @@ if not lspconfig_ok then
   return
 end
 
-require "user.lsp.neodev"
-
 lspconfig.lua_ls.setup {
   settings = {
     Lua = {
