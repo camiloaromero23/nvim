@@ -8,7 +8,19 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    opts = {
+      integrations = {
+        navic = {
+          enabled = true,
+        },
+        telescope = {
+          enabled = true,
+          style = "nvchad"
+        },
+      },
+    },
     cond = custom_nvim.colorscheme == "catppuccin",
+    priority = 1000,
   },
   { "folke/tokyonight.nvim", name = "tokyonight", cond = custom_nvim.colorscheme == "tokyonight" },
 }
