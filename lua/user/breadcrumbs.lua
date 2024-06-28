@@ -62,32 +62,31 @@ local get_filename = function()
 
   vim.api.nvim_set_hl(0, "Winbar", {})
 
-  do
-    return " " .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#Winbar#" .. filename .. "%*"
-  end
+  return " " .. "%#" .. hl_group .. "#" .. file_icon .. "%*" .. " " .. "%#Winbar#" .. filename .. "%*"
 end
 
-local get_gps = function()
-  local status_gps_ok, gps = pcall(require, "nvim-navic")
+local get_navic = function()
+  local status_gps_ok, navic = pcall(require, "nvim-navic")
   if not status_gps_ok then
     return ""
   end
 
-  local status_ok, gps_location = pcall(gps.get_location, {})
+  local status_ok, navic_location = pcall(navic.get_location, {})
   if not status_ok then
     return ""
   end
 
-  if not gps.is_available() or gps_location == "error" then
+  if not navic.is_available() or navic_location == "error" then
     return ""
   end
 
-  if require("user.utils.functions").isempty(gps_location) then
+  if require("user.utils.functions").isempty(navic_location) then
     return ""
   end
-  gps_location = string.sub(gps_location, 1)
 
-  return icons.ui.ChevronRight .. " " .. gps_location
+  navic_location = string.sub(navic_location, 1)
+
+  return icons.ui.ChevronRight .. " " .. navic_location
 end
 
 local get_winbar = function()
@@ -98,8 +97,8 @@ local get_winbar = function()
   local value = get_filename()
 
   if not f.isempty(value) then
-    local gps_value = get_gps()
-    value = value .. " " .. gps_value
+    local navic_value = get_navic()
+    value = value .. " " .. navic_value
   end
 
   local status_ok, _ = pcall(vim.api.nvim_set_option_value, "winbar", value, { scope = "local" })
@@ -114,19 +113,27 @@ if not ok then
   return
 end
 
-vim.api.nvim_create_autocmd(
-  { "CursorMoved", "CursorHold", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost", "TabClosed" },
-  {
-    group = winbar_augroup,
-    callback = function()
-      local status_ok, _ = pcall(vim.api.nvim_buf_get_var, 0, "lsp_floating_window")
-      if not status_ok then
-        -- TODO:
-        get_winbar()
-      end
-    end,
-  }
-)
+vim.api.nvim_create_autocmd({
+  "CursorHoldI",
+  "CursorHold",
+  -- "BufWinEnter",
+  -- "BufEnter",
+  -- "BufRead",
+  "BufReadPost",
+  "BufFilePost",
+  "InsertEnter",
+  "BufWritePost",
+  "TabClosed",
+  "TabEnter",
+}, {
+  group = winbar_augroup,
+  callback = function()
+    local status_ok, _ = pcall(vim.api.nvim_buf_get_var, 0, "lsp_floating_window")
+    if not status_ok then
+      get_winbar()
+    end
+  end,
+})
 
 navic.setup {
   icons = {
