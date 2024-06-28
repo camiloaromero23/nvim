@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       lsp_common.attach_navic(client, bufnr)
     end
     -- Code lens
-    if client.server_capabilities.codeLensProvider then
+    if custom_nvim.lsp.code_lens and client.server_capabilities.codeLensProvider then
       lsp_common.code_lens()
     end
     -- Formatting
