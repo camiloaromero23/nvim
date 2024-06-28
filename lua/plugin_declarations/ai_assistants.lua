@@ -11,7 +11,7 @@ return {
         replace_keycodes = false,
       })
       vim.keymap.del("i", "<Tab>")
-      vim.cmd "Copilot enable"
+      vim.cmd "silent! Copilot restart"
     end,
     event = "User FileOpened",
   },
