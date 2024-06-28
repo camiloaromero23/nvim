@@ -4,7 +4,6 @@ return {
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
 
   -- My plugins
-  { "folke/neodev.nvim", ft = { "lua" } },
   { "tpope/vim-surround", event = "User FileOpened" },
   { "b0o/schemastore.nvim", event = "User FileOpened" },
 
