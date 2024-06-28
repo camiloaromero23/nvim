@@ -5,6 +5,8 @@ if not ok then
   return
 end
 
+local mocha_ok, mocha = pcall(require("catppuccin.palettes").get_palette "mocha")
+
 local lualine_utils = require "user.lsp.lualine_utils"
 
 local components = {
@@ -49,7 +51,11 @@ local components = {
     fmt = function()
       return "%P/%L"
     end,
-    color = { bg = "#ADD8E6", fg = "#505050", gui = "bold" },
+    color = {
+      bg = mocha_ok and mocha.blue or "#ADD8E6",
+      fg = mocha_ok and mocha.surface0 or "#505050",
+      gui = "bold",
+    },
   },
   scrollbar = {
     function()
