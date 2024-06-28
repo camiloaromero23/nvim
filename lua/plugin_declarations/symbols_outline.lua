@@ -1,6 +1,6 @@
 return {
   {
-    "simrat39/symbols-outline.nvim",
+    "hedyhli/outline.nvim",
     opts = {},
     event = "User FileOpened"
   },
