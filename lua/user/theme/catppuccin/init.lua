@@ -24,4 +24,5 @@ vim.api.nvim_set_hl(0, "LspDiagnosticsDefaultHint", { fg = mocha.mauve })
 vim.api.nvim_set_hl(0, "LspDiagnosticsVirtualTextHint", { fg = mocha.mauve, italic = true })
 
 vim.api.nvim_set_hl(0, "NavicText", { fg = mocha.text })
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = mocha.blue, bg = mocha.mantle })
 
