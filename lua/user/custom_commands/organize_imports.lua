@@ -3,6 +3,11 @@ vim.api.nvim_create_user_command("OrganizeImports", function()
     vim.notify("Only supported with tsserver", vim.log.levels.INFO, { title = "Organize Imports" })
     return
   end
+
+  if custom_nvim.lsp.use_typescript_tools then
+    return
+  end
+
   vim.lsp.buf.execute_command {
     command = "_typescript.organizeImports",
     arguments = { vim.api.nvim_buf_get_name(0) },
@@ -11,5 +16,9 @@ vim.api.nvim_create_user_command("OrganizeImports", function()
 end, { desc = "OrganizeImports" })
 
 local whichkey = require "which-key"
-local opts = custom_nvim.which_key.opts
-whichkey.register({ l = { o = { "<cmd>OrganizeImports<cr>", "Organize Imports" } } }, opts)
+
+whichkey.add {
+  "<leader>lo",
+  "<cmd>OrganizeImports<cr>",
+  desc = "Organize Imports",
+}
