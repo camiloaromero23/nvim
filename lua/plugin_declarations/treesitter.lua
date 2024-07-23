@@ -116,6 +116,14 @@ return {
       }
     end,
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+    p = { "<cmd>InspectTree<cr>", "Open Treesitter Playground" },
+    keys = {
+      {
+        "<leader>Tp",
+        "<cmd>InspectTree<cr>",
+        desc = "Open Treesitter Playground",
+      }
+    },
     event = "User FileOpened",
   },
   {

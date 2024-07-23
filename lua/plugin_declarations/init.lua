@@ -20,6 +20,12 @@ return {
     config = function()
       require "user.alpha"
     end,
+    keys = {
+      "<leader>;",
+      "<cmd>Alpha<CR>",
+      desc = "Dashboard",
+    },
+    lazy = false,
   },
   {
     "nvim-lualine/lualine.nvim",

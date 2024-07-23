@@ -33,6 +33,8 @@ return {
         return false
       end,
     },
+    -- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
+    skip_confirm_for_simple_edits = false,
   },
   keys = {
     { "<leader>-", "<cmd>lua require('oil').open()<cr>", desc = "Open oil" },

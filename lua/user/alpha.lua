@@ -29,11 +29,11 @@ dashboard.section.header.val = header
 dashboard.section.header.opts.hl = "DashboardLogo"
 
 dashboard.section.buttons.val = {
-  dashboard.button("SPC s f", icons.FindFile .. "  Find File", "<cmd>Telescope find_files<cr>"),
+  dashboard.button("SPC s f", icons.FindFile .. "  Find File"),
   -- dashboard.button( "SPC n", "  New file" , ":ene <BAR> startinsert <cr>"),
   -- dashboard.button("SPC s P", icons.Project .. "  Recent Projects ", "<cmd>Telescope projects<cr>"),
-  dashboard.button("SPC s r", "  Recently Used Files", "<cmd>Telescope oldfiles<cr>"),
-  dashboard.button("SPC s t", icons.FindText .. "  Find Word", "<cmd>Telescope live_grep<cr>"),
+  dashboard.button("SPC s r", "  Recently Used Files"),
+  dashboard.button("SPC s t", icons.FindText .. "  Find Word"),
   dashboard.button("SPC C", "  Configuration", "<cmd>edit " .. "~/.config/nvim/init.lua" .. " <cr>"),
 }
 

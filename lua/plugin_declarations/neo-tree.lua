@@ -4,6 +4,7 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
+    -- "3rd/image.nvim",
   },
   keys = {
     { "<leader>e", ":Neotree toggle reveal left<CR>", silent = true, desc = "File Explorer" },
@@ -55,7 +56,7 @@ return {
           ["h"] = { "close_node" },
           ["v"] = { "open_vsplit" },
           ["f"] = { "filter_on_submit" },
-          ["P"] = { "toggle_preview", config = { use_float = false } }, -- Temp fix for highlight issues. See https://github.com/nvim-neo-tree/neo-tree.nvim/issues/881
+          ["P"] = { "toggle_preview", config = { use_float = false, use_image_nvim = true } }, -- Temp fix for highlight issues. See https://github.com/nvim-neo-tree/neo-tree.nvim/issues/881
           ["/"] = "noop",
         },
         position = "float",
