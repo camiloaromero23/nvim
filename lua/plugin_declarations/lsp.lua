@@ -174,6 +174,13 @@ return {
       }
     end,
     enabled = custom_nvim.lsp.use_typescript_tools,
+    keys = {
+      {
+        "<leader>lo",
+        "<cmd>TSToolsOrganizeImports<cr>",
+        desc = "Organize Imports",
+      },
+    },
     event = "User FileOpened",
   },
 }
