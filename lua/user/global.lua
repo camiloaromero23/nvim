@@ -31,6 +31,8 @@ custom_nvim = {
   ---@type boolean
   enable_copilot = false,
   ---@type boolean
+  enable_supermaven = false,
+  ---@type boolean
   enable_chatgpt = false,
   ---@type boolean
   enable_inlayHints = true,

@@ -1,5 +1,16 @@
 return {
   {
+    "supermaven-inc/supermaven-nvim",
+    opts = {
+      keymaps = {
+        accept_suggestion = "kk",
+      },
+      log_level = "off",
+    },
+    event = "User FileOpened",
+    cond = custom_nvim.enable_supermaven,
+  },
+  {
     "github/copilot.vim",
     cond = custom_nvim.enable_copilot,
     config = function()
