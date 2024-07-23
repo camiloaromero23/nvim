@@ -1,20 +1,3 @@
-custom_nvim.which_key.opts = {
-  mode = "n", -- NORMAL mode
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
-custom_nvim.which_key.vopts = {
-  mode = "v", -- VISUAL mode
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
-
 local ok, which_key = pcall(require, "which-key")
 if not ok then
   return
@@ -42,17 +25,18 @@ which_key.setup {
     separator = "➜", -- symbol used between a key and it's label
     group = "+", -- symbol prepended to a group
     mappings = false, -- set to false to disable all mapping icons, both those explicitely added in a mapping and those from rules
+    --- See `lua/which-key/icons.lua` for more details
+    --- Set to `false` to disable keymap icons from rules
+    ---@type wk.IconRule[]|false
+    rules = {},
+    keys = {
+      -- Space = "<leader>", -- Change displayed text of Space key
+    },
   },
-  popup_mappings = {
-    scroll_down = "<c-d>", -- binding to scroll down inside the popup
-    scroll_up = "<c-u>", -- binding to scroll up inside the popup
-  },
-  window = {
-    border = "single", -- none, single, double, shadow
-    position = "bottom", -- bottom, top
-    margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-    padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-    winblend = 0,
+  win = {
+    ---@type "none"|"single"|"double"|"shadow"
+    border = custom_nvim.which_key.border, -- none, single, double, shadow
+    title = false,
   },
   layout = {
     height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -60,18 +44,21 @@ which_key.setup {
     spacing = 3, -- spacing between columns
     align = "left", -- align columns left, center or right
   },
-  hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-  ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
-  show_help = false, -- show help message on the command line when the popup is visible
-  triggers = "auto", -- automatically setup triggers
-  -- triggers = {"<leader>"} -- or specify a list manually
-  triggers_blacklist = {
-    -- list of mode / prefixes that should never be hooked by WhichKey
-    -- this is mostly relevant for key maps that start with a native binding
-    -- most people should not need to change this
-    i = { "j", "k" },
-    v = { "j", "k" },
+  keys = {
+    scroll_down = "<m-d>", -- binding to scroll down inside the popup
+    scroll_up = "<m-u>", -- binding to scroll up inside the popup
   },
+  -- hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
+  -- ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
+  show_help = false, -- show help message on the command line when the popup is visible
+  -- triggers = {"<leader>"} -- or specify a list manually
+  -- triggers_blacklist = {
+  --   -- list of mode / prefixes that should never be hooked by WhichKey
+  --   -- this is mostly relevant for key maps that start with a native binding
+  --   -- most people should not need to change this
+  --   i = { "j", "k" },
+  --   v = { "j", "k" },
+  -- },
   spec = {
     {
       mode = { "n", "v" },
@@ -85,6 +72,9 @@ which_key.setup {
       { "<leader>g", group = "Git" },
       { "<leader>D", group = "Dependencies manager 📦" },
       { "<leader>m", group = "Markdown" },
+      { "[", group = "prev" },
+      { "]", group = "next" },
+      { "g", group = "goto" },
     },
     {
       mode = "n",

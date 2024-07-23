@@ -10,7 +10,8 @@ custom_nvim = {
     },
   },
   which_key = {
-    mappings = {},
+    ---@type "none"|"single"|"double"|"shadow"
+    border = "none", -- none, single, double, shadow
   },
   format_on_save = {
     enable = true,
