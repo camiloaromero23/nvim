@@ -14,17 +14,25 @@ custom_nvim = {
     border = "none", -- none, single, double, shadow
   },
   format_on_save = {
-    enable = true,
+    ---@type boolean
+    enable = false,
   },
   lsp = {
     capabilities = nil,
+    ---@type boolean
     use_typescript_tools = false,
+    ---@type boolean
     code_lens = true,
   },
+  ---@type "onedark"|"catppuccin"|"hybrid"|"tokyonight"
   colorscheme = "onedark",
+  ---@type boolean
   enable_codeium = false,
+  ---@type boolean
   enable_copilot = false,
+  ---@type boolean
   enable_chatgpt = false,
+  ---@type boolean
   enable_inlayHints = true,
   silicon_screenshots = {
     font = "CaskaydiaCove Nerd Font=34",
