@@ -1,4 +1,26 @@
-local which_key_opts = {
+custom_nvim.which_key.opts = {
+  mode = "n", -- NORMAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
+custom_nvim.which_key.vopts = {
+  mode = "v", -- VISUAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
+
+local ok, which_key = pcall(require, "which-key")
+if not ok then
+  return
+end
+
+which_key.setup {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -50,106 +72,59 @@ local which_key_opts = {
     i = { "j", "k" },
     v = { "j", "k" },
   },
-}
-
-custom_nvim.which_key.opts = {
-  mode = "n", -- NORMAL mode
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
-custom_nvim.which_key.vopts = {
-  mode = "v", -- VISUAL mode
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
--- NOTE: Prefer using : over <cmd> as the latter avoids going back in normal-mode.
--- see https://neovim.io/doc/user/map.html#:map-cmd
-custom_nvim.which_key.vmappings = {
-  l = {
-    name = "LSP",
-    f = {
-      ":lua require('user.lsp.utils').format_selection()<CR>",
-      "Format selection",
+  spec = {
+    {
+      mode = { "n", "v" },
+      { "<leader>l", group = "LSP" },
+      { "<leader>s", group = "Search" },
+      { "<leader>t", group = "Test" },
+      { "<leader>T", group = "Treesitter" },
+      { "<leader>b", group = "Buffers" },
+      { "<leader>L", group = "Lazy" },
+      { "<leader>h", group = "Harpoon" },
+      { "<leader>g", group = "Git" },
+      { "<leader>D", group = "Dependencies manager 📦" },
+      { "<leader>m", group = "Markdown" },
+    },
+    {
+      mode = "n",
+      { "<leader>w", "<cmd>w!<CR>", desc = "Save" },
+      { "<leader>q", "<cmd>lua require('user.utils.functions').smart_quit()<CR>", desc = "Quit" },
+      { "<leader>Q", "<cmd>qa!<CR>", desc = "Quit all without saving" },
+      { "<leader>Ls", "<cmd>Lazy sync<cr>", desc = "Sync" },
+      { "<leader>LL", "<cmd>Lazy home<cr>", desc = "Home" },
+      { "<leader>Lu", "<cmd>Lazy update<cr>", desc = "Update" },
+      { "<leader>8", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = "Replace all occurrences of word" },
+      { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
+      { "<leader>lf", "<cmd>lua require('user.lsp.utils').format { timeout_ms = 2000 }<cr>", desc = "Format" },
+      {
+        "<leader>lj",
+        function()
+          vim.diagnostic.jump { count = 1, float = true }
+        end,
+        desc = "Next Diagnostic",
+      },
+      {
+        "<leader>lk",
+        function()
+          vim.diagnostic.jump { count = -1, float = true }
+        end,
+        desc = "Prev Diagnostic",
+      },
+      { "<leader>ll", vim.lsp.codelens.run, desc = "CodeLens Action" },
+      { "<leader>lq", vim.diagnostic.setqflist, desc = "Quickfix" },
+      { "<leader>lr", vim.lsp.buf.rename, desc = "Rename" },
+      { "<leader>so", "<cmd>so%<cr>", desc = "Source lua file" },
+    },
+    -- NOTE: Prefer using : over <cmd> as the latter avoids going back in normal-mode.
+    -- see https://neovim.io/doc/user/map.html#:map-cmd
+    {
+      mode = "v",
+      {
+        "<leader>lf",
+        ":lua require('user.lsp.utils').format_selection()<CR>",
+        desc = "Format selection",
+      },
     },
   },
 }
-
-custom_nvim.which_key.mappings = {
-  ["w"] = { "<cmd>w!<CR>", "Save" },
-  ["q"] = { "<cmd>lua require('user.utils.functions').smart_quit()<CR>", "Quit" },
-  ["Q"] = { "<cmd>qa!<CR>", "Quit" },
-  b = {
-    name = "Buffers",
-  },
-  L = {
-    name = "Lazy",
-    s = { "<cmd>Lazy sync<cr>", "Sync" },
-    L = { "<cmd>Lazy home<cr>", "Home" },
-    u = { "<cmd>Lazy update<cr>", "Update" },
-  },
-  h = {
-    name = "Harpoon",
-  },
-  ["8"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace all occurences of word" },
-  g = {
-    name = "Git",
-  },
-  D = { name = "Dependencies manager 📦" },
-  l = {
-    name = "LSP",
-    a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-    f = { "<cmd>lua require('user.lsp.utils').format { timeout_ms = 2000 }<cr>", "Format" },
-    j = {
-      function()
-        vim.diagnostic.jump { count = 1, float = true }
-      end,
-      "Next Diagnostic",
-    },
-    k = {
-      function()
-        vim.diagnostic.jump { count = -1, float = true }
-      end,
-      "Prev Diagnostic",
-    },
-    l = { vim.lsp.codelens.run, "CodeLens Action" },
-    q = { vim.diagnostic.setqflist, "Quickfix" },
-    r = { vim.lsp.buf.rename, "Rename" },
-  },
-  s = {
-    name = "Search",
-    o = {
-      "<cmd>so%<cr>",
-      "Source lua file",
-    },
-  },
-  t = {
-    name = "Test",
-  },
-  T = {
-    name = "Treesitter",
-  },
-}
-
-local ok, which_key = pcall(require, "which-key")
-if not ok then
-  return
-end
-
-which_key.setup(which_key_opts)
-if not custom_nvim.which_key then
-  return
-end
-local opts = custom_nvim.which_key.opts
-local vopts = custom_nvim.which_key.vopts
-
-local mappings = custom_nvim.which_key.mappings
-local vmappings = custom_nvim.which_key.vmappings
-
-which_key.register(mappings, opts)
-which_key.register(vmappings, vopts)
