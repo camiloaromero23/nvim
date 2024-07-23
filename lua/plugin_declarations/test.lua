@@ -34,5 +34,37 @@ return {
       }
     end,
     lazy = true,
+    keys = {
+      {
+        "<leader>tt",
+        "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>",
+        desc = "Run all tests",
+      },
+      {
+        "<leader>tr",
+        "<cmd>lua require('neotest').run.run()<cr>",
+        desc = "Run nearest test",
+      },
+      -- {
+      --   "<leader>ts",
+      --   "<cmd>lua require('neotest').run.stop()<cr>",
+      --   desc = "Stop current test",
+      -- },
+      -- {
+      --   "<leader>ta",
+      --   "<cmd>lua require('neotest').run.attach()<cr>",
+      --   desc = "Attach to nearest test",
+      -- },
+      {
+        "<leader>ts",
+        "<cmd>lua require('neotest').summary.toggle()<cr>",
+        desc = "Toggle tests summary",
+      },
+      {
+        "<leader>to",
+        "<cmd>lua require('neotest').output.open()<cr>",
+        desc = "Open test output",
+      },
+    },
   },
 }

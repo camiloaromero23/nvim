@@ -162,6 +162,143 @@ return {
       pcall(telescope.load_extension, "ui-select")
       pcall(telescope.load_extension, "file_browser")
     end,
+    keys = {
+      {
+        "<leader>sb",
+        "<cmd>Telescope git_branches<cr>",
+        desc = "Checkout branch",
+      },
+      {
+        "<leader>sc",
+        "<cmd>Telescope colorscheme<cr>",
+        desc = "Colorscheme",
+      },
+      {
+        "<leader>sf",
+        "<cmd>Telescope find_files<cr>",
+        desc = "Find File",
+      },
+      {
+        "<leader>sF",
+        "<cmd>Telescope file_browser<cr>",
+        desc = "Telescope File Browser",
+      },
+      {
+        "<leader>sd",
+        "<cmd>lua require('user.telescope.custom-finders').grep_current_directory()<cr>",
+        desc = "Grep in cwd",
+      },
+      {
+        "<leader>sD",
+        "<cmd>lua require('user.telescope.custom-finders').find_current_working_directory_file()<cr>",
+        desc = "Find file in cwd",
+      },
+      {
+        "<leader>sh",
+        "<cmd>Telescope help_tags<cr>",
+        desc = "Find Help",
+      },
+      {
+        "<leader>sH",
+        "<cmd>Telescope highlights<cr>",
+        desc = "Find highlight groups",
+      },
+      {
+        "<leader>sM",
+        "<cmd>Telescope man_pages<cr>",
+        desc = "Man Pages",
+      },
+      {
+        "<leader>sr",
+        "<cmd>Telescope oldfiles<cr>",
+        desc = "Open Recent File",
+      },
+      {
+        "<leader>sR",
+        "<cmd>Telescope registers<cr>",
+        desc = "Registers",
+      },
+      {
+        "<leader>st",
+        "<cmd>Telescope live_grep<cr>",
+        desc = "Text",
+      },
+      {
+        "<leader>sk",
+        "<cmd>Telescope keymaps<cr>",
+        desc = "Keymaps",
+      },
+      {
+        "<leader>sC",
+        "<cmd>Telescope commands<cr>",
+        desc = "Commands",
+      },
+      {
+        "<leader>bf",
+        "<cmd>Telescope buffers<cr>",
+        desc = "Find",
+      },
+      {
+        "<leader>sp",
+        "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>",
+        desc = "Colorscheme with Preview",
+      },
+      {
+        "<leader>so",
+        "<cmd>so%<cr>",
+        desc = "Source lua file",
+      },
+      {
+        "<leader>f",
+        "<cmd>lua require('user.telescope.custom-finders').find_project_files()<cr>",
+        desc = "Find File",
+      },
+      {
+        "<leader>go",
+        "<cmd>Telescope git_status<cr>",
+        desc = "Open changed file",
+      },
+      {
+        "<leader>gb",
+        "<cmd>Telescope git_branches<cr>",
+        desc = "Checkout branch",
+      },
+      {
+        "<leader>gc",
+        "<cmd>Telescope git_commits<cr>",
+        desc = "Checkout commit",
+      },
+      {
+        "<leader>gC",
+        "<cmd>Telescope git_bcommits<cr>",
+        desc = "Checkout commit (for current file)",
+      },
+      {
+        "<leader>ld",
+        "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>",
+        desc = "Buffer Diagnostics",
+      },
+      {
+        "<leader>lw",
+        "<cmd>Telescope diagnostics<cr>",
+        desc = "Diagnostics",
+      },
+      {
+        "<leader>ls",
+        "<cmd>Telescope lsp_document_symbols<cr>",
+        desc = "Document Symbols",
+      },
+      {
+        "<leader>lS",
+        "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+        desc = "Workspace Symbols",
+      },
+      {
+        "<leader>le",
+        "<cmd>Telescope quickfix<cr>",
+        desc = "Telescope Quickfix",
+      },
+    },
   },
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   {

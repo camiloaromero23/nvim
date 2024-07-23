@@ -5,11 +5,28 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
-      { "williamboman/mason.nvim", config = true },
+      {
+        "williamboman/mason.nvim",
+        config = true,
+        keys = {
+          {
+            "<leader>lI",
+            "<cmd>Mason<cr>",
+            desc = "Mason Info",
+          },
+        },
+      },
       "williamboman/mason-lspconfig.nvim",
       "jay-babu/mason-null-ls.nvim",
       -- Useful status updates for LSP
       { "j-hui/fidget.nvim", opts = {}, event = "User FileOpened" },
+    },
+    keys = {
+      {
+        "<leader>li",
+        "<cmd>LspInfo<cr>",
+        desc = "Info",
+      },
     },
     lazy = true,
   },
@@ -26,6 +43,9 @@ return {
         -- { path = "wezterm-types", mods = { "wezterm" } },
       },
     },
+    -- dependencies = {
+    --   "justinsgithub/wezterm-types",
+    -- }
   },
   {
     "Bilal2453/luvit-meta",
@@ -154,5 +174,6 @@ return {
       }
     end,
     enabled = custom_nvim.lsp.use_typescript_tools,
+    event = "User FileOpened",
   },
 }
