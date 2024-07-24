@@ -194,6 +194,11 @@ return {
         desc = "Find file in cwd",
       },
       {
+        "<leader>se",
+        "<cmd>lua require('user.telescope.custom-finders').find_env_files()<cr>",
+        desc = "Find .env files",
+      },
+      {
         "<leader>sh",
         "<cmd>Telescope help_tags<cr>",
         desc = "Find Help",

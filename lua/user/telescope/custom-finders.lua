@@ -17,6 +17,10 @@ function M.find_current_working_directory_file()
   builtin.find_files { cwd = utils.buffer_dir() }
 end
 
+function M.find_env_files()
+  builtin.find_files { prompt_title = "Find .env files", search_file = "*.env*" }
+end
+
 function M.grep_current_directory()
   builtin.live_grep { cwd = utils.buffer_dir() }
 end
