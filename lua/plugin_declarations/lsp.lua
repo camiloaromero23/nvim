@@ -131,16 +131,6 @@ return {
       -- provided one, if nothing is provided it will use `yarn`
       package_manager = "pnpm",
     },
-    config = function(_, opts)
-      require("package-info").setup(opts)
-
-      local mocha_ok, mocha = pcall(require("catppuccin.palettes").get_palette, "mocha")
-
-      if mocha_ok then
-        vim.api.nvim_set_hl(0, "PackageInfoUpToDateVersion", { fg = mocha.green, italic = true })
-        vim.api.nvim_set_hl(0, "PackageInfoOutdatedVersion", { fg = mocha.peach, italic = true })
-      end
-    end,
     ft = { "json" },
     dependencies = { "MunifTanjim/nui.nvim" },
   },
