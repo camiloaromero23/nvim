@@ -26,7 +26,7 @@ end
 local dashboard = require "alpha.themes.dashboard"
 
 dashboard.section.header.val = header
-dashboard.section.header.opts.hl = "DashboardLogo"
+dashboard.section.header.opts.hl = "AlphaHeader"
 
 dashboard.section.buttons.val = {
   dashboard.button("SPC s f", icons.FindFile .. "  Find File"),

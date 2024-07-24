@@ -25,5 +25,3 @@ vim.api.nvim_set_hl(0, "LspDiagnosticsVirtualTextHint", { fg = mocha.mauve, ital
 
 vim.api.nvim_set_hl(0, "NavicText", { fg = mocha.text })
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = mocha.blue, bg = mocha.mantle })
-
-vim.api.nvim_set_hl(0, "DashboardLogo", { link = "AlphaHeader" })
