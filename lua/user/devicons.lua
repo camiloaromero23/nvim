@@ -171,8 +171,10 @@ custom_icons["cy.ts"] = custom_icons["test.ts"]
 custom_icons["component.tsx"] = custom_icons.tsx
 custom_icons["styles.tsx"] = custom_icons.tsx
 custom_icons["styles.ts"] = custom_icons.ts
+custom_icons["d.ts"] = custom_icons.ts
 custom_icons["tsconfig.json"] = custom_icons.ts
 custom_icons["config.js"] = custom_icons.js
+custom_icons["mjs"] = custom_icons.js
 custom_icons["module.ts"] = custom_icons["angular.json"]
 custom_icons["package-lock.json"] = custom_icons["package.json"]
 custom_icons["spec.tsx"] = custom_icons["spec.jsx"]
@@ -188,6 +190,7 @@ custom_icons[".eslintignore"] = custom_icons[".eslintrc"]
 custom_icons[".env.example"] = custom_icons[".env"]
 custom_icons[".env.dev"] = custom_icons[".env"]
 custom_icons[".env.test"] = custom_icons[".env"]
+custom_icons[".env.local"] = custom_icons[".env"]
 
 devicons.setup {
   override = custom_icons,
