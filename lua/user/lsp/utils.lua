@@ -111,4 +111,85 @@ M.format_selection = function()
   }
 end
 
+M.hover = function()
+  -- focus hover window if it is already open
+  local winnr = vim.fn.bufwinnr "lsp_hover"
+  if winnr ~= -1 then
+    vim.api.nvim_set_current_win(winnr)
+    return
+  end
+
+  local params = vim.lsp.util.make_position_params()
+
+  vim.lsp.buf_request_all(0, "textDocument/hover", params, function(responses)
+    if vim.tbl_isempty(responses) then
+      vim.notify "No information available"
+      return
+    end
+
+    local value = ""
+
+    local responses_count = 0
+    for _ in pairs(responses) do
+      responses_count = responses_count + 1
+    end
+
+    local client_names = {}
+
+    for client_id, response in pairs(responses) do
+      local result = response.result
+      local client = vim.lsp.get_client_by_id(client_id)
+
+      if client == nil or result == nil or result.contents == nil then
+        goto continue
+      end
+
+      local result_contents = result.contents[1] or result.contents
+
+      if result_contents == nil then
+        goto continue
+      end
+
+      if responses_count > 1 then
+        value = value .. client.name .. "\n"
+        table.insert(client_names, client.name)
+      end
+      if result_contents.language then
+        value = value .. string.format("```%s\n%s```\n\n", result_contents.language, result_contents.value)
+      else
+        value = value .. result_contents.value
+      end
+
+      ::continue::
+    end
+
+    value = value:gsub("\r", "")
+
+    local contents = vim.lsp.util.convert_input_to_markdown_lines(value)
+
+    local bufnr = vim.lsp.util.open_floating_preview(contents, "markdown", {
+      focus_id = "lsp_hover",
+      border = "single",
+      -- width = 5,
+
+      -- height = 5,
+      max_height = 12,
+      max_width = 77,
+      focus = true,
+      focusable = true,
+    })
+    -- Add highlights to client names
+    local line_num = 0
+    for _, line in ipairs(contents) do
+      for _, client_name in ipairs(client_names) do
+        local start_col = line:find(client_name, 1, true)
+        if start_col then
+          vim.api.nvim_buf_add_highlight(bufnr, -1, "Keyword", line_num, start_col - 1, start_col - 1 + #client_name)
+        end
+      end
+      line_num = line_num + 1
+    end
+  end)
+end
+
 return M
