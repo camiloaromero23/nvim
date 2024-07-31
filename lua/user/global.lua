@@ -43,6 +43,8 @@ custom_nvim = {
   enable_chatgpt = false,
   ---@type boolean
   enable_inlayHints = true,
+  ---@type boolean
+  enable_obsidian = false,
   silicon_screenshots = {
     font = "CaskaydiaCove Nerd Font=34",
     theme = "OneHalfDark",
