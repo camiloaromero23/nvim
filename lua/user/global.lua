@@ -23,6 +23,13 @@ custom_nvim = {
     use_typescript_tools = false,
     ---@type boolean
     code_lens = true,
+    ---@type string[]
+    tailwindcss_class_attributes = {
+      "class",
+      "className",
+      "ngClass",
+      "class:list",
+    },
   },
   ---@type "onedark"|"catppuccin"|"hybrid"|"tokyonight"
   colorscheme = "onedark",

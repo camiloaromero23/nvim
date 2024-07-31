@@ -14,6 +14,7 @@ lspconfig.tailwindcss.setup {
   capabilities = custom_nvim.lsp.capabilities,
   settings = {
     tailwindCSS = {
+      classAttributes = custom_nvim.lsp.tailwindcss_class_attributes,
       experimental = {
         classRegex = {
           { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
