@@ -1,3 +1,5 @@
+local lsp_utils = require "user.lsp.utils"
+
 return {
   -- LSP
   {
@@ -171,6 +173,11 @@ return {
         desc = "Organize Imports",
       },
     },
+    event = "User FileOpened",
+  },
+  {
+    "dmmulroy/tsc.nvim",
+    opts = {},
     event = "User FileOpened",
   },
 }
