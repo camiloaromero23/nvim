@@ -2,6 +2,7 @@ return {
   {
     "nvim-neotest/neotest",
     dependencies = {
+      "nvim-neotest/nvim-nio",
       "nvim-neotest/neotest-go",
       "haydenmeade/neotest-jest",
       "marilari88/neotest-vitest",
