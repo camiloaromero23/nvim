@@ -53,5 +53,7 @@ vim.opt.whichwrap:append "<,>,[,],h,l"
 vim.opt.iskeyword:append "-"
 -- vim.opt.shortmess:append "c" -- don't show redundant messages from ins-completion-menu
 -- vim.opt.shortmess:append "I" -- don't show the default intro message
+vim.opt.fillchars:append { diff = " " }
+
 
 vim.cmd [[set formatoptions-=cro]]
