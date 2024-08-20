@@ -90,11 +90,11 @@ return {
       "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
       desc = "Undo Stage Hunk",
     },
-    {
-      "<leader>gd",
-      "<cmd>Gitsigns diffthis HEAD<cr>",
-      desc = "Git Diff",
-    },
+    -- {
+    --   "<leader>gd",
+    --   "<cmd>Gitsigns diffthis HEAD<cr>",
+    --   desc = "Git Diff",
+    -- },
   },
 
   event = "User FileOpened",

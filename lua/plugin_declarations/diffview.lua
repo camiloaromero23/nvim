@@ -498,6 +498,12 @@ return {
         },
       }
     end,
-    event = "User FileOpened",
+    keys = {
+      {
+        "<leader>gd",
+        "<cmd>DiffviewOpen<cr>",
+        desc = "Git Diff",
+      },
+    },
   },
 }
