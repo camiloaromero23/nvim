@@ -43,6 +43,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "tsplayground",
     "DressingSelect",
     "Jaq",
+    "fugitive",
   },
   callback = function()
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = true })

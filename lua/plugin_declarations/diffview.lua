@@ -103,6 +103,12 @@ return {
             -- tabpage is a Diffview.
             {
               "n",
+              "q",
+              "<cmd>DiffviewClose<cr>",
+              { desc = "Close diff view" },
+            },
+            {
+              "n",
               "<tab>",
               actions.select_next_entry,
               { desc = "Open the diff for the next file" },
@@ -369,6 +375,7 @@ return {
               actions.focus_files,
               { desc = "Bring focus to the file panel" },
             },
+            { "n", "q", actions.close, { desc = "Toggle the file panel" } },
             { "n", "<leader>b", actions.toggle_files, { desc = "Toggle the file panel" } },
             { "n", "g<C-x>", actions.cycle_layout, { desc = "Cycle available layouts" } },
             { "n", "[x", actions.prev_conflict, { desc = "Go to the previous conflict" } },
