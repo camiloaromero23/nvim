@@ -1,10 +1,10 @@
-local lsp = require "user.lsp.utils"
+local lsp_utils = require "user.lsp.utils"
 
 local M = {}
 
 local lsp_mappings = {
   normal_mode = {
-    ["K"] = { lsp.hover, "Show hover" },
+    ["K"] = { lsp_utils.hover, "Show hover" },
     -- ["K"] = { vim.lsp.buf.hover, "Show hover" },
     ["gd"] = { vim.lsp.buf.definition, "Goto Definition" },
     ["gD"] = { vim.lsp.buf.declaration, "Goto declaration" },

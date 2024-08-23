@@ -1,5 +1,13 @@
 local M = {}
 
+local function table_length(t)
+  local count = 0
+  for _ in pairs(t) do
+    count = count + 1
+  end
+  return count
+end
+
 function M.format_filter(client)
   local filetype = vim.bo.filetype
   local ok, n = pcall(require, "null-ls")
@@ -121,75 +129,79 @@ M.hover = function()
 
   local params = vim.lsp.util.make_position_params()
 
-  vim.lsp.buf_request_all(0, "textDocument/hover", params, function(responses)
-    if vim.tbl_isempty(responses) then
-      vim.notify "No information available"
-      return
+  local value = ""
+
+  local clients = vim.lsp.get_clients()
+  local hover_results = {}
+  local client_names = {}
+
+  for _, client in ipairs(clients) do
+    if not client.supports_method "textDocument/hover" then
+      goto continue
     end
 
-    local value = ""
-
-    local responses_count = 0
-    for _ in pairs(responses) do
-      responses_count = responses_count + 1
+    local res = client.request_sync("textDocument/hover", params, 200, 0)
+    if res == nil or res.err ~= nil then
+      goto continue
     end
 
-    local client_names = {}
+    local result = res.result
 
-    for client_id, response in pairs(responses) do
-      local result = response.result
-      local client = vim.lsp.get_client_by_id(client_id)
-
-      if client == nil or result == nil or result.contents == nil then
-        goto continue
-      end
-
-      local result_contents = result.contents[1] or result.contents
-
-      if result_contents == nil then
-        goto continue
-      end
-
-      if responses_count > 1 then
-        value = value .. client.name .. "\n"
-        table.insert(client_names, client.name)
-      end
-      if result_contents.language then
-        value = value .. string.format("```%s\n%s```\n\n", result_contents.language, result_contents.value)
-      else
-        value = value .. result_contents.value
-      end
-
-      ::continue::
+    if result == nil or result.contents == nil then
+      goto continue
     end
 
-    value = value:gsub("\r", "")
+    local result_contents = result.contents[1] or result.contents
 
-    local contents = vim.lsp.util.convert_input_to_markdown_lines(value)
-
-    local bufnr = vim.lsp.util.open_floating_preview(contents, "markdown", {
-      focus_id = "lsp_hover",
-      border = "single",
-      -- width = 5,
-
-      -- height = 5,
-      max_height = 12,
-      max_width = 77,
-      focus = true,
-      focusable = true,
-    })
-    -- Add highlights to client names
-    local line_num = 0
-    for _, line in ipairs(contents) do
-      for _, client_name in ipairs(client_names) do
-        local start_col = line:find(client_name, 1, true)
-        if start_col then
-          vim.api.nvim_buf_add_highlight(bufnr, -1, "Keyword", line_num, start_col - 1, start_col - 1 + #client_name)
-        end
-      end
-      line_num = line_num + 1
+    if result_contents == nil or result_contents.value == nil then
+      goto continue
     end
-  end)
+
+    hover_results[client.name] = result_contents
+
+    ::continue::
+  end
+
+  local hover_count = table_length(hover_results)
+  for client_name, result in pairs(hover_results) do
+    if hover_count > 1 then
+      value = value .. client_name .. "\n"
+      table.insert(client_names, client_name)
+    end
+    if result.language then
+      value = value .. string.format("```%s\n%s```\n\n", result.language, result.value)
+    else
+      value = value .. result.value
+    end
+
+  end
+
+  value = value:gsub("\r", "")
+
+  local contents = vim.lsp.util.convert_input_to_markdown_lines(value)
+
+  local bufnr = vim.lsp.util.open_floating_preview(contents, "markdown", {
+    focus_id = "lsp_hover",
+    border = "single",
+    -- width = 5,
+
+    -- height = 5,
+    max_height = 12,
+    max_width = 77,
+    focus = true,
+    focusable = true,
+  })
+  -- Add highlights to client names
+  local line_num = 0
+  for _, line in ipairs(contents) do
+    for _, client_name in ipairs(client_names) do
+      local start_col = line:find(client_name, 1, true)
+      if start_col then
+        vim.api.nvim_buf_add_highlight(bufnr, -1, "Keyword", line_num, start_col - 1, start_col - 1 + #client_name)
+      end
+    end
+    line_num = line_num + 1
+  end
 end
 
 return M
