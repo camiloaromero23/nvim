@@ -512,5 +512,8 @@ return {
         desc = "Git Diff",
       },
     },
+    cmd = {
+      "DiffviewOpen"
+    }
   },
 }
