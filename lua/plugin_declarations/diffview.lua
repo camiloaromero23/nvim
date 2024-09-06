@@ -513,7 +513,7 @@ return {
       },
     },
     cmd = {
-      "DiffviewOpen"
-    }
+      "DiffviewOpen",
+    },
   },
 }
