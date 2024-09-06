@@ -140,7 +140,7 @@ M.hover = function()
       goto continue
     end
 
-    local res = client.request_sync("textDocument/hover", params, 200, 0)
+    local res = client.request_sync("textDocument/hover", params, 500, 0)
     if res == nil or res.err ~= nil then
       goto continue
     end
