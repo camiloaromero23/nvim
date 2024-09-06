@@ -14,7 +14,19 @@ return {
     end,
   },
   -- Git
-  { "tpope/vim-fugitive", event = "User FileOpened" },
+  {
+    "tpope/vim-fugitive",
+    -- event = "User FileOpened",
+    keys = {
+      { "<leader>gf", "<cmd>Git<cr>", desc = "Git Fugitive" },
+      -- TODO: find keymaps for diffget
+      --   vim.keymap.set("n", "gu", "<cmd>diffget //2<CR>")
+      --   vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>")
+    },
+    cmd = {
+      "Git",
+    },
+  },
   {
     "goolord/alpha-nvim",
     config = function()
