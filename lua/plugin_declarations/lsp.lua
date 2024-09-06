@@ -1,5 +1,3 @@
-local lsp_utils = require "user.lsp.utils"
-
 return {
   -- LSP
   {
@@ -152,6 +150,7 @@ return {
           -- client.server_capabilities.semanticTokensProvider = nil
         end,
         settings = {
+          expose_as_code_action = "all",
           tsserver_file_preferences = {
             includeInlayVariableTypeHintsWhenTypeMatchesName = false,
             includeInlayParameterNameHints = "all",
