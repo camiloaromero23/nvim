@@ -260,7 +260,9 @@ return {
       },
       {
         "<leader>go",
-        "<cmd>Telescope git_status<cr>",
+        function()
+          require("user.telescope.custom-finders").delta_git_status()
+        end,
         desc = "Open changed file",
       },
       {

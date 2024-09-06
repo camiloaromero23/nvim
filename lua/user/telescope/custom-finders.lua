@@ -1,5 +1,6 @@
 local builtin = require "telescope.builtin"
 local utils = require "telescope.utils"
+local previewers = require "telescope.previewers"
 
 local M = {}
 
@@ -23,6 +24,52 @@ end
 
 function M.grep_current_directory()
   builtin.live_grep { cwd = utils.buffer_dir() }
+end
+
+M.delta_git_status = function(opts)
+  opts = opts or {}
+
+  if vim.fn.executable "delta" == 0 then
+    vim.notify "delta is not installed, defaulting to builtin git_status"
+    builtin.git_status(opts)
+    return
+  end
+
+  opts.previewer = previewers.new_termopen_previewer {
+    get_command = function(entry)
+      if entry.status ~= "??" and entry.status ~= "A " then
+        return {
+          "git",
+          "-c",
+          "delta.side-by-side=false",
+          "-c",
+          "delta.line-numbers=false",
+          "-c",
+          "delta.navigate=false",
+          "-c",
+          "delta.file-style=omit",
+          "-c",
+          "delta.hunk-header-style=omit",
+          "diff",
+          entry.path,
+        }
+      end
+
+      if vim.fn.executable "bat" == 0 then
+        vim.notify "bat is not installed, defaulting to cat"
+        return { "cat", entry.path }
+      end
+
+      return {
+        "bat",
+        "--style=plain",
+        "--paging=always",
+        entry.path,
+      }
+    end,
+  }
+
+  builtin.git_status(opts)
 end
 
 return M
