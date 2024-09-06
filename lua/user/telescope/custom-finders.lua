@@ -37,7 +37,7 @@ M.delta_git_status = function(opts)
 
   opts.previewer = previewers.new_termopen_previewer {
     get_command = function(entry)
-      if entry.status ~= "??" and entry.status ~= "A " then
+      if entry.status ~= "??" then
         return {
           "git",
           "-c",
@@ -51,13 +51,18 @@ M.delta_git_status = function(opts)
           "-c",
           "delta.hunk-header-style=omit",
           "diff",
+          "HEAD",
+          "--",
           entry.path,
         }
       end
 
       if vim.fn.executable "bat" == 0 then
         vim.notify "bat is not installed, defaulting to cat"
-        return { "cat", entry.path }
+        return {
+          "cat",
+          entry.path,
+        }
       end
 
       return {
