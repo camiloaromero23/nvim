@@ -36,6 +36,7 @@ M.delta_git_status = function(opts)
   end
 
   opts.previewer = previewers.new_termopen_previewer {
+    title = "Git File Diff Preview",
     get_command = function(entry)
       if entry.status ~= "??" then
         return {
