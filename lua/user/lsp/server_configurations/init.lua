@@ -15,6 +15,6 @@ require "user.lsp.server_configurations.sourcekit"
 require "user.lsp.server_configurations.svelte"
 require "user.lsp.server_configurations.tailwindcss"
 if not custom_nvim.lsp.use_typescript_tools then
-  require "user.lsp.server_configurations.tsserver"
+  require "user.lsp.server_configurations.ts_ls"
 end
 require "user.lsp.server_configurations.volar"

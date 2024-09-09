@@ -29,7 +29,7 @@ local filetypes = {
   "typescriptreact",
 }
 
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
   root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
   filetypes = filetypes,
   cmd = { "typescript-language-server", "--stdio" },

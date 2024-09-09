@@ -39,7 +39,7 @@ mason_lspconfig.setup {
     "tailwindcss",
     "taplo",
     "texlab",
-    "tsserver",
+    "ts_ls",
     "volar",
     "yamlls",
     "zk",
