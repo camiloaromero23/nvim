@@ -1,5 +1,5 @@
 vim.api.nvim_create_user_command("OrganizeImports", function()
-  if not require("user.lsp.utils").is_tsserver_attached() then
+  if not require("user.lsp.utils").is_ts_ls_attached() then
     vim.notify("Only supported with tsserver", vim.log.levels.INFO, { title = "Organize Imports" })
     return
   end
