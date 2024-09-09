@@ -164,7 +164,7 @@ return {
         },
       }
     end,
-    enabled = custom_nvim.lsp.use_typescript_tools,
+    cond = custom_nvim.lsp.use_typescript_tools,
     keys = {
       {
         "<leader>lo",
