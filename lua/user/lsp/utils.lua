@@ -176,6 +176,10 @@ M.hover = function()
 
   end
 
+  if value == "" then
+    return
+  end
+
   value = value:gsub("\r", "")
 
   local contents = vim.lsp.util.convert_input_to_markdown_lines(value)
