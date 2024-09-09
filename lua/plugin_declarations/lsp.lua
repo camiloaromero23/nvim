@@ -17,7 +17,7 @@ return {
         },
       },
       "williamboman/mason-lspconfig.nvim",
-      "jay-babu/mason-null-ls.nvim",
+      "zapling/mason-conform.nvim",
       -- Useful status updates for LSP
       { "j-hui/fidget.nvim", opts = {}, event = "User FileOpened" },
     },
@@ -80,14 +80,48 @@ return {
     config = true,
     event = "InsertEnter",
   },
-
-  -- Null-LS
   {
-    "nvimtools/none-ls.nvim",
-    config = function()
-      require "user.lsp.null_ls"
-    end,
-    event = "User FileOpened",
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        astro = { "prettierd" },
+        css = { "prettierd" },
+        go = { "gofumpt", "goimports-reviser" },
+        graphql = { "prettierd" },
+        handlebars = { "prettierd" },
+        html = { "prettierd" },
+        javascript = { "prettierd" },
+        javascriptreact = { "prettierd" },
+        json = { "prettierd" },
+        jsonc = { "prettierd" },
+        less = { "prettierd" },
+        lua = { "stylua" },
+        markdown = { "prettierd" },
+        markdown_mdx = { "prettierd" },
+        python = { "isort", "black" },
+        rust = { "rustfmt", lsp_format = "fallback" },
+        scss = { "prettierd" },
+        svelte = { "prettierd" },
+        typescript = { "prettierd" },
+        typescriptreact = { "prettierd" },
+        vue = { "prettierd" },
+        yaml = { "prettierd" },
+      },
+      format_on_save = custom_nvim.format_on_save.enable and custom_nvim.format_on_save.opts or nil,
+    },
+    keys = {
+      {
+        "<leader>lf",
+        function()
+          require("conform").format {
+            async = true,
+            lsp_fallback = true,
+          }
+        end,
+        desc = "Format",
+        mode = { "n", "v" },
+      },
+    },
   },
   {
     "simrat39/rust-tools.nvim",
@@ -99,10 +133,6 @@ return {
   {
     "saecki/crates.nvim",
     opts = {
-      null_ls = {
-        enabled = true,
-        name = "crates.nvim",
-      },
       popup = {
         border = "rounded",
       },

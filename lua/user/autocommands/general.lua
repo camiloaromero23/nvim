@@ -39,7 +39,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "lspinfo",
     "lir",
     "lsp-installer",
-    "null-ls-info",
     "tsplayground",
     "DressingSelect",
     "Jaq",
@@ -50,14 +49,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt_local.buflisted = false
   end,
   group = augroups.quickClose,
-})
-
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
-  callback = function()
-    local command = "silent! " .. "pkill -f " .. "prettierd"
-    vim.cmd(command)
-  end,
-  group = augroups.closePrettier,
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {

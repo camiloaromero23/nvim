@@ -5,6 +5,12 @@ if not ok then
   return
 end
 
+local conform_ok, conform = pcall(require, "conform")
+
+if not conform_ok then
+  return
+end
+
 local palettes_ok, catppuccin_palettes = pcall(require, "catppuccin.palettes")
 
 local mocha_ok = false
@@ -14,7 +20,10 @@ if palettes_ok then
   mocha_ok, mocha = pcall(catppuccin_palettes.get_palette, "mocha")
 end
 
-local lualine_utils = require "user.lsp.lualine_utils"
+local hide_in_width = function()
+  local window_width_limit = 70
+  return vim.fn.winwidth(0) > window_width_limit
+end
 
 local components = {
   mode = {
@@ -29,7 +38,7 @@ local components = {
     "b:gitsigns_head",
     icon = " ",
     color = { gui = "bold" },
-    cond = lualine_utils.hide_in_width,
+    cond = hide_in_width,
   },
   filename = {
     "filename",
@@ -38,21 +47,21 @@ local components = {
   },
   filetype = {
     "filetype",
-    cond = lualine_utils.hide_in_width,
+    cond = hide_in_width,
   },
   diagnostics = {
     "diagnostics",
     sources = { "nvim_diagnostic" },
     symbols = { error = " ", warn = " ", info = " ", hint = icons.Hint .. " " },
-    cond = lualine_utils.hide_in_width,
+    cond = hide_in_width,
   },
   encoding = {
     "o:encoding",
     fmt = string.upper,
     color = {},
-    cond = lualine_utils.hide_in_width,
+    cond = hide_in_width,
   },
-  location = { "location", cond = lualine_utils.hide_in_width, color = {} },
+  location = { "location", cond = hide_in_width, color = {} },
   progress = {
     "progress",
     fmt = function()
@@ -88,31 +97,26 @@ local components = {
         end
         return msg
       end
-      local buf_ft = vim.bo.filetype
       local buf_client_names = {}
 
       -- add client
       for _, client in pairs(buf_clients) do
-        if client.name ~= "null-ls" then
-          local client_name = client.name == "GitHub Copilot" and "copilot" or client.name
-          table.insert(buf_client_names, client_name)
-        end
+        local client_name = client.name == "GitHub Copilot" and "copilot" or client.name
+        table.insert(buf_client_names, client_name)
       end
 
-      -- add formatter
-      local supported_formatters = lualine_utils.list_registered_formatters(buf_ft)
-      vim.list_extend(buf_client_names, supported_formatters)
-
-      -- add linter
-      local supported_linters = lualine_utils.list_registered_linters(buf_ft)
-      vim.list_extend(buf_client_names, supported_linters)
+      -- add formatters
+      local conform_formatters = conform.list_formatters(0)
+      for _, formatter in pairs(conform_formatters) do
+        table.insert(buf_client_names, formatter.name)
+      end
 
       local unique_client_names = vim.fn.uniq(buf_client_names)
       ---@diagnostic disable-next-line: param-type-mismatch
       return "[" .. table.concat(unique_client_names, ", ") .. "]"
     end,
     color = { gui = "bold" },
-    cond = lualine_utils.hide_in_width,
+    cond = hide_in_width,
   },
 }
 

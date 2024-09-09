@@ -12,8 +12,8 @@ custom_nvim.lsp.capabilities = capabilities
 
 local mason_ok, mason = pcall(require, "mason")
 local lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
-local null_ls_ok, mason_null_ls = pcall(require, "mason-null-ls")
-if not mason_ok or not lspconfig_ok or not null_ls_ok then
+local conform_ok, mason_conform = pcall(require, "mason-conform")
+if not mason_ok or not lspconfig_ok or not conform_ok then
   return
 end
 
@@ -46,12 +46,9 @@ mason_lspconfig.setup {
   },
 }
 
-mason_null_ls.setup {
-  ensure_installed = {
-    "prettierd",
-    "stylua",
-    "gofumpt",
-    "goimports-reviser",
+mason_conform.setup {
+  ignore_install = {
+    "rustfmt", -- Ignore this since it hast to be installed with rustup
   },
 }
 

@@ -16,6 +16,13 @@ custom_nvim = {
   format_on_save = {
     ---@type boolean
     enable = false,
+    ---@type table
+    opts = {
+      ---@type "never"|"always"|"fallback"|"first"|"last"
+      lsp_format = "fallback",
+      ---@type nil|integer
+      timeout_ms = 500,
+    },
   },
   lsp = {
     capabilities = nil,

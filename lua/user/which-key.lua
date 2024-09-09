@@ -87,7 +87,6 @@ which_key.setup {
       { "<leader>Li", "<cmd>Lazy install<cr>", desc = "Install" },
       { "<leader>8", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = "Replace all occurrences of word" },
       { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
-      { "<leader>lf", "<cmd>lua require('user.lsp.utils').format { timeout_ms = 2000 }<cr>", desc = "Format" },
       {
         "<leader>lj",
         function()
@@ -106,16 +105,6 @@ which_key.setup {
       { "<leader>lq", vim.diagnostic.setqflist, desc = "Quickfix" },
       { "<leader>lr", vim.lsp.buf.rename, desc = "Rename" },
       { "<leader>so", "<cmd>so%<cr>", desc = "Source lua file" },
-    },
-    -- NOTE: Prefer using : over <cmd> as the latter avoids going back in normal-mode.
-    -- see https://neovim.io/doc/user/map.html#:map-cmd
-    {
-      mode = "v",
-      {
-        "<leader>lf",
-        ":lua require('user.lsp.utils').format_selection()<CR>",
-        desc = "Format selection",
-      },
     },
   },
 }
