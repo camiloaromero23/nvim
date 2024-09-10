@@ -7,12 +7,6 @@ return {
   { "tpope/vim-surround", event = "User FileOpened" },
   { "b0o/schemastore.nvim", event = "User FileOpened" },
 
-  {
-    "folke/which-key.nvim",
-    config = function()
-      require "user.which-key"
-    end,
-  },
   -- Git
   {
     "tpope/vim-fugitive",
