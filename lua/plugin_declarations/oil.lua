@@ -40,7 +40,7 @@ return {
       skip_confirm_for_simple_edits = true,
     },
     keys = {
-      { "<leader>-", "<cmd>lua require('oil').open()<cr>", desc = "Open oil" },
+      { "<leader>-", "<cmd>lua require('oil').toggle_float()<cr>", desc = "Open oil" },
     },
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
