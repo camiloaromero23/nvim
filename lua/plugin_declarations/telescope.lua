@@ -169,7 +169,7 @@ return {
         desc = "Checkout branch",
       },
       {
-        "<leader>sc",
+        "<leader>sC",
         "<cmd>Telescope colorscheme<cr>",
         desc = "Colorscheme",
       },
@@ -234,7 +234,7 @@ return {
         desc = "Keymaps",
       },
       {
-        "<leader>sC",
+        "<leader>sc",
         "<cmd>Telescope commands<cr>",
         desc = "Commands",
       },
