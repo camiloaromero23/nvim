@@ -40,10 +40,10 @@ local keymaps = {
     ["<A-k>"] = ":m .-2<CR>==",
 
     -- QuickFix
-    ["<C-q>"] = ":QuickFixToggle<CR>",
+    -- ["<C-q>"] = ":QuickFixToggle<CR>",
 
-    ["]q"] = ":cnext<CR>",
-    ["[q"] = ":cprev<CR>",
+    -- ["]q"] = ":cnext<CR>",
+    -- ["[q"] = ":cprev<CR>",
     ["<C-d>"] = "<C-d>zz",
     ["<C-u>"] = "<C-u>zz",
     ["N"] = "Nzzzv",

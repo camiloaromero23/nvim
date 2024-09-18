@@ -18,5 +18,6 @@ M.packageUtils = augroup("PackageUtils", { clear = true })
 M.envFiles = augroup("EnvFiles", { clear = true })
 M.fugitive = augroup("Fugitive", { clear = true })
 M.verticalHelp = augroup("VerticalHelp", { clear = true })
+M.trouble = augroup("Trouble", { clear = true })
 
 return M
