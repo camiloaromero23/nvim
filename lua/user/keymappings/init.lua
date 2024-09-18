@@ -95,3 +95,6 @@ local keymappings = require "user.keymappings.utils"
 for mode, mapping in pairs(keymaps) do
   keymappings.load_mode(mode, mapping)
 end
+
+vim.keymap.set("n", "dh", "<cmd>diffget //2<CR>", { desc = "Choose left diff" })
+vim.keymap.set("n", "dl", "<cmd>diffget //3<CR>", { desc = "Choose right diff" })
