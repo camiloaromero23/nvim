@@ -2,7 +2,8 @@ return {
   {
     "folke/trouble.nvim",
     opts = {
-      auto_preview = false,
+      auto_preview = false, -- automatically open preview when on an item
+      warn_no_results = false, -- show a warning when there are no results
     },
     config = function(_, opts)
       require("trouble").setup(opts)

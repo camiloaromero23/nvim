@@ -206,9 +206,7 @@ return {
   },
   {
     "dmmulroy/tsc.nvim",
-    opts = {
-      use_trouble_qflist = true,
-    },
+    opts = {},
     event = "User FileOpened",
   },
 }
