@@ -8,8 +8,7 @@ if not schemastore_ok then
   return
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+custom_nvim.lsp.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lspconfig.jsonls.setup {
   settings = {

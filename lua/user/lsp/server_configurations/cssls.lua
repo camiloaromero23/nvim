@@ -2,9 +2,7 @@ local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_ok then
   return
 end
--- local capabilities = require("user.lsp.common").capabilities
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+custom_nvim.lsp.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lspconfig.cssls.setup {
   filetypes = { "css", "scss", "less" },
