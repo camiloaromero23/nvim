@@ -51,6 +51,82 @@ return {
     "Bilal2453/luvit-meta",
     lazy = true,
   }, -- optional `vim.uv` typings
+  -- {
+  --   "saghen/blink.cmp",
+  --   event = "LspAttach",
+  --   -- optional: provides snippets for the snippet source
+  --   dependencies = "rafamadriz/friendly-snippets",
+  --   build = "cargo build --release",
+
+  --   -- version = "v0.*",
+  --   ---@module 'blink.cmp'
+  --   ---@type blink.cmp.Config
+  --   opts = {
+  --     sources = {
+  --       providers = {
+  --         { "blink.cmp.sources.lsp", name = "LSP", score_offset = 1 },
+  --         { "blink.cmp.sources.path", name = "Path", score_offset = -3 },
+  --         { "blink.cmp.sources.snippets", name = "Snippets", score_offset = -3 },
+  --         { "blink.cmp.sources.buffer", name = "Buffer", fallback_for = { "LSP" } },
+  --       },
+  --     },
+  --     highlight = {
+  --       use_nvim_cmp_as_default = true,
+  --     },
+  --     nerd_font_variant = "normal",
+
+  --     -- experimental auto-brackets support
+  --     accept = {
+  --       auto_brackets = {
+  --         enabled = true,
+  --       },
+  --     },
+
+  --     -- experimental signature help support
+  --     trigger = {
+  --       signature_help = {
+  --         enabled = true,
+  --       },
+  --     },
+  --     keymap = {
+  --       accept = "<CR>",
+  --       select_next = { "<C-j>", "<Down>" },
+  --       select_prev = { "<C-k>", "<Up>" },
+  --     },
+  --     windows = {
+  --       autocomplete = {
+  --         border = "rounded",
+  --         selection = "manual",
+  --         ---@param ctx blink.cmp.CompletionRenderContext
+  --         --- @return blink.cmp.Component[]
+  --         draw = function(ctx)
+  --           return {
+  --             " ",
+  --             { ctx.kind_icon, ctx.icon_gap, hl_group = "BlinkCmpKind" .. ctx.kind },
+  --             {
+  --               ctx.label,
+  --               ctx.kind == "Snippet" and "~" or nil,
+  --               fill = true,
+  --               hl_group = ctx.deprecated and "BlinkCmpLabelDeprecated" or "BlinkCmpLabel",
+  --               max_width = 50,
+  --             },
+  --             {
+  --               ctx.icon_gap,
+  --               ctx.kind,
+  --             },
+  --             " ",
+  --           }
+  --         end,
+  --       },
+  --       -- signature_help = {
+  --       --   border = "rounded",
+  --       -- },
+  --       documentation = {
+  --         border = "rounded",
+  --       },
+  --     },
+  --   },
+  -- },
   {
     -- Autocompletion
     "hrsh7th/nvim-cmp",
