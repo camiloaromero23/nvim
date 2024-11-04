@@ -1,26 +1,6 @@
 local M = {}
 local augroups = require "user.augroups"
 
-M.lsp_highlight_document = function(bufnr, client)
-  -- Set autocommands conditional on server_capabilities
-  local status_ok, highlight_supported = pcall(function()
-    return client.supports_method "textDocument/documentHighlight"
-  end)
-  if not status_ok or not highlight_supported then
-    return
-  end
-  vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-    group = augroups.lspDocumentHighlight,
-    buffer = bufnr,
-    callback = vim.lsp.buf.document_highlight,
-  })
-  vim.api.nvim_create_autocmd("CursorMoved", {
-    group = augroups.lspDocumentHighlight,
-    buffer = bufnr,
-    callback = vim.lsp.buf.clear_references,
-  })
-end
-
 M.code_lens = function()
   vim.api.nvim_set_hl(0, "LspCodelens", { fg = "darkgray", bold = true })
   vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {

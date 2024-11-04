@@ -153,12 +153,12 @@ return {
       desc = "Jump",
     },
     {
-      "<S-l>",
+      "<S-h>",
       "<cmd>BufferLineCyclePrev<cr>",
       desc = "Previous",
     },
     {
-      "<S-h>",
+      "<S-l>",
       "<cmd>BufferLineCycleNext<cr>",
       desc = "Next",
     },
