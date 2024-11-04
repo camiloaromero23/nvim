@@ -143,6 +143,11 @@ return {
       desc = "Close Buffer",
     },
     {
+      "<leader>C",
+      "<cmd>bd!<CR>",
+      desc = "Force Close Buffer",
+    },
+    {
       "<leader>bj",
       "<cmd>BufferLinePick<cr>",
       desc = "Jump",
