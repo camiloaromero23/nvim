@@ -32,24 +32,16 @@ return {
     config = function()
       vim.g.codeium_disable_bindings = 1
 
-      local keymappings = require "user.keymappings.utils"
-
-      keymappings.set_keymaps("i", "kk", {
-        vim.fn["codeium#Accept"],
-        { expr = true },
+      vim.keymap.set("i", "kk", "codeium#Accept", {
+        expr = true,
+        replace_keycodes = false,
       })
 
-      keymappings.set_keymaps("i", "<c-,>", function()
-        vim.fn["codeium#CycleCompletions"](-1)
-      end)
+      vim.keymap.set("i", "<c-,>", vim.fn["codeium#CycleCompletions"](-1), { expr = true })
 
-      keymappings.set_keymaps("i", "<c-x>", function()
-        vim.fn["codeium#Clear"]()
-      end)
+      vim.keymap.set("i", "<c-x>", "codeium#Clear", { expr = true })
 
-      keymappings.set_keymaps("i", "<c-;>", function()
-        vim.fn["codeium#CycleCompletions"](1)
-      end)
+      vim.keymap.set("i", "<c-;>", vim.fn["codeium#CycleCompletions"](1), { expr = true })
     end,
     event = "User FileOpened",
   },
