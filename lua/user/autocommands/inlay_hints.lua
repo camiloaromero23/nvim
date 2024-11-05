@@ -1,3 +1,4 @@
+-- TODO: Delete this file after testing inlay hints
 local augroups = require "user.augroups"
 
 vim.api.nvim_create_autocmd("LspAttach", {

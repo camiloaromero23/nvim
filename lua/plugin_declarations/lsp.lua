@@ -18,8 +18,16 @@ return {
       },
       "williamboman/mason-lspconfig.nvim",
       "zapling/mason-conform.nvim",
+      "b0o/schemastore.nvim",
       -- Useful status updates for LSP
       { "j-hui/fidget.nvim", opts = {}, event = "User FileOpened" },
+      -- LSP extensions
+      "simrat39/rust-tools.nvim",
+      {
+        "pmizio/typescript-tools.nvim",
+        keys = { { "<leader>lo", "<cmd>TSToolsOrganizeImports<cr>", desc = "Organize Imports" } },
+      },
+      "hrsh7th/cmp-nvim-lsp", -- Adds LSP completion capabilities
     },
     keys = {
       {
@@ -28,7 +36,406 @@ return {
         desc = "Info",
       },
     },
-    lazy = true,
+    event = "User FileOpened",
+    config = function()
+      local mason = require "mason"
+      local mason_lspconfig = require "mason-lspconfig"
+      local mason_conform = require "mason-conform"
+
+      local icons = require "user.icons"
+
+
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+      custom_nvim.lsp.capabilities = capabilities
+
+      mason.setup()
+
+      mason_conform.setup {
+        ignore_install = {
+          "rustfmt", -- Ignore this since it hast to be installed with rustup
+        },
+      }
+
+      mason_lspconfig.setup {
+        ensure_installed = {
+          "astro",
+          "bashls",
+          "biome",
+          "cssls",
+          "css_variables",
+          "denols",
+          "dockerls",
+          "eslint",
+          "gopls",
+          "golangci_lint_ls",
+          "jsonls",
+          "lua_ls",
+          "pyright",
+          "rust_analyzer",
+          "ruff_lsp",
+          "svelte",
+          "tailwindcss",
+          "taplo",
+          "texlab",
+          "ts_ls",
+          "volar",
+          "yamlls",
+          "zk",
+        },
+        handlers = {
+          function(server_name)
+            require("lspconfig")[server_name].setup {
+              capabilities = custom_nvim.lsp.capabilities,
+            }
+          end,
+          cssls = function()
+            custom_nvim.lsp.capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+            require("lspconfig").cssls.setup {
+              filetypes = { "css", "scss", "less" },
+              cmd = { "vscode-css-language-server", "--stdio" },
+              settings = {
+                css = {
+                  validate = true,
+                  lint = {
+                    unknownAtRules = "ignore",
+                  },
+                },
+                less = {
+                  validate = true,
+                  lint = {
+                    unknownAtRules = "ignore",
+                  },
+                },
+                scss = {
+                  validate = true,
+                  lint = {
+                    unknownAtRules = "ignore",
+                  },
+                },
+              },
+              single_file_support = true,
+              capabilities = custom_nvim.lsp.capabilities,
+            }
+          end,
+          denols = function()
+            local lspconfig = require "lspconfig"
+
+            lspconfig.denols.setup {
+              root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+              capabilities = custom_nvim.lsp.capabilities,
+            }
+          end,
+          gopls = function()
+            require("lspconfig").gopls.setup {
+              settings = {
+                gopls = {
+                  completeUnimported = true,
+                  usePlaceholders = true,
+                  staticcheck = true,
+                  hints = {
+                    assignVariableTypes = true,
+                    compositeLiteralFields = true,
+                    constantValues = true,
+                    functionTypeParameters = true,
+                    parameterNames = true,
+                    rangeVariableTypes = true,
+                  },
+                  analyses = {
+                    unusedparams = true,
+                    unreachable = true,
+                  },
+                },
+              },
+            }
+          end,
+          jsonls = function()
+            local schemastore = require "schemastore"
+
+            custom_nvim.lsp.capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+            require("lspconfig").jsonls.setup {
+              settings = {
+                json = {
+                  schemas = schemastore.json.schemas(),
+                  validate = { enable = true },
+                },
+              },
+              capabilities = custom_nvim.lsp.capabilities,
+            }
+          end,
+          lua_ls = function()
+            require("lspconfig").lua_ls.setup {
+              settings = {
+                Lua = {
+                  diagnostics = {
+                    globals = { "vim", "custom_nvim" },
+                  },
+                  library = vim.api.nvim_get_runtime_file("", true),
+                  checkThirdParty = false,
+                  hint = { enable = true },
+                  telemetry = { enable = false },
+                },
+              },
+              on_attach = function(client)
+                client.server_capabilities.document_formatting = false
+              end,
+              capabilities = custom_nvim.lsp.capabilities,
+            }
+          end,
+          rust_analyzer = function()
+            local rust_tools = require "rust-tools"
+            local mason_registry = require "mason-registry"
+
+            local codelldb = mason_registry.get_package "codelldb"
+            local extension_path = codelldb:get_install_path() .. "/extension/"
+            local codelldb_path = extension_path .. "adapter/codelldb"
+            local liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
+
+            rust_tools.setup {
+              tools = {
+                executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
+                reload_workspace_from_cargo_toml = true,
+                autoSetHints = true,
+                runnables = {
+                  use_telescope = true,
+                },
+                inlay_hints = {
+                  auto = false,
+                  only_current_line = false,
+                  show_parameter_hints = true,
+                  parameter_hints_prefix = "<-",
+                  other_hints_prefix = "=>",
+                  max_len_align = false,
+                  max_len_align_padding = 1,
+                  right_align = false,
+                  right_align_padding = 7,
+                  highlight = "Comment",
+                },
+                hover_actions = {
+                  border = {
+                    { "╭", "FloatBorder" },
+                    { "─", "FloatBorder" },
+                    { "╮", "FloatBorder" },
+                    { "│", "FloatBorder" },
+                    { "╯", "FloatBorder" },
+                    { "─", "FloatBorder" },
+                    { "╰", "FloatBorder" },
+                    { "│", "FloatBorder" },
+                  },
+                  auto_focus = true,
+                },
+              },
+              server = {
+                capabilities = custom_nvim.lsp.capabilities,
+                standalone = false,
+              },
+              dap = {
+                adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+              },
+            }
+          end,
+          tailwindcss = function()
+            require("lspconfig").tailwindcss.setup {
+              capabilities = custom_nvim.lsp.capabilities,
+              settings = {
+                tailwindCSS = {
+                  classAttributes = custom_nvim.lsp.tailwindcss_class_attributes,
+                  experimental = {
+                    classRegex = {
+                      { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                      { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                      { "cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                    },
+                  },
+                  -- suggestions = false, -- This one is what makes it slow (needed for nvim-cmp)
+                },
+              },
+            }
+          end,
+          ts_ls = function()
+            if require("user.lsp.utils").is_vue_project() then
+              return
+            end
+
+            -- if require("user.lsp.utils").is_deno_project() then
+            --   return
+            -- end
+
+            -- LSP settings (for overriding per client)
+            local inlayHints = {
+              includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+              includeInlayParameterNameHints = "all",
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            }
+
+            local on_attach = function(client)
+              client.server_capabilities.document_formatting = false
+              client.server_capabilities.document_range_formatting = false
+              -- client.server_capabilities.semanticTokensProvider = nil
+            end
+
+            if custom_nvim.lsp.use_typescript_tools then
+              require("typescript-tools").setup {
+                capabilities = custom_nvim.lsp.capabilities,
+                on_attach = on_attach,
+                settings = {
+                  expose_as_code_action = "all",
+                  tsserver_file_preferences = inlayHints,
+                },
+              }
+              return
+            end
+
+            local lspconfig = require "lspconfig"
+
+            lspconfig.ts_ls.setup {
+              root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
+              filetypes = {
+                "javascript",
+                "javascriptreact",
+                "typescript",
+                "typescriptreact",
+              },
+              cmd = { "typescript-language-server", "--stdio" },
+              init_options = {
+                preferences = inlayHints,
+              },
+              settings = {
+                javascript = {
+                  inlayHints = inlayHints,
+                },
+                typescript = {
+                  inlayHints = inlayHints,
+                },
+              },
+              on_attach = on_attach,
+              capabilities = custom_nvim.lsp.capabilities,
+            }
+          end,
+          volar = function()
+            if not require("user.lsp.utils").is_vue_project() then
+              return
+            end
+
+            local inlayHints = {
+              enumMemberValues = {
+                enabled = true,
+              },
+              functionLikeReturnTypes = {
+                enabled = false,
+              },
+              parameterNames = {
+                enabled = "none",
+                suppressWhenArgumentMatchesName = false,
+              },
+              parameterTypes = {
+                enabled = true,
+              },
+              propertyDeclarationTypes = {
+                enabled = true,
+              },
+              variableTypes = {
+                enabled = true,
+              },
+            }
+
+            require("lspconfig").volar.setup {
+              init_options = {
+                vue = {
+                  hybridMode = false,
+                },
+              },
+              settings = {
+                typescript = {
+                  inlayHints = inlayHints,
+                },
+                javascript = {
+                  inlayHints = inlayHints,
+                },
+                vue = {
+                  inlayHints = {
+                    inlineHandlerLeading = true,
+                    missingProps = true,
+                    optionsWrapper = true,
+                    vBindShorthand = true,
+                  },
+                },
+              },
+              on_attach = function(client)
+                client.server_capabilities.document_formatting = false
+              end,
+              capabilities = custom_nvim.lsp.capabilities,
+            }
+          end,
+        },
+      }
+
+      vim.lsp.inlay_hint.enable()
+
+      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+        border = "single",
+        close_events = { "BufHidden", "InsertLeave" },
+      })
+
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        border = "single",
+      })
+
+      vim.diagnostic.config {
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+            [vim.diagnostic.severity.WARN] = icons.diagnostics.Warning,
+            [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+            [vim.diagnostic.severity.INFO] = icons.diagnostics.BigInformation,
+          },
+          -- linehl = {
+          --   [vim.diagnostic.severity.ERROR] = "DiagnosticError",
+          --   [vim.diagnostic.severity.WARN] = "DiagnosticWarn",
+          --   [vim.diagnostic.severity.HINT] = "DiagnosticHint",
+          --   [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+          -- },
+          numhl = {
+            [vim.diagnostic.severity.ERROR] = "DiagnosticError",
+            [vim.diagnostic.severity.WARN] = "DiagnosticWarn",
+            [vim.diagnostic.severity.HINT] = "DiagnosticHint",
+            [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+          },
+        },
+        float = {
+          focusable = false,
+          style = "minimal",
+          border = "rounded",
+          source = false,
+          header = "",
+          prefix = "",
+          format = function(d)
+            local code = d.code or (d.user_data and d.user_data.lsp.code)
+            if code then
+              local message, _ = string.format("%s [%s]", d.message, code):gsub("1. ", "")
+              return message
+            end
+            return d.message
+          end,
+        },
+        severity_sort = true,
+        underline = true,
+        update_in_insert = true,
+        virtual_text = {
+          prefix = "",
+        },
+        title = false,
+      }
+
+      vim.cmd.LspStart() -- Needed for lazy loading to work
+    end,
   },
   -- Formatting
   {
@@ -73,54 +480,6 @@ return {
         mode = { "n", "v" },
       },
     },
-  },
-  -- LSP extensions
-  {
-    "simrat39/rust-tools.nvim",
-    config = function()
-      require "user.lsp.server_configurations.rust_analyzer"
-    end,
-    ft = { "rust", "rs", "toml" },
-  },
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    config = function()
-      if require("user.lsp.utils").is_vue_project() then
-        return
-      end
-
-      require("typescript-tools").setup {
-        capabilities = custom_nvim.lsp.capabilities,
-        on_attach = function(client)
-          client.server_capabilities.document_formatting = false
-          client.server_capabilities.document_range_formatting = false
-          -- client.server_capabilities.semanticTokensProvider = nil
-        end,
-        settings = {
-          expose_as_code_action = "all",
-          tsserver_file_preferences = {
-            includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-            includeInlayParameterNameHints = "all",
-            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-            includeInlayFunctionParameterTypeHints = true,
-            includeInlayVariableTypeHints = true,
-            includeInlayPropertyDeclarationTypeHints = true,
-            includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayEnumMemberValueHints = true,
-          },
-        },
-      }
-    end,
-    cond = custom_nvim.lsp.use_typescript_tools,
-    keys = {
-      {
-        "<leader>lo",
-        "<cmd>TSToolsOrganizeImports<cr>",
-        desc = "Organize Imports",
-      },
-    },
-    event = "User FileOpened",
   },
   {
     "saecki/crates.nvim",

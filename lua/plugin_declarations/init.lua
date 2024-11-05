@@ -5,7 +5,6 @@ return {
 
   -- My plugins
   { "tpope/vim-surround", event = "User FileOpened" },
-  { "b0o/schemastore.nvim", event = "User FileOpened" },
 
   -- Git
   {
