@@ -212,10 +212,41 @@ return {
       popup = {
         border = "rounded",
       },
+      lsp = {
+        enabled = true,
+        -- on_attach = function(client, bufnr)
+        --   -- the same on_attach function as for your other lsp's
+        -- end,
+        actions = true,
+        completion = true,
+        hover = true,
+      },
     },
+
+    config = function(_, opts)
+      local crates = require "crates"
+      crates.setup(opts)
+
+      vim.keymap.set("n", "<leader>Do", crates.show_popup, { desc = "Show popup", buffer = 0 })
+      vim.keymap.set("n", "<leader>Dr", crates.reload, { desc = "Reload", buffer = 0 })
+      vim.keymap.set("n", "<leader>Dv", crates.show_versions_popup, { desc = "Show Versions", buffer = 0 })
+      vim.keymap.set("n", "<leader>Df", crates.show_features_popup, { desc = "Show Features", buffer = 0 })
+      vim.keymap.set(
+        "n",
+        "<leader>Dd",
+        crates.show_dependencies_popup,
+        { desc = "Show Dependencies Popup", buffer = 0 }
+      )
+      vim.keymap.set("n", "<leader>Du", crates.update_crate, { desc = "Update Crate", buffer = 0 })
+      vim.keymap.set("n", "<leader>Da", crates.update_all_crates, { desc = "Update All Crates", buffer = 0 })
+      vim.keymap.set("n", "<leader>DU", crates.upgrade_crate, { desc = "Upgrade Crate", buffer = 0 })
+      vim.keymap.set("n", "<leader>DH", crates.open_homepage, { desc = "Open Homepage", buffer = 0 })
+      vim.keymap.set("n", "<leader>DR", crates.open_repository, { desc = "Open Repository", buffer = 0 })
+      vim.keymap.set("n", "<leader>DD", crates.open_documentation, { desc = "Open Documentation", buffer = 0 })
+      vim.keymap.set("n", "<leader>DC", crates.open_crates_io, { desc = "Open Crate.io", buffer = 0 })
+    end,
     lazy = true,
-    ft = { "rust", "rs", "toml" },
-    event = "User FileOpened",
+    event = "BufRead Cargo.toml",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
   {
