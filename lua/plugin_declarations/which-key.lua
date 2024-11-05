@@ -81,11 +81,6 @@ return {
         { "<leader>LL", "<cmd>Lazy home<cr>", desc = "Home" },
         { "<leader>Lu", "<cmd>Lazy update<cr>", desc = "Update" },
         { "<leader>Li", "<cmd>Lazy install<cr>", desc = "Install" },
-        {
-          "<leader>8",
-          [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-          desc = "Replace all occurrences of word",
-        },
         { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action" },
         {
           "<leader>lj",

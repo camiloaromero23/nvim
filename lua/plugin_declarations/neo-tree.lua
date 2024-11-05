@@ -7,8 +7,8 @@ return {
     -- "3rd/image.nvim",
   },
   keys = {
-    { "<leader>e", ":Neotree toggle reveal left<CR>", silent = true, desc = "File Explorer" },
-    -- { "<leader>e", ":Neotree toggle current reveal_force_cwd left<CR>", silent = true, desc = "File Explorer" },
+    { "<leader>e", "<cmd>Neotree toggle reveal left<CR>", desc = "File Explorer" },
+    -- { "<leader>e", "<cmd>Neotree toggle current reveal_force_cwd left<CR>", desc = "File Explorer" },
     -- Neotree float reveal_file=<cfile> reveal_force_cwd
   },
   config = function()
