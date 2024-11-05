@@ -5,9 +5,10 @@ return {
   keys = {
     {
       "<leader>S",
-      "<cmd>Silicon<CR>",
+      ":'<,'>Silicon<CR>",
       desc = "Take Code Screenshot 📸",
-      mode = "v",
+      mode = { "v", "x" },
+      silent = true,
     },
   },
 }

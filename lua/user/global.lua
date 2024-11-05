@@ -52,10 +52,10 @@ custom_nvim = {
   ---@type boolean
   enable_obsidian = false,
   silicon_screenshots = {
-    font = "CaskaydiaCove Nerd Font=34",
-    theme = "OneHalfDark",
+    font = "Geist Mono=34",
+    theme = "Catppuccin Mocha",
     to_clipboard = true,
-    background = "#16191F",
+    background = "#11111B",
     shadow_blur_radius = 0,
   },
 }
