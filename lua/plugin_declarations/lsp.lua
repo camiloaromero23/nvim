@@ -20,7 +20,7 @@ return {
       "zapling/mason-conform.nvim",
       "b0o/schemastore.nvim",
       -- Useful status updates for LSP
-      { "j-hui/fidget.nvim", opts = {}, event = "User FileOpened" },
+      { "j-hui/fidget.nvim", opts = {}, event = "VeryLazy" },
       -- LSP extensions
       "simrat39/rust-tools.nvim",
       {
@@ -36,7 +36,7 @@ return {
         desc = "Info",
       },
     },
-    event = "User FileOpened",
+    event = "VeryLazy",
     config = function()
       local mason = require "mason"
       local mason_lspconfig = require "mason-lspconfig"
@@ -433,8 +433,6 @@ return {
         },
         title = false,
       }
-
-      vim.cmd.LspStart() -- Needed for lazy loading to work
     end,
   },
   -- Formatting
@@ -811,6 +809,6 @@ return {
   {
     "dmmulroy/tsc.nvim",
     opts = {},
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
 }

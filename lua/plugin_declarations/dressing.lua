@@ -67,5 +67,5 @@ return {
       enabled = false,
     },
   },
-  event = "User FileOpened"
+  event = "VeryLazy"
 }

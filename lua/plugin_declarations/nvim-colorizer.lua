@@ -25,5 +25,5 @@ return {
       always_update = true,
     },
   },
-  event = "User FileOpened",
+  event = "VeryLazy",
 }

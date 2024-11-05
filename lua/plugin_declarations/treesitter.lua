@@ -130,7 +130,7 @@ return {
         desc = "Open Treesitter Playground",
       },
     },
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
   {
     "hiphish/rainbow-delimiters.nvim",
@@ -153,7 +153,7 @@ return {
         },
       }
     end,
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
@@ -229,11 +229,11 @@ return {
       zindex = 20, -- The Z-index of the context window
       mode = "topline", -- Line used to calculate context. Choices: 'cursor', 'topline'
     },
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
   {
     "windwp/nvim-ts-autotag",
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
@@ -261,6 +261,6 @@ return {
       use_default_keymaps = false,
     },
     keys = { { "<space>j", "<cmd>lua require('treesj').toggle()<cr>", desc = "Toggle Split Join" } },
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
 }

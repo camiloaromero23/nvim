@@ -97,5 +97,5 @@ return {
     -- },
   },
 
-  event = "User FileOpened",
+  event = "VeryLazy",
 }

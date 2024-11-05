@@ -7,7 +7,7 @@ return {
       },
       log_level = "off",
     },
-    event = "User FileOpened",
+    event = "VeryLazy",
     cond = custom_nvim.enable_supermaven,
   },
   {
@@ -24,7 +24,7 @@ return {
       vim.keymap.del("i", "<Tab>")
       vim.cmd "silent! Copilot restart"
     end,
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
   {
     "exafunction/codeium.vim",
@@ -43,6 +43,6 @@ return {
 
       vim.keymap.set("i", "<c-;>", vim.fn["codeium#CycleCompletions"](1), { expr = true })
     end,
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
 }

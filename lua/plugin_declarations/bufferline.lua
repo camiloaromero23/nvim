@@ -193,5 +193,5 @@ return {
       desc = "Sort by language",
     },
   },
-  event = "User FileOpened",
+  event = { "BufRead", "BufNewFile" },
 }

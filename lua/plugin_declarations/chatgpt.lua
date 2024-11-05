@@ -8,6 +8,6 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
   },
-  event = "User FileOpened",
+  event = "VeryLazy",
   enabled = custom_nvim.enable_chatgpt,
 }

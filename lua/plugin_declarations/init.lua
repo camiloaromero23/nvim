@@ -4,12 +4,12 @@ return {
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
 
   -- My plugins
-  { "tpope/vim-surround", event = "User FileOpened" },
+  { "tpope/vim-surround", event = "VeryLazy" },
 
   -- Git
   {
     "tpope/vim-fugitive",
-    -- event = "User FileOpened",
+    -- event = "VeryLazy",
     keys = {
       { "<leader>gf", "<cmd>Git<cr>", desc = "Git Fugitive" },
       -- TODO: find keymaps for diffget
@@ -37,7 +37,7 @@ return {
     config = function()
       require "user.lualine"
     end,
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -45,7 +45,7 @@ return {
     opts = {
       indent = { char = icons.ui.LineLeft },
     },
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
   {
     "windwp/nvim-autopairs",
@@ -53,7 +53,7 @@ return {
       require "user.autopairs"
     end,
     -- lazy = true,
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
   {
     "axelvc/template-string.nvim",
@@ -69,7 +69,7 @@ return {
     config = function()
       require "user.breadcrumbs"
     end,
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
   {
     "mbbill/undotree",
@@ -82,7 +82,7 @@ return {
       highlight = { multiline = false },
     },
     dependencies = { "nvim-lua/plenary.nvim" },
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
   {
     "iamcco/markdown-preview.nvim",
@@ -98,14 +98,14 @@ return {
     config = function()
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end,
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
   {
     "nvim-tree/nvim-web-devicons",
     config = function()
       require "user.devicons"
     end,
-    event = "User FileOpened",
+    event = "VeryLazy",
   },
   {
     "christoomey/vim-tmux-navigator",
