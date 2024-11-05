@@ -1,19 +1,16 @@
 return {
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
-  config = function()
-    local harpoon = require "harpoon"
-
-    harpoon:setup {
-      settings = {
-        save_on_toggle = true,
-        sync_on_ui_close = true,
-        key = function()
-          return vim.loop.cwd()
-        end,
-      },
-    }
-  end,
+  name = "harpoon",
+  opts = {
+    settings = {
+      save_on_toggle = true,
+      sync_on_ui_close = true,
+      key = function()
+        return vim.uv.cwd()
+      end,
+    },
+  },
   keys = {
     {
       "<leader>ha",
