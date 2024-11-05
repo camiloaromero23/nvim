@@ -43,8 +43,8 @@ vim.keymap.set("n", "[q", "<cmd>cprev<CR>", { desc = "Jump to previous quickfix 
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down one page" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up one page" })
-vim.keymap.set("n", "n", "Nzzzv", { desc = "Jump to next match" })
-vim.keymap.set("n", "N", "nzzzv", { desc = "Jump to previous match" })
+vim.keymap.set("n", "n", "nzzzv", { desc = "Jump to next match" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Jump to previous match" })
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Jump to next match" })
 
 vim.keymap.set("n", "dh", "<cmd>diffget //2<CR>", { desc = "Choose left diff" })
