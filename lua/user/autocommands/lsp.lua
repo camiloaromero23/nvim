@@ -9,7 +9,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return
     end
 
-    local lsp_common = require "user.lsp.common"
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     local bufnr = args.buf
 
@@ -18,11 +17,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     if client.server_capabilities.documentSymbolProvider then
-      lsp_common.attach_navic(client, bufnr)
+      vim.g.navic_silence = true
+      local status_ok, navic = pcall(require, "nvim-navic")
+      if not status_ok then
+        return
+      end
+      navic.attach(client, bufnr)
     end
     -- Code lens
     if custom_nvim.lsp.code_lens and client.server_capabilities.codeLensProvider then
-      lsp_common.code_lens()
+      vim.api.nvim_set_hl(0, "LspCodelens", { fg = "darkgray", bold = true })
+      vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+        group = augroups.codelens,
+        pattern = "*",
+        desc = "Refresh codelens",
+        callback = function()
+          pcall(vim.lsp.codelens.refresh)
+        end,
+      })
     end
 
     vim.keymap.set("n", "K", lsp_utils.hover, {
