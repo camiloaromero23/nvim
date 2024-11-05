@@ -15,10 +15,4 @@ vim.api.nvim_create_user_command("OrganizeImports", function()
   }
 end, { desc = "OrganizeImports" })
 
-local whichkey = require "which-key"
-
-whichkey.add {
-  "<leader>lo",
-  "<cmd>OrganizeImports<cr>",
-  desc = "Organize Imports",
-}
+vim.keymap.set("n", "<leader>lo", "<cmd>OrganizeImports<cr>", { desc = "Organize Imports" })
