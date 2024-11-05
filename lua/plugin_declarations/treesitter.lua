@@ -9,7 +9,9 @@ return {
       end
       vim.g.skip_ts_context_commentstring_module = true
 
+      ---@diagnostic disable-next-line: missing-fields
       configs.setup {
+        auto_install = true,
         -- ensure_installed = "all",
         ensure_installed = {
           "astro",
@@ -23,6 +25,7 @@ return {
           "gowork",
           "html",
           "javascript",
+          "jsdoc",
           "json",
           "json5",
           "jsonc",
@@ -40,8 +43,8 @@ return {
           "svelte",
           "tsx",
           "typescript",
-          "vue",
           "vimdoc",
+          "vue",
         }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
         sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
         ignore_install = {}, -- List of parsers to ignore installing
