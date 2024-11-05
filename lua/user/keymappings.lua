@@ -112,10 +112,10 @@ vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true, de
 
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true, desc = "Move current line / block" })
 
--- vim.keymap.set("n", "<C-q>", ":QuickFixToggle<CR>", { noremap = true, silent = true, desc = "Toggle quickfix list" })
+vim.keymap.set("n", "<C-q>", ":QuickFixToggle<CR>", { noremap = true, silent = true, desc = "Toggle quickfix list" })
 
--- vim.keymap.set("n", "]q", ":cnext<CR>", { noremap = true, silent = true, desc = "Jump to next quickfix entry" })
--- vim.keymap.set("n", "[q", ":cprev<CR>", { noremap = true, silent = true, desc = "Jump to previous quickfix entry" })
+vim.keymap.set("n", "]q", ":cnext<CR>", { noremap = true, silent = true, desc = "Jump to next quickfix entry" })
+vim.keymap.set("n", "[q", ":cprev<CR>", { noremap = true, silent = true, desc = "Jump to previous quickfix entry" })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true, desc = "Scroll down one page" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true, desc = "Scroll up one page" })

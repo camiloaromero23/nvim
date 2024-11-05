@@ -5,12 +5,10 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
-      "folke/trouble.nvim",
     },
     config = function()
       local telescope = require "telescope"
       local actions = require "telescope.actions"
-      local trouble = require "trouble"
 
       telescope.setup {
         defaults = {
@@ -87,10 +85,7 @@ return {
 
               ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
               ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-              ["<C-q>"] = function(action)
-                actions.smart_send_to_qflist(action)
-                trouble.open { mode = "qflist" }
-              end,
+              ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
               ["<C-l>"] = actions.complete_tag,
               ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
             },
@@ -104,8 +99,7 @@ return {
 
               ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
               ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-              ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-              ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
 
               ["j"] = actions.move_selection_next,
               ["k"] = actions.move_selection_previous,
