@@ -3,7 +3,9 @@
 -- foldmethod = "manual" -- folding set to "expr" for treesitter based folding
 -- titlestring = "%<%F%=%l/%L - NVIM" -- what the title of the window will be set to
 vim.o.backup = false -- creates a backup file
-vim.o.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+vim.schedule(function() --  Schedule the setting after `UiEnter` because it can increase startup-time.
+  vim.o.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
+end)
 -- vim.o.cmdheight = 1 -- more space in the neovim command line for displaying messages
 vim.o.cmdheight = 0 -- by default hide the command prompt (will be set up as 1 when after setting up lualine)
 vim.o.colorcolumn = "99999" -- fixes indentline for now
@@ -46,7 +48,7 @@ vim.o.updatetime = 50 -- faster completion
 vim.o.wrap = false -- display lines as one long line
 vim.o.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
 vim.opt.completeopt = { "menuone", "noselect" }
-vim.opt.isfname:append("@-@")
+vim.opt.isfname:append "@-@"
 -- vim.opt.guicursor = "" -- use block cursor always
 
 vim.opt.whichwrap:append "<,>,[,],h,l"
@@ -54,6 +56,5 @@ vim.opt.iskeyword:append "-"
 -- vim.opt.shortmess:append "c" -- don't show redundant messages from ins-completion-menu
 -- vim.opt.shortmess:append "I" -- don't show the default intro message
 vim.opt.fillchars:append { diff = " " }
-
 
 vim.cmd [[set formatoptions-=cro]]
