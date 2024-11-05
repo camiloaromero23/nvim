@@ -268,8 +268,30 @@ return {
       -- provided one, if nothing is provided it will use `yarn`
       package_manager = "pnpm",
     },
-    ft = { "json" },
-    dependencies = { "MunifTanjim/nui.nvim" },
+
+    config = function(_, opts)
+      local package_info = require "package-info"
+      package_info.setup(opts)
+
+      vim.keymap.set("n", "<leader>Dt", package_info.toggle, { desc = "Toggle dependency versions", buffer = 0 })
+      vim.keymap.set("n", "<leader>Du", package_info.update, { desc = "Update dependency on the line", buffer = 0 })
+      vim.keymap.set("n", "<leader>Dd", package_info.delete, { desc = "Delete dependency on the line", buffer = 0 })
+      vim.keymap.set("n", "<leader>Di", package_info.install, { desc = "Install a new dependency", buffer = 0 })
+      vim.keymap.set(
+        "n",
+        "<leader>Dp",
+        package_info.change_version,
+        { desc = "Install a different dependency version", buffer = 0 }
+      )
+
+      local telescope_ok, telescope = pcall(require, "telescope")
+
+      if telescope_ok then
+        pcall(telescope.load_extension, "package_info")
+      end
+    end,
+    event = "BufRead package.json",
+    dependencies = { "MunifTanjim/nui.nvim", "nvim-telescope/telescope.nvim" },
   },
   {
     "pmizio/typescript-tools.nvim",

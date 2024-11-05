@@ -1,4 +1,3 @@
-require "user.autocommands.dependencies_manager"
 require "user.autocommands.fugitive"
 require "user.autocommands.general"
 require "user.autocommands.lsp"
