@@ -1,7 +1,7 @@
 return {
   "NvChad/nvim-colorizer.lua",
   opts = {
-    filetypes = { "*", "!lazy" },
+    buftypes = { "*", "!lazy" },
     user_default_options = {
       RGB = true, -- #RGB hex codes
       RRGGBB = true, -- #RRGGBB hex codes
