@@ -1,12 +1,6 @@
 local M = {}
 
-local function table_length(t)
-  local count = 0
-  for _ in pairs(t) do
-    count = count + 1
-  end
-  return count
-end
+local utils = require "user.utils.functions"
 
 M.is_in_package_json = function(field)
   if vim.fn.filereadable(vim.fn.getcwd() .. "/package.json") == 0 then
@@ -53,7 +47,10 @@ end
 
 M.format_selection = function()
   vim.lsp.buf.format {
-    range = { ["start"] = vim.api.nvim_buf_get_mark(0, "<"), ["end"] = vim.api.nvim_buf_get_mark(0, ">") },
+    range = {
+      ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
+      ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
+    },
   }
 end
 
@@ -100,7 +97,7 @@ M.hover = function()
     ::continue::
   end
 
-  local hover_count = table_length(hover_results)
+  local hover_count = utils.table_length(hover_results)
   for client_name, result in pairs(hover_results) do
     if hover_count > 1 then
       value = value .. client_name .. "\n"

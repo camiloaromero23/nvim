@@ -1,5 +1,15 @@
 local M = {}
 
+---@param t table
+---@return number
+function M.table_length(t)
+  local count = 0
+  for _ in pairs(t) do
+    count = count + 1
+  end
+  return count
+end
+
 function M.smart_quit()
   local bufnr = vim.api.nvim_get_current_buf()
   local modified = vim.api.nvim_get_option_value("modified", { buf = bufnr })
