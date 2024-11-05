@@ -25,8 +25,6 @@ custom_nvim = {
     },
   },
   lsp = {
-    ---@type lsp.ClientCapabilities
-    capabilities = nil,
     ---@type boolean
     use_typescript_tools = false,
     ---@type boolean

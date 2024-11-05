@@ -44,10 +44,8 @@ return {
 
       local icons = require "user.icons"
 
-
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-      custom_nvim.lsp.capabilities = capabilities
 
       mason.setup()
 
@@ -86,11 +84,13 @@ return {
         handlers = {
           function(server_name)
             require("lspconfig")[server_name].setup {
-              capabilities = custom_nvim.lsp.capabilities,
+              capabilities = capabilities,
             }
           end,
           cssls = function()
-            custom_nvim.lsp.capabilities.textDocument.completion.completionItem.snippetSupport = true
+            local server_capabilities =
+              vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+            server_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
             require("lspconfig").cssls.setup {
               filetypes = { "css", "scss", "less" },
@@ -116,7 +116,7 @@ return {
                 },
               },
               single_file_support = true,
-              capabilities = custom_nvim.lsp.capabilities,
+              capabilities = server_capabilities,
             }
           end,
           denols = function()
@@ -124,7 +124,7 @@ return {
 
             lspconfig.denols.setup {
               root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-              capabilities = custom_nvim.lsp.capabilities,
+              capabilities = capabilities,
             }
           end,
           gopls = function()
@@ -153,7 +153,10 @@ return {
           jsonls = function()
             local schemastore = require "schemastore"
 
-            custom_nvim.lsp.capabilities.textDocument.completion.completionItem.snippetSupport = true
+            local server_capabilities =
+              vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+            server_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
             require("lspconfig").jsonls.setup {
               settings = {
@@ -162,7 +165,7 @@ return {
                   validate = { enable = true },
                 },
               },
-              capabilities = custom_nvim.lsp.capabilities,
+              capabilities = server_capabilities,
             }
           end,
           lua_ls = function()
@@ -181,7 +184,7 @@ return {
               on_attach = function(client)
                 client.server_capabilities.document_formatting = false
               end,
-              capabilities = custom_nvim.lsp.capabilities,
+              capabilities = capabilities,
             }
           end,
           rust_analyzer = function()
@@ -228,7 +231,7 @@ return {
                 },
               },
               server = {
-                capabilities = custom_nvim.lsp.capabilities,
+                capabilities = capabilities,
                 standalone = false,
               },
               dap = {
@@ -238,7 +241,7 @@ return {
           end,
           tailwindcss = function()
             require("lspconfig").tailwindcss.setup {
-              capabilities = custom_nvim.lsp.capabilities,
+              capabilities = capabilities,
               settings = {
                 tailwindCSS = {
                   classAttributes = custom_nvim.lsp.tailwindcss_class_attributes,
@@ -283,7 +286,7 @@ return {
 
             if custom_nvim.lsp.use_typescript_tools then
               require("typescript-tools").setup {
-                capabilities = custom_nvim.lsp.capabilities,
+                capabilities = capabilities,
                 on_attach = on_attach,
                 settings = {
                   expose_as_code_action = "all",
@@ -316,7 +319,7 @@ return {
                 },
               },
               on_attach = on_attach,
-              capabilities = custom_nvim.lsp.capabilities,
+              capabilities = capabilities,
             }
           end,
           volar = function()
@@ -371,7 +374,7 @@ return {
               on_attach = function(client)
                 client.server_capabilities.document_formatting = false
               end,
-              capabilities = custom_nvim.lsp.capabilities,
+              capabilities = capabilities,
             }
           end,
         },
