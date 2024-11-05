@@ -24,16 +24,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if custom_nvim.lsp.code_lens and client.server_capabilities.codeLensProvider then
       lsp_common.code_lens()
     end
-    -- Formatting
-    if client.server_capabilities.documentFormattingProvider and custom_nvim.format_on_save.enable then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroups.autoformat,
-        pattern = "*",
-        callback = function()
-          vim.lsp.buf.format { timeout_ms = 2000 }
-        end,
-      })
-    end
 
     vim.keymap.set("n", "K", lsp_utils.hover, {
       buffer = bufnr,
