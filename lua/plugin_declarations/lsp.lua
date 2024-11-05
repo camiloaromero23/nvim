@@ -255,7 +255,7 @@ return {
             }
           end,
           ts_ls = function()
-            if require("user.lsp.utils").is_vue_project() then
+            if require("user.utils.lsp_functions").is_vue_project() then
               return
             end
 
@@ -320,7 +320,7 @@ return {
             }
           end,
           volar = function()
-            if not require("user.lsp.utils").is_vue_project() then
+            if not require("user.utils.lsp_functions").is_vue_project() then
               return
             end
 
