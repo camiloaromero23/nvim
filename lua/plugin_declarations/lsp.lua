@@ -30,132 +30,7 @@ return {
     },
     lazy = true,
   },
-  {
-    "folke/lazydev.nvim",
-    ft = "lua", -- only load on lua files
-    opts = {
-      library = {
-        -- See the configuration section for more details
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "luvit-meta/library", words = { "vim%.uv" } },
-        -- Load the wezterm types when the `wezterm` module is required
-        -- Needs `justinsgithub/wezterm-types` to be installed
-        -- { path = "wezterm-types", mods = { "wezterm" } },
-      },
-    },
-    -- dependencies = {
-    --   "justinsgithub/wezterm-types",
-    -- }
-  },
-  {
-    "Bilal2453/luvit-meta",
-    lazy = true,
-  }, -- optional `vim.uv` typings
-  -- {
-  --   "saghen/blink.cmp",
-  --   event = "LspAttach",
-  --   -- optional: provides snippets for the snippet source
-  --   dependencies = "rafamadriz/friendly-snippets",
-  --   build = "cargo build --release",
-
-  --   -- version = "v0.*",
-  --   ---@module 'blink.cmp'
-  --   ---@type blink.cmp.Config
-  --   opts = {
-  --     sources = {
-  --       providers = {
-  --         { "blink.cmp.sources.lsp", name = "LSP", score_offset = 1 },
-  --         { "blink.cmp.sources.path", name = "Path", score_offset = -3 },
-  --         { "blink.cmp.sources.snippets", name = "Snippets", score_offset = -3 },
-  --         { "blink.cmp.sources.buffer", name = "Buffer", fallback_for = { "LSP" } },
-  --       },
-  --     },
-  --     highlight = {
-  --       use_nvim_cmp_as_default = true,
-  --     },
-  --     nerd_font_variant = "normal",
-
-  --     -- experimental auto-brackets support
-  --     accept = {
-  --       auto_brackets = {
-  --         enabled = true,
-  --       },
-  --     },
-
-  --     -- experimental signature help support
-  --     trigger = {
-  --       signature_help = {
-  --         enabled = true,
-  --       },
-  --     },
-  --     keymap = {
-  --       accept = "<CR>",
-  --       select_next = { "<C-j>", "<Down>" },
-  --       select_prev = { "<C-k>", "<Up>" },
-  --     },
-  --     windows = {
-  --       autocomplete = {
-  --         border = "rounded",
-  --         selection = "manual",
-  --         ---@param ctx blink.cmp.CompletionRenderContext
-  --         --- @return blink.cmp.Component[]
-  --         draw = function(ctx)
-  --           return {
-  --             " ",
-  --             { ctx.kind_icon, ctx.icon_gap, hl_group = "BlinkCmpKind" .. ctx.kind },
-  --             {
-  --               ctx.label,
-  --               ctx.kind == "Snippet" and "~" or nil,
-  --               fill = true,
-  --               hl_group = ctx.deprecated and "BlinkCmpLabelDeprecated" or "BlinkCmpLabel",
-  --               max_width = 50,
-  --             },
-  --             {
-  --               ctx.icon_gap,
-  --               ctx.kind,
-  --             },
-  --             " ",
-  --           }
-  --         end,
-  --       },
-  --       -- signature_help = {
-  --       --   border = "rounded",
-  --       -- },
-  --       documentation = {
-  --         border = "rounded",
-  --       },
-  --     },
-  --   },
-  -- },
-  {
-    -- Autocompletion
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      -- Autocompletion
-      "onsails/lspkind-nvim", -- Completion icons
-      { "hrsh7th/cmp-buffer" }, -- Optional
-      { "hrsh7th/cmp-path" }, -- Optional
-      { "hrsh7th/cmp-nvim-lua" }, -- Optional
-
-      -- Snippet Engine & its associated nvim-cmp source
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-
-      -- Adds LSP completion capabilities
-      "hrsh7th/cmp-nvim-lsp",
-
-      -- Adds a number of user-friendly snippets
-      "rafamadriz/friendly-snippets",
-
-      { "roobert/tailwindcss-colorizer-cmp.nvim", config = true, enabled = false }, -- Enable this when plugin loads custom colors,
-    },
-    lazy = true,
-  },
-  {
-    "ray-x/lsp_signature.nvim",
-    config = true,
-    event = "InsertEnter",
-  },
+  -- Formatting
   {
     "stevearc/conform.nvim",
     opts = {
@@ -199,12 +74,53 @@ return {
       },
     },
   },
+  -- LSP extensions
   {
     "simrat39/rust-tools.nvim",
     config = function()
       require "user.lsp.server_configurations.rust_analyzer"
     end,
     ft = { "rust", "rs", "toml" },
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    config = function()
+      if require("user.lsp.utils").is_vue_project() then
+        return
+      end
+
+      require("typescript-tools").setup {
+        capabilities = custom_nvim.lsp.capabilities,
+        on_attach = function(client)
+          client.server_capabilities.document_formatting = false
+          client.server_capabilities.document_range_formatting = false
+          -- client.server_capabilities.semanticTokensProvider = nil
+        end,
+        settings = {
+          expose_as_code_action = "all",
+          tsserver_file_preferences = {
+            includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+            includeInlayParameterNameHints = "all",
+            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          },
+        },
+      }
+    end,
+    cond = custom_nvim.lsp.use_typescript_tools,
+    keys = {
+      {
+        "<leader>lo",
+        "<cmd>TSToolsOrganizeImports<cr>",
+        desc = "Organize Imports",
+      },
+    },
+    event = "User FileOpened",
   },
   {
     "saecki/crates.nvim",
@@ -293,45 +209,245 @@ return {
     event = "BufRead package.json",
     dependencies = { "MunifTanjim/nui.nvim", "nvim-telescope/telescope.nvim" },
   },
+  -- Autocompletion
   {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    config = function()
-      if require("user.lsp.utils").is_vue_project() then
-        return
-      end
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      -- Autocompletion
+      "onsails/lspkind-nvim", -- Completion icons
+      "hrsh7th/cmp-buffer", -- Buffer completion
+      "hrsh7th/cmp-path", -- Path completion
+      -- "hrsh7th/cmp-nvim-lua", -- Lua completion
 
-      require("typescript-tools").setup {
-        capabilities = custom_nvim.lsp.capabilities,
-        on_attach = function(client)
-          client.server_capabilities.document_formatting = false
-          client.server_capabilities.document_range_formatting = false
-          -- client.server_capabilities.semanticTokensProvider = nil
+      "saadparwaiz1/cmp_luasnip", -- Snippet Engine & its associated nvim-cmp source
+
+      "hrsh7th/cmp-nvim-lsp", -- Adds LSP completion capabilities
+
+      {
+        "L3MON4D3/LuaSnip",
+        build = (function()
+          return "make install_jsregexp"
+        end)(),
+        config = function()
+          require("luasnip/loaders/from_vscode").lazy_load()
         end,
-        settings = {
-          expose_as_code_action = "all",
-          tsserver_file_preferences = {
-            includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-            includeInlayParameterNameHints = "all",
-            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-            includeInlayFunctionParameterTypeHints = true,
-            includeInlayVariableTypeHints = true,
-            includeInlayPropertyDeclarationTypeHints = true,
-            includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayEnumMemberValueHints = true,
+      },
+      "rafamadriz/friendly-snippets", -- Adds a number of user-friendly snippets
+    },
+    config = function()
+      local cmp = require "cmp"
+      local luasnip = require "luasnip"
+      local lspkind = require "lspkind"
+
+      cmp.setup {
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body) -- For `luasnip` users.
+          end,
+        },
+        mapping = cmp.mapping.preset.insert {
+          ["<C-k>"] = cmp.mapping.select_prev_item(),
+          ["<C-j>"] = cmp.mapping.select_next_item(),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-1),
+          ["<C-f>"] = cmp.mapping.scroll_docs(1),
+          ["<C-Space>"] = cmp.mapping.complete {},
+          ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+          ["<C-e>"] = cmp.mapping {
+            i = cmp.mapping.abort(),
+            c = cmp.mapping.close(),
+          },
+          -- Accept currently selected item. If none selected, `select` first item.
+          -- Set `select` to `false` to only confirm explicitly selected items.
+          ["<CR>"] = cmp.mapping.confirm { select = false, behavior = cmp.ConfirmBehavior.Replace },
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            -- if cmp.visible() then
+            --   cmp.select_next_item()
+            if luasnip.expandable() then
+              luasnip.expand {}
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            -- elseif check_backspace() then
+            --   fallback()
+            else
+              fallback()
+            end
+          end, {
+            "i",
+            "s",
+          }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            -- if cmp.visible() then
+            --   cmp.select_prev_item()
+            if luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, {
+            "i",
+            "s",
+          }),
+        },
+        formatting = {
+          fields = { "kind", "abbr", "menu" },
+          expandable_indicator = true,
+          format = function(entry, vim_item)
+            local kind = lspkind.cmp_format {
+              mode = "symbol_text",
+              maxwidth = 50,
+              preset = "codicons",
+            }(entry, vim_item)
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            kind.kind = strings[1] or ""
+            kind.menu = "    " .. (strings[2] or "")
+
+            -- return require("tailwindcss-colorizer-cmp").formatter(entry, vim_item) -- Enable this when plugin loads custom colors
+            return kind
+          end,
+        },
+        sources = {
+          {
+            name = "lazydev",
+            group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+          },
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "path" },
+          { name = "buffer" },
+        },
+        confirm_opts = {
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = false,
+        },
+        window = {
+          completion = cmp.config.window.bordered {
+            winhighlight = "FloatBorder:Normal,NormalFloat:Normal",
+          },
+          documentation = cmp.config.window.bordered {
+            winhighlight = "FloatBorder:Normal,NormalFloat:Normal",
           },
         },
+        view = {
+          natives = true,
+        },
+        experimental = {
+          -- ghost_text = { hl_group = "Comment" },
+          ghost_text = false,
+        },
       }
+
+      cmp.setup.filetype({
+        "sql",
+      }, {
+        sources = {
+          { name = "vim-dadbod-completion" },
+          { name = "buffer" },
+        },
+      })
     end,
-    cond = custom_nvim.lsp.use_typescript_tools,
-    keys = {
-      {
-        "<leader>lo",
-        "<cmd>TSToolsOrganizeImports<cr>",
-        desc = "Organize Imports",
+  },
+  -- {
+  --   "saghen/blink.cmp",
+  --   event = "InsertEnter",
+  --   -- optional: provides snippets for the snippet source
+  --   dependencies = "rafamadriz/friendly-snippets",
+  --   build = "cargo build --release",
+
+  --   -- version = "v0.*",
+  --   ---@module 'blink.cmp'
+  --   ---@type blink.cmp.Config
+  --   opts = {
+  --     sources = {
+  --       providers = {
+  --         { "blink.cmp.sources.lsp", name = "LSP", score_offset = 1 },
+  --         { "blink.cmp.sources.path", name = "Path", score_offset = -3 },
+  --         { "blink.cmp.sources.snippets", name = "Snippets", score_offset = -3 },
+  --         { "blink.cmp.sources.buffer", name = "Buffer", fallback_for = { "LSP" } },
+  --       },
+  --     },
+  --     highlight = {
+  --       use_nvim_cmp_as_default = true,
+  --     },
+  --     nerd_font_variant = "normal",
+
+  --     -- experimental auto-brackets support
+  --     accept = {
+  --       auto_brackets = {
+  --         enabled = true,
+  --       },
+  --     },
+
+  --     -- experimental signature help support
+  --     trigger = {
+  --       signature_help = {
+  --         enabled = true,
+  --       },
+  --     },
+  --     keymap = {
+  --       accept = "<CR>",
+  --       select_next = { "<C-j>", "<Down>" },
+  --       select_prev = { "<C-k>", "<Up>" },
+  --     },
+  --     windows = {
+  --       autocomplete = {
+  --         border = "rounded",
+  --         selection = "manual",
+  --         ---@param ctx blink.cmp.CompletionRenderContext
+  --         --- @return blink.cmp.Component[]
+  --         draw = function(ctx)
+  --           return {
+  --             " ",
+  --             { ctx.kind_icon, ctx.icon_gap, hl_group = "BlinkCmpKind" .. ctx.kind },
+  --             {
+  --               ctx.label,
+  --               ctx.kind == "Snippet" and "~" or nil,
+  --               fill = true,
+  --               hl_group = ctx.deprecated and "BlinkCmpLabelDeprecated" or "BlinkCmpLabel",
+  --               max_width = 50,
+  --             },
+  --             {
+  --               ctx.icon_gap,
+  --               ctx.kind,
+  --             },
+  --             " ",
+  --           }
+  --         end,
+  --       },
+  --       -- signature_help = {
+  --       --   border = "rounded",
+  --       -- },
+  --       documentation = {
+  --         border = "rounded",
+  --       },
+  --     },
+  --   },
+  -- },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
+        -- Load the wezterm types when the `wezterm` module is required
+        -- Needs `justinsgithub/wezterm-types` to be installed
+        -- { path = "wezterm-types", mods = { "wezterm" } },
       },
     },
-    event = "User FileOpened",
+    -- dependencies = {
+    --   "justinsgithub/wezterm-types",
+    -- }
+  },
+  {
+    "Bilal2453/luvit-meta",
+    lazy = true,
+  }, -- optional `vim.uv` typings
+  {
+    "ray-x/lsp_signature.nvim",
+    config = true,
+    event = "InsertEnter",
   },
   {
     "dmmulroy/tsc.nvim",

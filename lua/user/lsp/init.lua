@@ -56,4 +56,3 @@ require "user.lsp.server_configurations"
 require "user.autocommands.inlay_hints"
 
 require "user.lsp.diagnostics"
-require "user.lsp.cmp"
