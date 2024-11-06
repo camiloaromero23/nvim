@@ -594,6 +594,7 @@ return {
         end,
       },
       "rafamadriz/friendly-snippets", -- Adds a number of user-friendly snippets
+      -- "brenoprata10/nvim-highlight-colors", -- Highlight colors in menu
     },
     config = function()
       local cmp = require "cmp"
@@ -653,6 +654,8 @@ return {
           fields = { "kind", "abbr", "menu" },
           expandable_indicator = true,
           format = function(entry, vim_item)
+            -- local color_item = require("nvim-highlight-colors").format(entry, { kind = vim_item.kind })
+
             local kind = lspkind.cmp_format {
               mode = "symbol_text",
               maxwidth = 50,
@@ -662,7 +665,11 @@ return {
             kind.kind = strings[1] or ""
             kind.menu = "    " .. (strings[2] or "")
 
-            -- return require("tailwindcss-colorizer-cmp").formatter(entry, vim_item) -- Enable this when plugin loads custom colors
+            -- if color_item.abbr_hl_group then
+            --   kind.kind = color_item.abbr
+            --   kind.kind_hl_group = color_item.abbr_hl_group
+            -- end
+
             return kind
           end,
         },
