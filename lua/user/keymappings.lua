@@ -64,8 +64,8 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent block right" })
 -- vim.keymap.set("x", "K", ":move '<-2<CR>", { desc = "Move block up" })
 -- vim.keymap.set("x", "J", ":move '>+1<CR>", { desc = "Move block down" })
 
-vim.keymap.set("x", "<A-j>", "<cmd>move '>+1<CR>", { desc = "Move block down" })
-vim.keymap.set("x", "<A-k>", "<cmd>move '<-2<CR>", { desc = "Move block up" })
+vim.keymap.set("x", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move block down" })
+vim.keymap.set("x", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move block up" })
 
 vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without overriding current register" })
 
