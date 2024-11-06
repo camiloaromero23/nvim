@@ -4,13 +4,13 @@ local lsp_utils = require "user.utils.lsp_functions"
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = augroups.lspFeatures,
-  callback = function(args)
-    if not (args.data and args.data.client_id) then
+  callback = function(event)
+    if not (event.data and event.data.client_id) then
       return
     end
 
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    local bufnr = event.buf
 
     if client == nil then
       return
@@ -107,6 +107,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
       group = augroups.lspDocumentHighlight,
       buffer = bufnr,
       callback = vim.lsp.buf.clear_references,
+    })
+
+    vim.api.nvim_create_autocmd("LspDetach", {
+      group = augroups.lspDetachFeatures,
+      callback = function(event2)
+        vim.lsp.buf.clear_references()
+        vim.api.nvim_clear_autocmds { group = augroups.lspDocumentHighlight, buffer = event2.buf }
+      end,
     })
   end,
 })
