@@ -50,8 +50,12 @@ vim.keymap.set("n", "J", "mzJ`z", { desc = "Jump to next match" })
 vim.keymap.set("n", "dh", "<cmd>diffget //2<CR>", { desc = "Choose left diff" })
 vim.keymap.set("n", "dl", "<cmd>diffget //3<CR>", { desc = "Choose right diff" })
 
-vim.keymap.set("n", "<leader>8", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { desc = "Replace all occurrences of word" })
-
+vim.keymap.set(
+  "n",
+  "<leader>8",
+  ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+  { desc = "Replace all occurrences of word" }
+)
 
 vim.keymap.set("t", "<C-h>", "<C-\\><C-N><C-w>h", { desc = "Move cursor to left window" })
 vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w>j", { desc = "Move cursor to down window" })
@@ -64,8 +68,8 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent block right" })
 -- vim.keymap.set("x", "K", ":move '<-2<CR>", { desc = "Move block up" })
 -- vim.keymap.set("x", "J", ":move '>+1<CR>", { desc = "Move block down" })
 
-vim.keymap.set("x", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move block down" })
-vim.keymap.set("x", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move block up" })
+vim.keymap.set("x", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move block down", silent = true })
+vim.keymap.set("x", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move block up", silent = true })
 
 vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without overriding current register" })
 
