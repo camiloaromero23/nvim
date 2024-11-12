@@ -71,7 +71,7 @@ return {
           "lua_ls",
           "pyright",
           "rust_analyzer",
-          "ruff_lsp",
+          "ruff",
           "svelte",
           "tailwindcss",
           "taplo",
@@ -589,9 +589,6 @@ return {
         build = (function()
           return "make install_jsregexp"
         end)(),
-        config = function()
-          require("luasnip/loaders/from_vscode").lazy_load()
-        end,
       },
       "rafamadriz/friendly-snippets", -- Adds a number of user-friendly snippets
       -- "brenoprata10/nvim-highlight-colors", -- Highlight colors in menu
@@ -600,6 +597,8 @@ return {
       local cmp = require "cmp"
       local luasnip = require "luasnip"
       local lspkind = require "lspkind"
+
+      require("luasnip/loaders/from_vscode").lazy_load()
 
       cmp.setup {
         snippet = {
