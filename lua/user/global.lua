@@ -9,6 +9,8 @@ custom_nvim = {
       },
     },
   },
+  ---@type "bottom-left"|"bottom-right"|"bottom-center"|"top-left"|"top-right"|"top-center"
+  showkeys_position = "bottom-right",
   which_key = {
     ---@type "none"|"single"|"double"|"shadow"
     border = "none", -- none, single, double, shadow

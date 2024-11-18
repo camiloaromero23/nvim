@@ -122,4 +122,15 @@ return {
       { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
     },
   },
+  {
+    "nvzone/showkeys",
+    cmd = "ShowkeysToggle",
+    opts = {
+      winopts = {
+        border = "rounded",
+      },
+      show_count = true,
+      position = custom_nvim.showkeys_position,
+    },
+  },
 }

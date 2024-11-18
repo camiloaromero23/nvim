@@ -29,3 +29,6 @@ vim.api.nvim_set_hl(0, "NavicText", { fg = mocha.text })
 
 vim.api.nvim_set_hl(0, "PackageInfoUpToDateVersion", { fg = mocha.green, italic = true })
 vim.api.nvim_set_hl(0, "PackageInfoOutdatedVersion", { fg = mocha.peach, italic = true })
+
+vim.api.nvim_set_hl(0, "SkActive", { bg = mocha.mauve, fg = mocha.surface0, italic = false })
+vim.api.nvim_set_hl(0, "SkInactive", { bg = mocha.surface0, fg = mocha.mauve, italic = false })
