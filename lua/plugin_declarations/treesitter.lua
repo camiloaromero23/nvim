@@ -53,10 +53,6 @@ return {
           disable = { "" }, -- list of language that will be disabled
           additional_vim_regex_highlighting = true,
         },
-        autotag = {
-          enable = true,
-          disable = { "" },
-        },
         autopairs = {
           enable = true,
           disable = { "" },
@@ -233,6 +229,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
+    opts = true,
     event = "VeryLazy",
   },
   {
