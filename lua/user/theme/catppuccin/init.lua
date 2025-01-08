@@ -40,3 +40,8 @@ vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { fg = mocha.text })
 vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { fg = mocha.text })
 vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelp", { fg = mocha.text })
 vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { fg = mocha.text })
+
+vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = mocha.text })
+vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { fg = mocha.text })
+vim.api.nvim_set_hl(0, "SnacksDashboardKey", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "SnacksDashboardTerminal", { link = "Number" })

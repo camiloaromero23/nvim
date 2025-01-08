@@ -31,6 +31,7 @@ return {
       desc = "Dashboard",
     },
     lazy = false,
+    enabled = false,
   },
   {
     "nvim-lualine/lualine.nvim",
