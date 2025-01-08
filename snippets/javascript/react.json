@@ -1,0 +1,15 @@
+{
+  "reactArrowFunctionComponent": {
+    "prefix": "rafc",
+    "body": [
+      "interface $2Props {}",
+      "",
+      "export const ${1:${TM_FILENAME_BASE}}: React.FC<$2Props> = () => {",
+      "  return (",
+      "    $0",
+      "  )",
+      "}"
+    ],
+    "description": "Creates a React Arrow Function Component with ES7 module system"
+  }
+}
