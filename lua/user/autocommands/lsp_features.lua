@@ -93,7 +93,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- Set autocommands conditional on server_capabilities
     local status_ok, highlight_supported = pcall(function()
-      return client.supports_method "textDocument/documentHighlight"
+      return client:supports_method "textDocument/documentHighlight"
     end)
     if not status_ok or not highlight_supported then
       return
