@@ -32,3 +32,11 @@ vim.api.nvim_set_hl(0, "PackageInfoOutdatedVersion", { fg = mocha.peach, italic 
 
 vim.api.nvim_set_hl(0, "SkActive", { bg = mocha.mauve, fg = mocha.surface0, italic = false })
 vim.api.nvim_set_hl(0, "SkInactive", { bg = mocha.surface0, fg = mocha.mauve, italic = false })
+
+vim.api.nvim_set_hl(0, "BlinkCmpMenu", { fg = mocha.text })
+vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { fg = mocha.text })
+vim.api.nvim_set_hl(0, "BlinkCmpDoc", { fg = mocha.text })
+vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { fg = mocha.text })
+vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { fg = mocha.text })
+vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelp", { fg = mocha.text })
+vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { fg = mocha.text })

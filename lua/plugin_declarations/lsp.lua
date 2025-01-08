@@ -27,7 +27,8 @@ return {
         "pmizio/typescript-tools.nvim",
         keys = { { "<leader>lo", "<cmd>TSToolsOrganizeImports<cr>", desc = "Organize Imports" } },
       },
-      "hrsh7th/cmp-nvim-lsp", -- Adds LSP completion capabilities
+      -- "hrsh7th/cmp-nvim-lsp", -- Adds LSP completion capabilities
+      "saghen/blink.cmp",
     },
     keys = {
       {
@@ -44,8 +45,7 @@ return {
 
       local icons = require "user.icons"
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+      local capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 
       mason.setup()
 
@@ -56,6 +56,7 @@ return {
       }
 
       mason_lspconfig.setup {
+        automatic_installation = true,
         ensure_installed = {
           "astro",
           "bashls",
@@ -88,9 +89,7 @@ return {
             }
           end,
           cssls = function()
-            local server_capabilities =
-              vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-            server_capabilities.textDocument.completion.completionItem.snippetSupport = true
+            capabilities.textDocument.completion.completionItem.snippetSupport = true
 
             require("lspconfig").cssls.setup {
               filetypes = { "css", "scss", "less" },
@@ -116,7 +115,7 @@ return {
                 },
               },
               single_file_support = true,
-              capabilities = server_capabilities,
+              capabilities = capabilities,
             }
           end,
           denols = function()
@@ -153,10 +152,7 @@ return {
           jsonls = function()
             local schemastore = require "schemastore"
 
-            local server_capabilities =
-              vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-
-            server_capabilities.textDocument.completion.completionItem.snippetSupport = true
+            capabilities.textDocument.completion.completionItem.snippetSupport = true
 
             require("lspconfig").jsonls.setup {
               settings = {
@@ -165,7 +161,7 @@ return {
                   validate = { enable = true },
                 },
               },
-              capabilities = server_capabilities,
+              capabilities = capabilities,
             }
           end,
           lua_ls = function()
@@ -716,83 +712,8 @@ return {
         },
       })
     end,
+    enabled = false,
   },
-  -- {
-  --   "saghen/blink.cmp",
-  --   event = "InsertEnter",
-  --   -- optional: provides snippets for the snippet source
-  --   dependencies = "rafamadriz/friendly-snippets",
-  --   build = "cargo build --release",
-
-  --   -- version = "v0.*",
-  --   ---@module 'blink.cmp'
-  --   ---@type blink.cmp.Config
-  --   opts = {
-  --     sources = {
-  --       providers = {
-  --         { "blink.cmp.sources.lsp", name = "LSP", score_offset = 1 },
-  --         { "blink.cmp.sources.path", name = "Path", score_offset = -3 },
-  --         { "blink.cmp.sources.snippets", name = "Snippets", score_offset = -3 },
-  --         { "blink.cmp.sources.buffer", name = "Buffer", fallback_for = { "LSP" } },
-  --       },
-  --     },
-  --     highlight = {
-  --       use_nvim_cmp_as_default = true,
-  --     },
-  --     nerd_font_variant = "normal",
-
-  --     -- experimental auto-brackets support
-  --     accept = {
-  --       auto_brackets = {
-  --         enabled = true,
-  --       },
-  --     },
-
-  --     -- experimental signature help support
-  --     trigger = {
-  --       signature_help = {
-  --         enabled = true,
-  --       },
-  --     },
-  --     keymap = {
-  --       accept = "<CR>",
-  --       select_next = { "<C-j>", "<Down>" },
-  --       select_prev = { "<C-k>", "<Up>" },
-  --     },
-  --     windows = {
-  --       autocomplete = {
-  --         border = "rounded",
-  --         selection = "manual",
-  --         ---@param ctx blink.cmp.CompletionRenderContext
-  --         --- @return blink.cmp.Component[]
-  --         draw = function(ctx)
-  --           return {
-  --             " ",
-  --             { ctx.kind_icon, ctx.icon_gap, hl_group = "BlinkCmpKind" .. ctx.kind },
-  --             {
-  --               ctx.label,
-  --               ctx.kind == "Snippet" and "~" or nil,
-  --               fill = true,
-  --               hl_group = ctx.deprecated and "BlinkCmpLabelDeprecated" or "BlinkCmpLabel",
-  --               max_width = 50,
-  --             },
-  --             {
-  --               ctx.icon_gap,
-  --               ctx.kind,
-  --             },
-  --             " ",
-  --           }
-  --         end,
-  --       },
-  --       -- signature_help = {
-  --       --   border = "rounded",
-  --       -- },
-  --       documentation = {
-  --         border = "rounded",
-  --       },
-  --     },
-  --   },
-  -- },
   {
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
@@ -814,11 +735,11 @@ return {
     "Bilal2453/luvit-meta",
     lazy = true,
   }, -- optional `vim.uv` typings
-  {
-    "ray-x/lsp_signature.nvim",
-    config = true,
-    event = "InsertEnter",
-  },
+  -- {
+  --   "ray-x/lsp_signature.nvim",
+  --   config = true,
+  --   event = "InsertEnter",
+  -- },
   {
     "dmmulroy/tsc.nvim",
     opts = {},
