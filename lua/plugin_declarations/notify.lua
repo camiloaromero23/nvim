@@ -17,4 +17,5 @@ return {
     }
     vim.notify = notify
   end,
+  enabled = false,
 }
