@@ -413,7 +413,7 @@ return {
           },
         },
         float = {
-          focusable = false,
+          focusable = true,
           style = "minimal",
           border = "rounded",
           source = false,
