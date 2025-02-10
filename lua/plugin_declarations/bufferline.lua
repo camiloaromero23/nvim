@@ -125,14 +125,12 @@ return {
       -- end
     },
     highlights = {
-      fill = {
-        bg = "#1A1A1A",
-      },
       background = {
         italic = true,
       },
       buffer_selected = {
-        bold = true,
+        bold = false,
+        italic = true,
       },
     },
   },
