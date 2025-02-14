@@ -45,6 +45,11 @@ return {
     main = "ibl",
     opts = {
       indent = { char = icons.ui.LineLeft },
+      exclude = {
+        filetypes = {
+          "snacks_picker_preview",
+        },
+      },
     },
     event = "VeryLazy",
   },

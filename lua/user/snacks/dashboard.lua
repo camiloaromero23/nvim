@@ -1,7 +1,6 @@
 local icons = require("user.icons").ui
 
----@module 'snacks.nvim'
----@class snacks.dashboard.Config
+---@type snacks.dashboard.Config | nil
 return {
   row = 3,
   enabled = true,

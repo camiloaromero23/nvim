@@ -1,4 +1,6 @@
 local dashboard_config = require("user.snacks.dashboard")
+local picker_config = require("user.snacks.picker")
+
 return {
   {
     "folke/snacks.nvim",
@@ -9,6 +11,7 @@ return {
     opts = {
       bigfile = { enabled = true },
       dashboard = dashboard_config,
+      picker = picker_config.opts,
       indent = { enabled = false },
       input = { enabled = false },
       notifier = {
@@ -27,5 +30,6 @@ return {
         },
       },
     },
+    keys = vim.tbl_deep_extend("force", {}, picker_config.keys),
   },
 }
