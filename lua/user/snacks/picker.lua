@@ -209,7 +209,6 @@ M.keys = {
   {
     "<leader>ld",
     function()
-      ---@diagnostic disable-next-line: undefined-field
       Snacks.picker.diagnostics_buffer()
     end,
     desc = "Buffer Diagnostics",
@@ -231,7 +230,6 @@ M.keys = {
   {
     "<leader>lS",
     function()
-      ---@diagnostic disable-next-line: undefined-field
       Snacks.picker.lsp_workspace_symbols()
     end,
     desc = "Workspace Symbols",
