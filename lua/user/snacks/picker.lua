@@ -2,7 +2,7 @@ local M = {}
 
 ---@type snacks.picker.Config
 M.opts = {
-  prompt = " ",
+  prompt = "  ",
   matcher = {
     frecency = true,
   },
