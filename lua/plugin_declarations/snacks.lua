@@ -1,5 +1,5 @@
-local dashboard_config = require("user.snacks.dashboard")
-local picker_config = require("user.snacks.picker")
+local dashboard_config = require "user.snacks.dashboard"
+local picker_config = require "user.snacks.picker"
 
 return {
   {
@@ -11,6 +11,10 @@ return {
     opts = {
       bigfile = { enabled = true },
       dashboard = dashboard_config,
+      lazygit = {
+        enabled = true,
+        configure = false,
+      },
       picker = picker_config.opts,
       indent = { enabled = false },
       input = { enabled = false },
@@ -28,8 +32,20 @@ return {
         notification = {
           wo = { wrap = true }, -- Wrap notifications
         },
+        lazygit = {
+          width = 0,
+          height = 0,
+        },
       },
     },
-    keys = vim.tbl_deep_extend("force", {}, picker_config.keys),
+    keys = vim.list_extend({
+      {
+        "<leader>lg",
+        function()
+          Snacks.lazygit.open()
+        end,
+        desc = "Lazygit",
+      },
+    }, picker_config.keys),
   },
 }

@@ -24,6 +24,7 @@ local filetype_exclude = {
   "dapui_console",
   "lab",
   "Markdown",
+  "snacks_terminal",
   "",
 }
 
