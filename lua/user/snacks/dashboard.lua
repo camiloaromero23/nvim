@@ -25,7 +25,11 @@ return {
         icon = icons.FindFile,
         desc = "Find File",
         key = "<leader>sf",
-        action = ":lua Snacks.dashboard.pick('files')",
+        action = function()
+          Snacks.picker.files {
+            hidden = true,
+          }
+        end,
       },
       {
         icon = "",
