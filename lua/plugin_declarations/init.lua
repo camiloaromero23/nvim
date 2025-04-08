@@ -133,10 +133,30 @@ return {
     cmd = "ShowkeysToggle",
     opts = {
       winopts = {
-        border = "rounded",
+        border = "solid",
       },
+      winhl = "FloatBorder:SkBg,Normal:SkBg",
       show_count = true,
       position = custom_nvim.showkeys_position,
+    },
+  },
+  {
+    {
+      "NStefan002/screenkey.nvim",
+      lazy = false,
+      opts = {
+        win_opts = {
+          row = vim.o.lines - vim.o.cmdheight - 2,
+          col = vim.o.columns,
+          width = 30,
+          height = 1,
+          border = "none",
+        },
+        group_mappings = true,
+      },
+      version = "*", -- or branch = "dev", to use the latest commit
+      cmd = "ScreenKey",
+      enabled = false
     },
   },
 }
