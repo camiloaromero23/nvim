@@ -32,6 +32,7 @@ vim.api.nvim_set_hl(0, "PackageInfoOutdatedVersion", { fg = mocha.peach, italic 
 
 vim.api.nvim_set_hl(0, "SkActive", { bg = mocha.mauve, fg = mocha.surface0, italic = false })
 vim.api.nvim_set_hl(0, "SkInactive", { bg = mocha.surface0, fg = mocha.mauve, italic = false })
+vim.api.nvim_set_hl(0, "SkBg", { bg = mocha.mantle })
 
 vim.api.nvim_set_hl(0, "BlinkCmpMenu", { fg = mocha.text })
 vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { fg = mocha.text })
