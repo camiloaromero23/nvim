@@ -241,11 +241,14 @@ return {
               settings = {
                 tailwindCSS = {
                   classAttributes = custom_nvim.lsp.tailwindcss_class_attributes,
+                  classFunctions = {
+                    "cv",
+                    "cx",
+                    "cn",
+                    "cva",
+                  },
                   experimental = {
                     classRegex = {
-                      { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-                      { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-                      { "cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
                       { "\\b\\w+[cC]lassName\\s*=\\s*[\"']([^\"']*)[\"']" },
                       { "\\b\\w+[cC]lassName\\s*=\\s*`([^`]*)`" },
                       { "[\\w]+[cC]lassName[\"']?\\s*:\\s*[\"']([^\"']*)[\"']" },
