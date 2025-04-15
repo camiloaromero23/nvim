@@ -1,5 +1,6 @@
 local dashboard_config = require "user.snacks.dashboard"
 local picker_config = require "user.snacks.picker"
+local icons = require "user.icons"
 
 return {
   {
@@ -16,7 +17,6 @@ return {
         configure = false,
       },
       picker = picker_config.opts,
-      indent = { enabled = false },
       input = { enabled = false },
       notifier = {
         enabled = true,
@@ -37,6 +37,26 @@ return {
           height = 0,
         },
       },
+      ---@class snacks.indent.Config
+      indent = {
+        enabled = true,
+        indent = {
+          char = icons.ui.LineLeft,
+        },
+        animate = {
+          enabled = false,
+        },
+        scope = {
+          enabled = false,
+        },
+      },
+      scope = {
+        enabled = true,
+      },
+      ---@class snacks.image.Config
+      image = {
+        enabled = true,
+      }
     },
     keys = vim.list_extend({
       {

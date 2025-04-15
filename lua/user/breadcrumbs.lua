@@ -25,6 +25,8 @@ local filetype_exclude = {
   "lab",
   "Markdown",
   "snacks_terminal",
+  "nofile",
+  "minifiles",
   "",
 }
 

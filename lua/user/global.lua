@@ -54,7 +54,7 @@ custom_nvim = {
   ---@type boolean
   enable_obsidian = false,
   silicon_screenshots = {
-    font = "Geist Mono=34",
+    -- font = "Geist Mono=34",
     theme = "Catppuccin Mocha",
     to_clipboard = true,
     background = "#11111B",

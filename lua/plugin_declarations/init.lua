@@ -1,10 +1,8 @@
-local icons = require "user.icons"
 return {
   -- Core plugins
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
 
   -- My plugins
-  { "tpope/vim-surround", event = "VeryLazy" },
 
   -- Git
   {
@@ -21,44 +19,10 @@ return {
     },
   },
   {
-    "goolord/alpha-nvim",
-    config = function()
-      require "user.alpha"
-    end,
-    keys = {
-      "<leader>;",
-      "<cmd>Alpha<CR>",
-      desc = "Dashboard",
-    },
-    lazy = false,
-    enabled = false,
-  },
-  {
     "nvim-lualine/lualine.nvim",
     config = function()
       require "user.lualine"
     end,
-    event = "VeryLazy",
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    opts = {
-      indent = { char = icons.ui.LineLeft },
-      exclude = {
-        filetypes = {
-          "snacks_picker_preview",
-        },
-      },
-    },
-    event = "VeryLazy",
-  },
-  {
-    "windwp/nvim-autopairs",
-    config = function()
-      require "user.autopairs"
-    end,
-    -- lazy = true,
     event = "VeryLazy",
   },
   {
@@ -156,7 +120,7 @@ return {
       },
       version = "*", -- or branch = "dev", to use the latest commit
       cmd = "ScreenKey",
-      enabled = false
+      enabled = false,
     },
   },
 }

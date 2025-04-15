@@ -54,3 +54,5 @@ vim.api.nvim_set_hl(0, "SnacksPickerListCursorLine", { bg = mocha.surface0 })
 vim.api.nvim_set_hl(0, "SnacksPickerInput", { bg = mocha.surface0, fg = mocha.text })
 vim.api.nvim_set_hl(0, "SnacksPickerTitle", { bg = mocha.lavender, fg = mocha.surface0 })
 vim.api.nvim_set_hl(0, "SnacksNormal", { bg = mocha.base })
+
+vim.api.nvim_set_hl(0, "SnacksIndent", { fg = "#313244" })
