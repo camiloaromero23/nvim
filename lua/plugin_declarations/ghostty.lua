@@ -1,5 +1,6 @@
 return {
   "ghostty",
   dir = "/Applications/Ghostty.app/Contents/Resources/nvim/site",
-  lazy = false,
+  event = "VeryLazy",
+  ft = "config"
 }
