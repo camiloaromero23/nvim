@@ -77,19 +77,21 @@ return {
     end,
     event = "VeryLazy",
   },
+
   {
-    "christoomey/vim-tmux-navigator",
+    "alexghergh/nvim-tmux-navigation",
+    opts = true,
     cmd = {
-      "TmuxNavigateLeft",
-      "TmuxNavigateDown",
-      "TmuxNavigateUp",
-      "TmuxNavigateRight",
+      "NvimTmuxNavigateLeft",
+      "NvimTmuxNavigateDown",
+      "NvimTmuxNavigateUp",
+      "NvimTmuxNavigateRight",
     },
     keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-h>", "<cmd>NvimTmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd>NvimTmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd>NvimTmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd>NvimTmuxNavigateRight<cr>" },
     },
   },
   {
