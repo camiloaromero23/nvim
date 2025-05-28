@@ -173,6 +173,8 @@ return {
           SkBg = { bg = colors.mantle },
           SkInactive = { bg = colors.surface0, fg = colors.mauve, italic = false },
 
+          SupermavenSuggestion = { link = "Comment" },
+
           SnacksDashboardDesc = { fg = colors.text },
           SnacksDashboardIcon = { fg = colors.text },
           SnacksDashboardKey = { link = "Keyword" },
