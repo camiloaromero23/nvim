@@ -80,13 +80,6 @@ return {
         ghost_text = {
           enabled = true,
         },
-        menu = {
-          auto_show = function()
-            return vim.fn.getcmdtype() == ":"
-            -- enable for inputs as well, with:
-            -- or vim.fn.getcmdtype() == '@'
-          end,
-        },
       },
     },
 
