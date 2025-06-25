@@ -22,6 +22,8 @@ vim.opt.sidescrolloff = 8 -- Columns of context
 vim.opt.timeoutlen = 250 -- Time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.updatetime = 50 -- Save swap file and trigger CursorHold
 
+vim.g.lazyvim_prettier_needs_config = true -- Enable this option to avoid conflicts with Prettier.
+
 vim.filetype.add {
   pattern = {
     [".env.*"] = "dotenv",
