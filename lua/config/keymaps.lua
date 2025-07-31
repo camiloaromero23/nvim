@@ -96,3 +96,13 @@ end
 vim.keymap.set("n", "<leader>Ll", function()
   LazyVim.news.changelog()
 end, { desc = "LazyVim Changelog" })
+
+vim.keymap.set("n", "<leader>yf", function()
+  local Path = require "plenary.path"
+  local path = Path:new(vim.fn.expand "%")
+  local relative_to_cwd = path:make_relative()
+  vim.fn.setreg("+", relative_to_cwd)
+  vim.notify("Copied relative path to clipboard: " .. relative_to_cwd, vim.log.levels.INFO)
+end, {
+  desc = "Copy relative file path to clipboard",
+})
