@@ -1,11 +1,11 @@
 return {
   {
-    "echasnovski/mini.ai",
+    "nvim-mini/mini.ai",
     opts = true,
     event = "VeryLazy",
   },
   {
-    "echasnovski/mini.files",
+    "nvim-mini/mini.files",
     dependencies = {
       "snacks.nvim",
     },
@@ -46,12 +46,12 @@ return {
     event = "VeryLazy",
   },
   {
-    "echasnovski/mini.pairs",
+    "nvim-mini/mini.pairs",
     opts = true,
     event = "VeryLazy",
   },
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     opts = {
       search_method = "cover_or_next",
       mappings = {

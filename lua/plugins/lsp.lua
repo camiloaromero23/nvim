@@ -3,7 +3,7 @@ return {
   {
     "zapling/mason-conform.nvim",
     dependencies = {
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
       "stevearc/conform.nvim",
     },
     opts = {
@@ -20,7 +20,7 @@ return {
     event = "LazyFile",
     dependencies = {
       "mason.nvim",
-      { "williamboman/mason-lspconfig.nvim", config = function() end },
+      { "mason-org/mason-lspconfig.nvim", config = function() end },
     },
     opts = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
@@ -37,7 +37,7 @@ return {
     event = "LazyFile",
     dependencies = {
       "mason.nvim",
-      { "williamboman/mason-lspconfig.nvim", config = function() end },
+      { "mason-org/mason-lspconfig.nvim", config = function() end },
     },
     ---@class PluginLspOpts
     opts = {
