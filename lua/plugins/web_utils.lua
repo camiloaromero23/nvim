@@ -41,5 +41,14 @@ return {
     "dmmulroy/tsc.nvim",
     opts = {},
     event = "VeryLazy",
+    keys = {
+      {
+        "<leader>lt",
+        function()
+          vim.cmd "TSC"
+        end,
+        desc = "Type Check (only for TS files)",
+      },
+    },
   },
 }
