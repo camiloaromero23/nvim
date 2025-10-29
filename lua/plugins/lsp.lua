@@ -22,15 +22,15 @@ return {
       "mason.nvim",
       { "mason-org/mason-lspconfig.nvim", config = function() end },
     },
-    opts = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-
-      keys[#keys + 1] = {
-        "K",
-        lsp_functions.hover,
-        desc = "Hover",
-      }
-    end,
+    opts = {
+      servers = {
+        ["*"] = {
+          keys = {
+            { "K", lsp_functions.hover, desc = "Hover" },
+          },
+        },
+      },
+    },
   },
   {
     "neovim/nvim-lspconfig",
@@ -47,14 +47,6 @@ return {
       },
       codelens = {
         enabled = false,
-      },
-      capabilities = {
-        workspace = {
-          fileOperations = {
-            didRename = true,
-            willRename = true,
-          },
-        },
       },
       format = {
         formatting_options = nil,
@@ -159,6 +151,16 @@ return {
                 parameterTypes = { enabled = true },
                 propertyDeclarationTypes = { enabled = true },
                 variableTypes = { enabled = true },
+              },
+            },
+          },
+        },
+        ["*"] = {
+          capabilities = {
+            workspace = {
+              fileOperations = {
+                didRename = true,
+                willRename = true,
               },
             },
           },
