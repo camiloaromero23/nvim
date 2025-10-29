@@ -1,5 +1,5 @@
 local icons = LazyVim.config.icons.misc
-local custom_icons = require 'config.user.icons'.ui
+local custom_icons = require("config.user.icons").ui
 
 return {
   "snacks.nvim",
@@ -151,9 +151,24 @@ return {
         },
       },
     },
+    ---
+    ---@class snacks.image.Config
+    image = {
+      enabled = true,
+      doc = {
+        enabled = true,
+        inline = false,
+        float = true,
+      },
+    },
 
     ---@class snacks.styles.Config
     styles = {
+      snacks_image = {
+        relative = "editor",
+        col = -1,
+      },
+
       notification = {
         wo = { wrap = true }, -- Wrap notifications
       },
