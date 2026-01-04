@@ -11,6 +11,9 @@ return {
         frecency = true,
       },
       previewers = {
+        diff = {
+          style = "terminal",
+        },
         git = {
           native = true,
           args = {
