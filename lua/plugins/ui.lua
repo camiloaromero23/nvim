@@ -4,7 +4,7 @@ return {
     "LazyVim/LazyVim",
     ---@class LazyVimConfig
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = "catppuccin-mocha",
       icons = {
         misc = {
           BoldLineLeft = "▎",
@@ -139,6 +139,7 @@ return {
           BlinkCmpSignatureHelp = { fg = colors.text },
           BlinkCmpSignatureHelpBorder = { fg = colors.text },
 
+          ColorTransparent = { fg = "#404040" },
           CursorLineNr = { fg = colors.blue },
 
           DiagnosticFloatingTextError = { fg = colors.red, bg = "", italic = true },
@@ -192,10 +193,6 @@ return {
         }
       end,
     },
-    config = function(_, opts)
-      require("catppuccin").setup(opts)
-      vim.api.nvim_set_hl(0, "ColorTransparent", { fg = "#404040" })
-    end,
   },
   {
     "hiphish/rainbow-delimiters.nvim",
