@@ -121,28 +121,31 @@ return {
           ###    #######    ###         
                  #######                
       ]],
+        ---@type snacks.dashboard.Item[]
         keys = {
           {
             icon = custom_icons.FindFile,
             desc = "Find File",
             key = "<leader>sf",
             action = function()
-              Snacks.picker.files {
-                hidden = true,
-              }
+              require("fff").find_files {}
             end,
           },
           {
             icon = "",
             desc = "Recently Used Files",
             key = "<leader>sr",
-            action = ":lua Snacks.dashboard.pick('oldfiles')",
+            action = function()
+              require("fff").find_files {}
+            end,
           },
           {
             icon = custom_icons.FindText,
             desc = "Find Word",
             key = "<leader>st",
-            action = ":lua Snacks.dashboard.pick('live_grep')",
+            action = function()
+              require("fff").live_grep {}
+            end,
           },
           {
             icon = "",
@@ -161,7 +164,7 @@ return {
       doc = {
         enabled = true,
         inline = false,
-        float = true,
+        float = false,
       },
     },
 
@@ -184,11 +187,7 @@ return {
   keys = {
     {
       "<leader>sf",
-      function()
-        Snacks.picker.files {
-          hidden = true,
-        }
-      end,
+      false,
       desc = "Find File",
     },
     {
@@ -256,9 +255,7 @@ return {
     },
     {
       "<leader>st",
-      function()
-        Snacks.picker.grep()
-      end,
+      false,
       desc = "Text",
     },
     {
@@ -354,6 +351,15 @@ return {
         Snacks.lazygit.open()
       end,
       desc = "Lazygit",
+    },
+    {
+      "<leader>snn",
+      function()
+        Snacks.picker.files {
+          cwd = vim.fn.expand "~/Documents/notes/notes",
+        }
+      end,
+      desc = "Find Notes",
     },
   },
 }

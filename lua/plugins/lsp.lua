@@ -1,6 +1,17 @@
 local lsp_functions = require "config.lsp_functions"
 return {
   {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        javascript = { "oxfmt" },
+        javascriptreact = { "oxfmt" },
+        typescript = { "oxfmt" },
+        typescriptreact = { "oxfmt" },
+      },
+    },
+  },
+  {
     "zapling/mason-conform.nvim",
     dependencies = {
       "mason-org/mason.nvim",
