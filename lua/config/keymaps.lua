@@ -106,3 +106,61 @@ vim.keymap.set("n", "<leader>yf", function()
 end, {
   desc = "Copy relative file path to clipboard",
 })
+
+vim.api.nvim_create_user_command("DailyNote", function(args)
+  local vault_path = vim.g.obsidian_vault_path
+
+  if not vault_path or vault_path == "" then
+    vim.notify("Obsidian vault path is not configured", vim.log.levels.ERROR)
+    return
+  end
+
+  local offset = 0
+
+  if args.args ~= "" then
+    if args.args == "prev" then
+      offset = -1
+    elseif args.args == "next" then
+      offset = 1
+    elseif args.args == "today" then
+      offset = 0
+    else
+      offset = tonumber(args.args)
+    end
+
+    if offset == nil then
+      vim.notify("DailyNote expects an optional day offset like -1 or 1", vim.log.levels.ERROR)
+      return
+    end
+  end
+
+  local now = os.date "*t"
+  local target_time = os.time {
+    year = now.year,
+    month = now.month,
+    day = now.day + offset,
+    hour = 12,
+  }
+
+  local daily_notes_dir = vim.fs.joinpath(vault_path, "01-daily")
+  local template_path = vim.fs.joinpath(vault_path, "Templates", "Daily Note.md")
+  local daily_note = vim.fs.joinpath(daily_notes_dir, os.date("%Y-%m-%d-%A.md", target_time))
+
+  vim.fn.mkdir(daily_notes_dir, "p")
+
+  if vim.fn.filereadable(daily_note) == 0 and vim.fn.filereadable(template_path) == 1 then
+    local lines = vim.fn.readfile(template_path)
+    local date = os.date("%y-%m-%d-%A", target_time)
+
+    for i, line in ipairs(lines) do
+      lines[i] = line:gsub("{{date:YY%-MM%-DD%-dddd}}", date)
+    end
+
+    vim.fn.writefile(lines, daily_note)
+  end
+
+  vim.cmd.edit(vim.fn.fnameescape(daily_note))
+end, {
+  desc = "Open or create an Obsidian daily note",
+  nargs = "?",
+})

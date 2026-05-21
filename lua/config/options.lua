@@ -4,6 +4,7 @@
 vim.g.snacks_animate = false
 vim.g.autoformat = false
 vim.g.ai_cmp = false
+vim.g.obsidian_vault_path = vim.fn.expand "$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/notes"
 -- vim.g.lazyvim_blink_main = true
 
 vim.opt.hlsearch = false -- highlight all matches on previous search pattern

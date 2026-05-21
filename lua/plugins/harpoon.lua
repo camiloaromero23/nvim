@@ -42,5 +42,20 @@ return {
       '<cmd> lua require("harpoon"):list():select(4)<CR>',
       desc = "Go to mark 4",
     },
+    {
+      "<leader>hs",
+      '<cmd>DailyNote -1<CR>',
+      desc = "Go to yesterday note",
+    },
+    {
+      "<leader>hd",
+      '<cmd>DailyNote<CR>',
+      desc = "Go to daily note",
+    },
+    {
+      "<leader>hf",
+      '<cmd>DailyNote 1<CR>',
+      desc = "Go to tomorrow note",
+    },
   },
 }
