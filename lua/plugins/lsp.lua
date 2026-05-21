@@ -31,7 +31,14 @@ return {
     event = "LazyFile",
     dependencies = {
       "mason.nvim",
-      { "mason-org/mason-lspconfig.nvim", config = function() end },
+      { "mason-org/mason-lspconfig.nvim" },
+      {
+        "mason-org/mason.nvim",
+        opts = function(_, opts)
+          opts.ensure_installed = opts.ensure_installed or {}
+          table.insert(opts.ensure_installed, "markdown-oxide")
+        end,
+      },
     },
     opts = {
       servers = {
@@ -166,6 +173,26 @@ return {
             },
           },
         },
+        marksman = {
+          enabled = false,
+        },
+        markdown_oxide = {
+          -- Ensure that dynamicRegistration is enabled
+          -- This allows the LS to take into account actions like Create Unresolved File, etc
+          capabilities = vim.tbl_deep_extend(
+            "force",
+            vim.lsp.protocol.make_client_capabilities(),
+            require("blink.cmp").get_lsp_capabilities(),
+            {
+              workspace = {
+                didChangeWatchedFiles = {
+                  dynamicRegistration = true,
+                },
+              },
+            }
+          ),
+        },
+
         ["*"] = {
           capabilities = {
             workspace = {
