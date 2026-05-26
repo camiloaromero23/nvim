@@ -150,7 +150,7 @@ vim.api.nvim_create_user_command("DailyNote", function(args)
 
   if vim.fn.filereadable(daily_note) == 0 and vim.fn.filereadable(template_path) == 1 then
     local lines = vim.fn.readfile(template_path)
-    local date = os.date("%y-%m-%d-%A", target_time)
+    local date = os.date("%Y-%m-%d-%A", target_time)
 
     for i, line in ipairs(lines) do
       lines[i] = line:gsub("{{date:YY%-MM%-DD%-dddd}}", date)
