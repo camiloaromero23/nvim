@@ -30,3 +30,5 @@ vim.filetype.add {
     [".env.*"] = "dotenv",
   },
 }
+
+vim.opt.spelllang = { "en", "es" }
