@@ -27,7 +27,7 @@ vim.g.lazyvim_prettier_needs_config = true -- Enable this option to avoid confli
 
 vim.filetype.add {
   pattern = {
-    [".env.*"] = "dotenv",
+    ["*.env.*"] = "dotenv",
   },
 }
 
