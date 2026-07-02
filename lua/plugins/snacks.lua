@@ -164,7 +164,7 @@ return {
       doc = {
         enabled = true,
         inline = false,
-        float = false,
+        float = true,
       },
     },
 
@@ -197,7 +197,12 @@ return {
           title = "Find .env files",
           cmd = "rg",
           ignored = true,
-          search = "*.env*",
+          args = {
+            "--glob",
+            ".env*",
+            "--glob",
+            "!.env.example",
+          },
         }
       end,
       desc = "Find .env files",
