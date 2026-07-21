@@ -8,6 +8,7 @@ return {
         javascriptreact = { "oxfmt" },
         typescript = { "oxfmt" },
         typescriptreact = { "oxfmt" },
+        markdown = { "oxfmt" },
       },
     },
   },
